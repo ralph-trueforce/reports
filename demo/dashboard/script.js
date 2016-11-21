@@ -3,70 +3,39 @@ angular.module('app')
 .directive( 'getSize', function() {
 	return {
 		link: function( scope, element, attrs ) {
+			function updateGraph() {
+				element.css('height', (element[0].parentElement.clientHeight - 100) + 'px');
+				var ID = element[0].id;
+				if (isNaN(ID)) {
+					angular.element(document.querySelector("#" + ID)).empty();
+					eval("var graph = new " + ID + "(" + element[0].clientWidth + ", " + (element[0].clientHeight) + ");");
+					graph.draw("#" + ID);
+				}
+			}
 			scope.$watch
 			(
 				function () {
 					return '{"height":' + (element[0].clientHeight + 3) + ', "width":' + (element[0].clientWidth + 2) + '}';
 				},
 				function (newSize, oldSize) {
-					//console.log(element[0].id);
 					var div_size = JSON.parse(newSize);
 					var old_div_size = JSON.parse(oldSize);
-					//console.log("(" + div_size.height + "," + div_size.width + ")");
-					//console.log("(" + old_div_size.height + "," + old_div_size.width + ")");
-
 					if (div_size.height > 408 || div_size.width > 450) {
 						var ID = element[0].id;
-						//angular.element(document.querySelector("#" + ID)).empty();
-						//eval("var graph = new " + ID + "("+div_size.width+", "+div_size.height+");");
-						//graph.draw("#" + ID);
 					}
 				}
 			);
 			scope.$on('gridster-item-resized', function(item) {
-				// console.log(element[0].id + 'item resized');
-				//console.log(element[0].parentElement.clientHeight);
-				element.css('height', (element[0].parentElement.clientHeight - 100) + 'px');
-				//console.log(element[0].clientHeight);
-				var ID = element[0].id;
-				if (isNaN(ID)) {
-					angular.element(document.querySelector("#" + ID)).empty();
-					eval("var graph = new " + ID + "(" + element[0].clientWidth + ", " + (element[0].clientHeight) + ");");
-					graph.draw("#" + ID);
-				}
-
+				updateGraph();
 			});
 			scope.$on('gridster-item-transition-end', function(item) {
-				//console.log(element[0].id + ' item transition');
-				//console.log("end(" + element[0].clientWidth+", "+element[0].clientHeight + ")");
-				//console.log(element[0].parentElement.clientHeight);
-				element.css('height', (element[0].parentElement.clientHeight - 100) + 'px');
-				//console.log(element[0].clientHeight);
-				var ID = element[0].id;
-				if (isNaN(ID)) {
-					angular.element(document.querySelector("#" + ID)).empty();
-					eval("var graph = new " + ID + "(" + element[0].clientWidth + ", " + (element[0].clientHeight) + ");");
-					graph.draw("#" + ID);
-				}
-
+				updateGraph();
 			});
 			scope.$on('gridster-resized', function(sizes, gridster) {
-				element.css('height', (element[0].parentElement.clientHeight - 100) + 'px');
-				var ID = element[0].id;
-				if (isNaN(ID)) {
-					angular.element(document.querySelector("#" + ID)).empty();
-					eval("var graph = new " + ID + "(" + element[0].clientWidth + ", " + (element[0].clientHeight) + ");");
-					graph.draw("#" + ID);
-				}
+				updateGraph();
 			});
 			scope.$on('gridster-resizable-changed', function(gridster) {
-				element.css('height', (element[0].parentElement.clientHeight - 100) + 'px');
-				var ID = element[0].id;
-				if (isNaN(ID)) {
-					angular.element(document.querySelector("#" + ID)).empty();
-					eval("var graph = new " + ID + "(" + element[0].clientWidth + ", " + (element[0].clientHeight) + ");");
-					graph.draw("#" + ID);
-				}
+				updateGraph();
 			});
 		}
 	};
