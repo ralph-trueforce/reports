@@ -50,6 +50,24 @@ angular.module('app')
 				}
 
 			});
+			scope.$on('gridster-resized', function(sizes, gridster) {
+				element.css('height', (element[0].parentElement.clientHeight - 100) + 'px');
+				var ID = element[0].id;
+				if (isNaN(ID)) {
+					angular.element(document.querySelector("#" + ID)).empty();
+					eval("var graph = new " + ID + "(" + element[0].clientWidth + ", " + (element[0].clientHeight) + ");");
+					graph.draw("#" + ID);
+				}
+			});
+			scope.$on('gridster-resizable-changed', function(gridster) {
+				element.css('height', (element[0].parentElement.clientHeight - 100) + 'px');
+				var ID = element[0].id;
+				if (isNaN(ID)) {
+					angular.element(document.querySelector("#" + ID)).empty();
+					eval("var graph = new " + ID + "(" + element[0].clientWidth + ", " + (element[0].clientHeight) + ");");
+					graph.draw("#" + ID);
+				}
+			});
 		}
 	};
 })
