@@ -25,12 +25,13 @@ angular.module('app')
 			);
 			scope.$on('gridster-item-resized', function(item) {
 				// console.log(element[0].id + 'item resized');
-				//console.log(element[0]);
-				//console.log(scope);
+				//console.log(element[0].parentElement.clientHeight);
+				element.css('height', (element[0].parentElement.clientHeight - 100) + 'px');
+				//console.log(element[0].clientHeight);
 				var ID = element[0].id;
 				if (isNaN(ID)) {
 					angular.element(document.querySelector("#" + ID)).empty();
-					eval("var graph = new " + ID + "(" + element[0].clientWidth + ", " + (element[0].clientHeight + 380) + ");");
+					eval("var graph = new " + ID + "(" + element[0].clientWidth + ", " + (element[0].clientHeight) + ");");
 					graph.draw("#" + ID);
 				}
 
@@ -38,12 +39,13 @@ angular.module('app')
 			scope.$on('gridster-item-transition-end', function(item) {
 				//console.log(element[0].id + ' item transition');
 				//console.log("end(" + element[0].clientWidth+", "+element[0].clientHeight + ")");
-				//console.log(element[0]);
-				//console.log(scope);
+				//console.log(element[0].parentElement.clientHeight);
+				element.css('height', (element[0].parentElement.clientHeight - 100) + 'px');
+				//console.log(element[0].clientHeight);
 				var ID = element[0].id;
 				if (isNaN(ID)) {
 					angular.element(document.querySelector("#" + ID)).empty();
-					eval("var graph = new " + ID + "(" + element[0].clientWidth + ", " + (element[0].clientHeight + 380) + ");");
+					eval("var graph = new " + ID + "(" + element[0].clientWidth + ", " + (element[0].clientHeight) + ");");
 					graph.draw("#" + ID);
 				}
 
