@@ -25,18 +25,10 @@ angular.module('app')
 					}
 				}
 			);
-			scope.$on('gridster-item-resized', function(item) {
-				updateGraph();
-			});
-			scope.$on('gridster-item-transition-end', function(item) {
-				updateGraph();
-			});
-			scope.$on('gridster-resized', function(sizes, gridster) {
-				updateGraph();
-			});
-			scope.$on('gridster-resizable-changed', function(gridster) {
-				updateGraph();
-			});
+			scope.$on('gridster-item-resized',        updateGraph);
+			scope.$on('gridster-item-transition-end', updateGraph);
+			scope.$on('gridster-resized',             updateGraph);
+			scope.$on('gridster-resizable-changed',   updateGraph);
 		}
 	};
 })
