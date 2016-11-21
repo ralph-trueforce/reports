@@ -3,10 +3,23 @@ angular.module('app')
 .directive( 'getSize', function() {
 	return {
 		link: function( scope, element, attrs ) {
+			/**
+			 * Work-around:  check if the id has a angular model variable
+			 * @param string
+			 * @returns {boolean}
+			 */
+			function isAngularModelVar(string) {
+				return (string.indexOf("{{") !== -1 && string.indexOf("}}") !== -1);
+			}
+
+			/**
+			 * Update the graph, by getting the div ID, then clearing the target Div and render inside it.
+			 */
 			function updateGraph() {
 				element.css('height', (element[0].parentElement.clientHeight - 100) + 'px');
 				var ID = element[0].id;
-				if (isNaN(ID)) {
+				if (isNaN(ID) && !isAngularModelVar(ID)) {
+					console.log(ID);
 					angular.element(document.querySelector("#" + ID)).empty();
 					eval("var graph = new " + ID + "(" + element[0].clientWidth + ", " + (element[0].clientHeight) + ");");
 					graph.draw("#" + ID);
