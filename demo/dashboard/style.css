@@ -11,7 +11,7 @@ ul {
 .box {
     height: 100%;
     border: 1px solid #ccc;
-    
+    background-color: #fff;
 }
 .box-header {
     /*background-color: #eee;*/
@@ -41,7 +41,7 @@ form {
 }
 .gridster {
     border: 1px solid #ccc;
-    
+    background-color: rgb(244, 243, 246);
 }
 
 .box-header h3 {
