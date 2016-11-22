@@ -7,7 +7,7 @@ angular.module('app')
 			/**
 			 * Called after a widget is loaded
 			 */
-			element.ready(function(){
+			element.ready(function() {
 				updateGraph();
 			});
 
@@ -85,7 +85,7 @@ angular.module('app')
 				name: 'Home',
 				widgets: [{
 					col: 0,
-					row: 0,
+					row: 1,
 					sizeY: 1,
 					sizeX: 1,
 					name: "Widget",
