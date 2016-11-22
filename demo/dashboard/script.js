@@ -92,13 +92,37 @@ angular.module('app')
 					id: 'Donut_1',
 					type: 'Donut'
 				}, {
-					col: 2,
+					col: 1,
 					row: 1,
 					sizeY: 1,
 					sizeX: 1,
 					name: "Widget",
 					id: 'Lines_1',
 					type: 'Lines'
+				}, {
+					col: 2,
+					row: 1,
+					sizeY: 1,
+					sizeX: 1,
+					name: "Widget",
+					id: "Bar_1",
+					type: 'Bar'
+				}, {
+					col: 3,
+					row: 1,
+					sizeY: 1,
+					sizeX: 1,
+					name: "Widget",
+					id: "Pie_1",
+					type: 'Pie'
+				}, {
+					col: 1,
+					row: 2,
+					sizeY: 2,
+					sizeX: 4,
+					name: "Widget",
+					id: "Series_1",
+					type: 'Series'
 				}]
 			},
 			'2': {

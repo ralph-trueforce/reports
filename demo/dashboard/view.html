@@ -2,6 +2,9 @@
 	<a class="pull-right btn btn-primary" ng-click="addWidget('Html')"><i class="glyphicon glyphicon-plus"></i> Add Html</a>
 	<a class="pull-right btn btn-primary" ng-click="addWidget('Donut')"><i class="glyphicon glyphicon-plus"></i> Add Donut</a>
 	<a class="pull-right btn btn-primary" ng-click="addWidget('Lines')"><i class="glyphicon glyphicon-plus"></i> Add Lines</a>
+	<a class="pull-right btn btn-primary" ng-click="addWidget('Pie')"><i class="glyphicon glyphicon-plus"></i> Add Pie</a>
+	<a class="pull-right btn btn-primary" ng-click="addWidget('Bar')"><i class="glyphicon glyphicon-plus"></i> Add Bar</a>
+	<a class="pull-right btn btn-primary" ng-click="addWidget('Series')"><i class="glyphicon glyphicon-plus"></i> Add Serie</a>
 	<a class="pull-right btn btn-warning" ng-click="clear()"><i class="glyphicon glyphicon-trash"></i> Clear</a>
 	<h1 style="display: inline-block; width: 200px;">Dashboard</h1>
 	<select class="form-control" style="width: 150px; margin-bottom: 20px; display:inline-block;" ng-change="changeDashboard()" ng-model="selectedDashboardId" ng-options="d.id as d.name for d in dashboards | object2Array | orderBy:'id'">
