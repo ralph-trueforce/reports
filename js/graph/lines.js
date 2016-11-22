@@ -79,4 +79,8 @@ function Lines(width, height) {
 
         });
     };
+
+    this.getFooter = function() {
+        return "<span class=\"glyphicon glyphicon-th-large\"></span>Compare with <a href=\"#\">https://www.domo.com/connectors/excel</a><span class=\"glyphicon glyphicon-road\"></span>";
+    }
 }

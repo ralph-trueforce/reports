@@ -69,6 +69,25 @@ angular.module('app')
 	};
 })
 
+.directive ('widgetFooter', ['$sce', function($sce) {
+	return {
+		scope: {
+			type: "@type"
+		},
+		link: function (scope, element, attr) {
+
+			eval("graph = new " + attr.type + "(0,0);");
+			htmlText = graph.getFooter();
+			var html_contents = "<div class=\"box-link\">" + $sce.trustAsHtml(htmlText) + "</div>";
+
+			scope.$watch('widgetFooter', function () {
+					element.append(html_contents);
+				}
+			)
+		}
+	}
+}])
+
 .controller('DashboardCtrl', ['$scope', '$timeout', '$sce',
 	function($scope, $timeout, $sce) {
 		$scope.gridsterOptions = {
@@ -89,7 +108,7 @@ angular.module('app')
 					sizeY: 1,
 					sizeX: 1,
 					name: "Widget",
-					id: 'Donut_1',
+					id: 1,
 					type: 'Donut'
 				}, {
 					col: 1,
@@ -97,7 +116,7 @@ angular.module('app')
 					sizeY: 1,
 					sizeX: 1,
 					name: "Widget",
-					id: 'Lines_1',
+					id: 1,
 					type: 'Lines'
 				}, {
 					col: 2,
@@ -105,7 +124,7 @@ angular.module('app')
 					sizeY: 1,
 					sizeX: 1,
 					name: "Widget",
-					id: "Bar_1",
+					id: 1,
 					type: 'Bar'
 				}, {
 					col: 3,
@@ -113,7 +132,7 @@ angular.module('app')
 					sizeY: 1,
 					sizeX: 1,
 					name: "Widget",
-					id: "Pie_1",
+					id: 1,
 					type: 'Pie'
 				}, {
 					col: 1,
@@ -121,7 +140,7 @@ angular.module('app')
 					sizeY: 2,
 					sizeX: 4,
 					name: "Widget",
-					id: "Series_1",
+					id: 1,
 					type: 'Series'
 				}]
 			},
@@ -134,7 +153,7 @@ angular.module('app')
 					sizeY: 1,
 					sizeX: 2,
 					name: "Other Widget 1",
-					id: 'Lines_1',
+					id: 1,
 					type: 'Lines'
 				}, {
 					col: 1,
@@ -142,7 +161,7 @@ angular.module('app')
 					sizeY: 1,
 					sizeX: 1,
 					name: "Other Widget 2",
-					id: 'Donut_1',
+					id: 1,
 					type: 'Donut'
 				}]
 			}
@@ -150,6 +169,11 @@ angular.module('app')
 
 		$scope.clear = function() {
 			$scope.dashboard.widgets = [];
+		};
+
+		$scope.getHtml = function(type) {
+			var htmlText = '<span>Copyright Trademark ™ 2016.</span>';
+			return $sce.trustAsHtml(htmlText);
 		};
 
 		$scope.addWidget = function(type) {
@@ -170,10 +194,9 @@ angular.module('app')
 				name: "New Widget",
 				sizeX: 1,
 				sizeY: 1,
-				id: type + '_' + widgetIndex,
+				id: /*type + '_' +*/ widgetIndex,
 				text: html_text,
-				type: type,
-				state: 'new'
+				type: type
 			});
 		};
 

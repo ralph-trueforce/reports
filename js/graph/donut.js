@@ -74,4 +74,8 @@ function Donut(width, height) {
             .attr('y', legendRectSize - legendSpacing)
             .text(function(d) { return d; });
     };
+
+    this.getFooter = function() {
+        return "<span class=\"glyphicon glyphicon-home\"></span> See also <a href=\"https://www.domo.com\">https://www.domo.com</a>";
+    }
 }

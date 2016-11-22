@@ -87,5 +87,9 @@ function Series(width, height) {
                 .style("stroke", function (d) { return color(d.key); });
 
         });
+    };
+
+    this.getFooter = function() {
+        return "<span class=\"glyphicon glyphicon-envelope\"></span> Share with <a href=\"https://www.domo.com/connectors/excel\">https://www.domo.com/connectors/excel</a>";
     }
 }

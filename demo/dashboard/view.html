@@ -16,17 +16,19 @@
 		<li gridster-item="widget" ng-repeat="widget in dashboard.widgets">
 			<div class="box" ng-controller="CustomWidgetCtrl">
 				<div class="box-header">
-					<h3>{{ widget.name }} {{ widget.id }}</h3>
+					<h3>{{ widget.name }} {{ widget.type }}_{{ widget.id }}</h3>
 					<div class="box-header-btns pull-right">
 						<a title="settings" ng-click="openSettings(widget)"><i class="glyphicon glyphicon-cog"></i></a>
 						<a title="Remove widget" ng-click="remove(widget)"><i class="glyphicon glyphicon-trash"></i></a>
 					</div>
 				</div>
-				<div class="box-content" id="{{ widget.id }}" get-size style="border:1px solid beige;">
+				<div class="box-content" id="{{ widget.type }}_{{ widget.id }}" get-size style="border:1px solid beige;">
 					<span ng-if="widget.type == 'Html'" >
 	    			    <widget-html text="{{widget.text}}"/>
 					</span>
 				</div>
+				<!--<div class="box-link" ng-bind-html='getHtml("{{ widget.type }}")'></div>-->
+				<widget-footer type="{{ widget.type }}"></widget-footer>
 			</div>
 		</li>
 	</ul>

@@ -88,3 +88,6 @@ form {
   fill: none;
   stroke-width: 1.5px;
 }
+.box-link {
+    padding: 10px 10px;
+}

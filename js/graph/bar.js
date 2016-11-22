@@ -70,5 +70,9 @@ function Bar(width, height) {
                 .attr("height", function (d) { return height - y(d.population); });
 
         });
+    };
+
+    this.getFooter = function() {
+        return "<span class=\"glyphicon glyphicon-book\"></span> Share <a href=\"#\">https://www.domo.com/connectors/excel</a>  <span class=\"glyphicon glyphicon-eye-open\"></span>";
     }
 }
