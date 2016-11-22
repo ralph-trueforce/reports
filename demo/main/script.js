@@ -14,6 +14,52 @@ angular.module('app')
 	};
 })
 
+.directive( 'drawing', function() {
+	return {
+		link: function( scope, element, attrs ) {
+
+			/**
+			 * Called after a widget is loaded
+			 */
+			element.ready(function() {
+				updateGraph();
+			});
+
+			/**
+			 * Work-around: Check if the id has a angular model variable
+			 * @param string
+			 * @returns {boolean}
+			 */
+			function isAngularModelVar(string) {
+				return (string.indexOf("{{") !== -1 && string.indexOf("}}") !== -1);
+			}
+
+			/**
+			 * Update the graph, by getting the div ID, then clearing the target Div and render inside it.
+			 */
+			function updateGraph() {
+				element.css('height', (element[0].parentElement.clientHeight - 10) + 'px');
+				var ID = element[0].id;
+				if (isNaN(ID) && !isAngularModelVar(ID)) {
+					var _Class = ID.split("_")[0];
+					if (_Class == 'Html') {
+						return;
+					}
+					angular.element(document.querySelector("#" + ID)).empty();
+					eval("var graph = new " + _Class + "(" + element[0].clientWidth + ", " + (element[0].clientHeight) + ");");
+					graph.draw("#" + ID);
+				}
+			}
+
+			scope.$on('gridster-item-resized',        updateGraph);
+			scope.$on('gridster-item-transition-end', updateGraph);
+			scope.$on('gridster-resized',             updateGraph);
+			scope.$on('gridster-resizable-changed',   updateGraph);
+			scope.$on('gridster-item-initialized',    updateGraph);
+		}
+	};
+})
+
 .controller('MainCtrl', function($scope) {
 
 	$scope.gridsterOpts = {
@@ -22,10 +68,10 @@ angular.module('app')
 		pushing: true,
 		floating: true,
 		draggable: {
-			enabled: false
+			enabled: true
 		},
 		resizable: {
-			enabled: false,
+			enabled: true,
 			handles: ['n', 'e', 's', 'w', 'se', 'sw']
 		}
 	};
@@ -35,57 +81,68 @@ angular.module('app')
 		sizeX: 2,
 		sizeY: 1,
 		row: 0,
-		col: 0
+		col: 0,
+		id: 'Pie_1'
 	}, {
 		sizeX: 2,
 		sizeY: 2,
 		row: 0,
-		col: 2
+		col: 2,
+		id: 'Lines_1'
 	}, {
 		sizeX: 2,
 		sizeY: 1,
 		row: 2,
-		col: 1
+		col: 1,
+		id: 'Bar_1'
 	}, {
 		sizeX: 1,
 		sizeY: 1,
 		row: 2,
-		col: 3
+		col: 3,
+		id: 'Donut_1'
 	}, {
 		sizeX: 1,
 		sizeY: 1,
 		row: 2,
-		col: 4
+		col: 4,
+		id: 'Series_1'
 	}, {
 		sizeX: 1,
 		sizeY: 1,
 		row: 0,
-		col: 4
+		col: 4,
+		id: 'Pie_2'
 	}, {
 		sizeX: 1,
 		sizeY: 1,
 		row: 0,
-		col: 5
+		col: 5,
+		id: 'Series_2'
 	}, {
 		sizeX: 2,
 		sizeY: 1,
 		row: 1,
-		col: 0
+		col: 0,
+		id: 'Bar_2'
 	}, {
 		sizeX: 1,
 		sizeY: 1,
 		row: 1,
-		col: 4
+		col: 4,
+		id: 'Bar_3'
 	}, {
 		sizeX: 1,
 		sizeY: 2,
 		row: 1,
-		col: 5
+		col: 5,
+		id: 'Pie_3'
 	}, {
 		sizeX: 1,
 		sizeY: 1,
 		row: 2,
-		col: 0
+		col: 0,
+		id: 'Lines_2'
 	}];
 
 	// these are non-standard, so they require mapping options
@@ -94,67 +151,78 @@ angular.module('app')
 			x: 2,
 			y: 1
 		},
-		position: [0, 0]
+		position: [0, 0],
+		id: 'Lines_3'
 	}, {
 		size: {
 			x: 2,
 			y: 2
 		},
-		position: [0, 2]
+		position: [0, 2],
+		id: 'Donut_2'
 	}, {
 		size: {
 			x: 1,
 			y: 1
 		},
-		position: [1, 4]
+		position: [1, 4],
+		id: 'Donut_3'
 	}, {
 		size: {
 			x: 1,
 			y: 2
 		},
-		position: [1, 5]
+		position: [1, 5],
+		id: 'Bar_4'
 	}, {
 		size: {
 			x: 1,
 			y: 1
 		},
-		position: [2, 0]
+		position: [2, 0],
+		id: 'Bar_5'
 	}, {
 		size: {
 			x: 2,
 			y: 1
 		},
-		position: [2, 1]
+		position: [2, 1],
+		id: 'Bar_6'
 	}, {
 		size: {
 			x: 1,
 			y: 1
 		},
-		position: [2, 3]
+		position: [2, 3],
+		id: 'Donut_4'
 	}, {
 		size: {
 			x: 1,
 			y: 1
 		},
-		position: [0, 4]
+		position: [0, 4],
+		id: 'Series_3'
 	}, {
 		size: {
 			x: 1,
 			y: 1
 		},
-		position: [0, 5]
+		position: [0, 5],
+		id: 'Series_4'
 	}, {
 		size: {
 			x: 2,
 			y: 1
 		},
-		position: [1, 0]
+		position: [1, 0],
+		id: 'Series_5'
 	}, {
 		size: {
 			x: 1,
 			y: 1
 		},
-		position: [2, 4]
+		position: [2, 4],
+		id: 'Pie_4'
 	}];
 
 	$scope.emptyItems = [{
