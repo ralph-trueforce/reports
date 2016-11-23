@@ -1,19 +1,5 @@
 angular.module('app')
 
-.directive('integer', function() {
-	return {
-		require: 'ngModel',
-		link: function(scope, ele, attr, ctrl) {
-			ctrl.$parsers.unshift(function(viewValue) {
-				if (viewValue === '' || viewValue === null || typeof viewValue === 'undefined') {
-					return null;
-				}
-				return parseInt(viewValue, 10);
-			});
-		}
-	};
-})
-
 .directive( 'drawing', function() {
 	return {
 		link: function( scope, element, attrs ) {
@@ -55,12 +41,12 @@ angular.module('app')
 			scope.$on('gridster-item-transition-end', updateGraph);
 			scope.$on('gridster-resized',             updateGraph);
 			scope.$on('gridster-resizable-changed',   updateGraph);
-			scope.$on('gridster-item-initialized',    updateGraph);
+
 		}
 	};
 })
 
-.controller('MainCtrl', function($scope) {
+.controller('MainCtrl', function($scope, $timeout) {
 
 	$scope.gridsterOpts = {
 		margins: [20, 20],
@@ -80,69 +66,69 @@ angular.module('app')
 	$scope.standardItems = [{
 		sizeX: 2,
 		sizeY: 1,
-		row: 0,
+		row: 1,
 		col: 0,
-		id: 'Pie_1'
+		id: 'Pie__1'
 	}, {
 		sizeX: 2,
 		sizeY: 2,
-		row: 0,
+		row: 1,
 		col: 2,
-		id: 'Lines_1'
-	}, {
-		sizeX: 2,
-		sizeY: 1,
-		row: 2,
-		col: 1,
-		id: 'Bar_1'
-	}, {
-		sizeX: 1,
-		sizeY: 1,
-		row: 2,
-		col: 3,
-		id: 'Donut_1'
-	}, {
-		sizeX: 1,
-		sizeY: 1,
-		row: 2,
-		col: 4,
-		id: 'Series_1'
-	}, {
-		sizeX: 1,
-		sizeY: 1,
-		row: 0,
-		col: 4,
-		id: 'Pie_2'
-	}, {
-		sizeX: 1,
-		sizeY: 1,
-		row: 0,
-		col: 5,
-		id: 'Series_2'
-	}, {
-		sizeX: 2,
-		sizeY: 1,
-		row: 1,
-		col: 0,
-		id: 'Bar_2'
+		id: 'Lines__1'
 	}, {
 		sizeX: 1,
 		sizeY: 1,
 		row: 1,
 		col: 4,
-		id: 'Bar_3'
+		id: 'Bar__3'
 	}, {
 		sizeX: 1,
 		sizeY: 2,
 		row: 1,
 		col: 5,
-		id: 'Pie_3'
+		id: 'Pie__3'
+	}, {
+		sizeX: 2,
+		sizeY: 1,
+		row: 2,
+		col: 0,
+		id: 'Bar__1'
 	}, {
 		sizeX: 1,
 		sizeY: 1,
 		row: 2,
+		col: 4,
+		id: 'Donut__1'
+	}, {
+		sizeX: 1,
+		sizeY: 1,
+		row: 3,
+		col: 1,
+		id: 'Series__1'
+	}, {
+		sizeX: 1,
+		sizeY: 1,
+		row: 3,
+		col: 4,
+		id: 'Pie__2'
+	}, {
+		sizeX: 1,
+		sizeY: 1,
+		row: 3,
+		col: 5,
+		id: 'Series__2'
+	}, {
+		sizeX: 2,
+		sizeY: 1,
+		row: 3,
+		col: 2,
+		id: 'Bar__2'
+	}, {
+		sizeX: 1,
+		sizeY: 1,
+		row: 3,
 		col: 0,
-		id: 'Lines_2'
+		id: 'Lines__2'
 	}];
 
 	// these are non-standard, so they require mapping options
@@ -151,88 +137,78 @@ angular.module('app')
 			x: 2,
 			y: 1
 		},
-		position: [0, 0],
-		id: 'Lines_3'
-	}, {
-		size: {
-			x: 2,
-			y: 2
-		},
-		position: [0, 2],
-		id: 'Donut_2'
-	}, {
-		size: {
-			x: 1,
-			y: 1
-		},
-		position: [1, 4],
-		id: 'Donut_3'
-	}, {
-		size: {
-			x: 1,
-			y: 2
-		},
-		position: [1, 5],
-		id: 'Bar_4'
-	}, {
-		size: {
-			x: 1,
-			y: 1
-		},
-		position: [2, 0],
-		id: 'Bar_5'
-	}, {
-		size: {
-			x: 2,
-			y: 1
-		},
-		position: [2, 1],
-		id: 'Bar_6'
-	}, {
-		size: {
-			x: 1,
-			y: 1
-		},
-		position: [2, 3],
-		id: 'Donut_4'
-	}, {
-		size: {
-			x: 1,
-			y: 1
-		},
-		position: [0, 4],
-		id: 'Series_3'
-	}, {
-		size: {
-			x: 1,
-			y: 1
-		},
-		position: [0, 5],
-		id: 'Series_4'
-	}, {
-		size: {
-			x: 2,
-			y: 1
-		},
 		position: [1, 0],
-		id: 'Series_5'
+		id: 'Lines__3'
+	}, {
+		size: {
+			x: 2,
+			y: 2
+		},
+		position: [1, 2],
+		id: 'Donut__2'
 	}, {
 		size: {
 			x: 1,
 			y: 1
 		},
 		position: [2, 4],
-		id: 'Pie_4'
-	}];
-
-	$scope.emptyItems = [{
-		name: 'Item1'
+		id: 'Pie__4'
 	}, {
-		name: 'Item2'
+		size: {
+			x: 1,
+			y: 2
+		},
+		position: [2, 5],
+		id: 'Bar__4'
 	}, {
-		name: 'Item3'
+		size: {
+			x: 1,
+			y: 1
+		},
+		position: [3, 0],
+		id: 'Series__4'
 	}, {
-		name: 'Item4'
+		size: {
+			x: 2,
+			y: 1
+		},
+		position: [3, 1],
+		id: 'Bar__6'
+	}, {
+		size: {
+			x: 1,
+			y: 1
+		},
+		position: [3, 3],
+		id: 'Pie__5'
+	}, {
+		size: {
+			x: 1,
+			y: 1
+		},
+		position: [1, 4],
+		id: 'Bar__5'
+	}, {
+		size: {
+			x: 1,
+			y: 1
+		},
+		position: [1, 5],
+		id: 'Lines__4'
+	}, {
+		size: {
+			x: 2,
+			y: 1
+		},
+		position: [1, 0],
+		id: 'Series__5'
+	}, {
+		size: {
+			x: 1,
+			y: 1
+		},
+		position: [3, 4],
+		id: 'Donut__3'
 	}];
 
 	// map the gridsterItem to the custom item structure
