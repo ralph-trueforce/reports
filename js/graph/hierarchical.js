@@ -265,4 +265,9 @@ function Hierarchical(width, height) {
             };
         }
 
-    }}
+    };
+
+    this.getFooter = function() {
+        return "";
+    }
+}

@@ -83,4 +83,9 @@ function Funel(width, height) {
                 .append("td")
                 .style("text-align", "left");
         });
-    }}
+    };
+
+    this.getFooter = function() {
+        return "";
+    }
+}

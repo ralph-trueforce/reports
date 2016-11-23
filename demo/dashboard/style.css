@@ -101,10 +101,6 @@ text {
     font: 10px sans-serif;
 }
 
-.axis path {
-    display: none;
-}
-
 .axis line {
     fill: none;
     stroke: #000;
@@ -117,7 +113,6 @@ text {
 }
 
 form {
-    position: absolute;
     right: 10px;
     top: 10px;
 }
