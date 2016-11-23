@@ -167,6 +167,14 @@ angular.module('app')
 					id: 1,
 					type: 'Revenue'
 				}, {
+					col: 0,
+					row: 5,
+					sizeY: 2,
+					sizeX: 2,
+					name: "Widget",
+					id: 1,
+					type: 'Sunburst'
+				}, {
 					col: 1,
 					row: 2,
 					sizeY: 2,
