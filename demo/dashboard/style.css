@@ -91,3 +91,90 @@ form {
 .box-link {
     padding: 10px 10px;
 }
+
+/***************************************************/
+
+/*Stacked */
+
+
+text {
+    font: 10px sans-serif;
+}
+
+.axis path {
+    display: none;
+}
+
+.axis line {
+    fill: none;
+    stroke: #000;
+    shape-rendering: crispEdges;
+}
+
+.group-label {
+    font-weight: bold;
+    text-anchor: end;
+}
+
+form {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+}
+
+
+/*Funel*/
+
+body {
+    font: 10px sans-serif;
+}
+.arc path {
+    stroke: #fff;
+}
+
+/*Hierarchical*/
+
+text {
+    font: 10px sans-serif;
+}
+
+rect.background {
+    fill: white;
+}
+
+.axis {
+    shape-rendering: crispEdges;
+}
+
+.axis path,
+.axis line {
+    fill: none;
+    stroke: #000;
+}
+
+
+/*revenue*/
+
+.axis path,
+.axis line {
+    fill: none;
+    stroke: black;
+    shape-rendering: crispEdges;
+}
+
+.axis text {
+    font-family: sans-serif;
+    font-size: 11px;
+}
+
+.dot {
+    stroke: #000;
+}
+
+
+.legend {
+    padding: 5px;
+    font: 10px sans-serif;
+    background: yellow;
+    box-shadow: 2px 2px 1px #888;
+}

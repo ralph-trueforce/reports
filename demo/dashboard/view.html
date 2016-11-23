@@ -5,6 +5,11 @@
 	<a class="pull-right btn btn-primary" ng-click="addWidget('Pie')"><i class="glyphicon glyphicon-plus"></i> Add Pie</a>
 	<a class="pull-right btn btn-primary" ng-click="addWidget('Bar')"><i class="glyphicon glyphicon-plus"></i> Add Bar</a>
 	<a class="pull-right btn btn-primary" ng-click="addWidget('Series')"><i class="glyphicon glyphicon-plus"></i> Add Serie</a>
+	<a class="pull-right btn btn-primary" ng-click="addWidget('Stacked')"><i class="glyphicon glyphicon-plus"></i> Add Stacked</a>
+	<a class="pull-right btn btn-primary" ng-click="addWidget('Funel')"><i class="glyphicon glyphicon-plus"></i> Add Funel</a>
+	<a class="pull-right btn btn-primary" ng-click="addWidget('Hierarchical')"><i class="glyphicon glyphicon-plus"></i> Add Hierarchical</a>
+	<a class="pull-right btn btn-primary" ng-click="addWidget('Revenue')"><i class="glyphicon glyphicon-plus"></i> Add Revenue</a>
+
 	<a class="pull-right btn btn-warning" ng-click="clear()"><i class="glyphicon glyphicon-trash"></i> Clear</a>
 	<h1 style="display: inline-block; width: 200px;">Dashboard</h1>
 	<select class="form-control" style="width: 150px; margin-bottom: 20px; display:inline-block;" ng-change="changeDashboard()" ng-model="selectedDashboardId" ng-options="d.id as d.name for d in dashboards | object2Array | orderBy:'id'">

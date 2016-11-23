@@ -136,6 +136,38 @@ angular.module('app')
 					type: 'Pie'
 				}, {
 					col: 1,
+					row: 3,
+					sizeY: 1,
+					sizeX: 2,
+					name: "Widget",
+					id: 1,
+					type: 'Stacked'
+				}, {
+					col: 3,
+					row: 3,
+					sizeY: 1,
+					sizeX: 1,
+					name: "Widget",
+					id: 1,
+					type: 'Funel'
+				}, {
+					col: 0,
+					row: 2,
+					sizeY: 1,
+					sizeX: 1,
+					name: "Widget",
+					id: 1,
+					type: 'Hierarchical'
+				}, {
+					col: 0,
+					row: 4,
+					sizeY: 2,
+					sizeX: 4,
+					name: "Widget",
+					id: 1,
+					type: 'Revenue'
+				}, {
+					col: 1,
 					row: 2,
 					sizeY: 2,
 					sizeX: 4,
@@ -156,6 +188,7 @@ angular.module('app')
 					id: 1,
 					type: 'Lines'
 				}, {
+
 					col: 1,
 					row: 3,
 					sizeY: 1,
