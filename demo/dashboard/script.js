@@ -305,7 +305,9 @@ angular.module('app')
 			sizeX: widget.sizeX,
 			sizeY: widget.sizeY,
 			col: widget.col,
-			row: widget.row
+			row: widget.row,
+			type: widget.type,
+			source: 'File'
 		};
 
 		$scope.sizeOptions = [{
@@ -335,7 +337,13 @@ angular.module('app')
 			angular.extend(widget, $scope.form);
 
 			$modalInstance.close(widget);
+
+
 		};
+
+		$scope.typeGraph = (new GraphHandler()).getClassesNames();
+
+		$scope.dataSources = ['Network', 'File'];
 
 	}
 ])

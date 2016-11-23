@@ -50,16 +50,32 @@
             </div>
             <div class="row">
                 <div class="col-lg-6 col-md-6">
-                    <div class="form-group" ng-class="{error: _form.sizeX.$error && _form.submitted}">
+                    <div class="form-group" ng-class="{error: _form.ctype.$error && _form.submitted}">
                         <label class="control-label col-lg-6 col-md-6">Convert to: </label>
                         <div class="col-lg-6 col-md-6">
-                            <select name="convertto" ng-model="form.convert" class="form-control">
-                                <option>Pie</option>
-                                <option>Lines</option>
-                                <option>Donut</option>
-                                <option>Bar</option>
-                                <option>Series</option>
+                            <select name="type" ng-model="form.type" class="form-control">
+                                <option ng-repeat="typeg in typeGraph" value="{{typeg}}" ng-selected="{{typeg == form.type}}" >{{typeg}}</option>
                             </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6 col-md-6">
+                    <div class="form-group" ng-class="{error: _form.sizeX.$error && _form.submitted}">
+                        <label class="control-label col-lg-6 col-md-6">Source: </label>
+                        <div class="col-lg-6 col-md-6">
+                            <select name="type" ng-model="form.source" class="form-control">
+                                <option ng-repeat="source in dataSources" value="{{source}}" ng-selected="{{source == form.source}}" >{{source}}</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6">
+                    <div class="form-group">
+                        <label class="control-label col-lg-6 col-md-6">Path</label>
+                        <div class="col-lg-6 col-md-6">
+                            <input id="path" name="path" ng-model="form.path" class="form-control" />
                         </div>
                     </div>
                 </div>

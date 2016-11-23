@@ -49,5 +49,9 @@ function GraphHandler () {
       });
 
       return htmlContent;
+  };
+
+  this.getClassesNames = function() {
+      return config_graph.classes;
   }
 }
