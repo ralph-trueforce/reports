@@ -11,7 +11,7 @@ function Hierarchical(width, height) {
      */
     this.draw = function(tag_id) {
         // Set the dimensions of the canvas / graph
-        var margin = {top: 30, right: 20, bottom: 30, left: 50},
+        var margin = {top: 30, right: 50, bottom: 30, left: 50},
             width = this.prototype.width - margin.left - margin.right,
             height = this.prototype.height - margin.top - margin.bottom;
 
