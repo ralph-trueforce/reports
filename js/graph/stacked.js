@@ -123,7 +123,7 @@ function Stacked(width, height) {
                 .attr("transform", "translate(0," + y0.rangeBand() + ")")
                 .call(xAxis);
 
-            d3.selectAll("input").on("change", change);
+            d3.selectAll("input[name=\"stacked_mode\"]").on("change", change);
 
             var timeout = setTimeout(function () {
                 d3.select("input[value=\"stacked\"]").property("checked", true).each(change);
@@ -131,8 +131,11 @@ function Stacked(width, height) {
 
             function change() {
                 clearTimeout(timeout);
-                if (this.value === "multiples") transitionMultiples();
-                else transitionStacked();
+                if (this.value === "multiples") {
+                    transitionMultiples();
+                } else {
+                    transitionStacked();
+                }
             }
 
             function transitionMultiples() {
@@ -162,8 +165,8 @@ function Stacked(width, height) {
 
     };
     this.getFooter = function() {
-        return "<form><label><input type='radio' name='mode' value='multiples' checked> Multiples</label><label>"+
-            "<input type='radio' name='mode' value='stacked'> Stacked</label></form>";
+        return "<form><label><input type='radio' name='stacked_mode' value='multiples' checked> Multiples</label>" +
+            "<label><input type='radio' name='stacked_mode' value='stacked'> Stacked</label></form>";
     }
 
 }

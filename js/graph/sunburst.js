@@ -57,7 +57,7 @@ function Sunburst(width, height) {
                 .style("fill-rule", "evenodd")
                 .each(stash);
 
-            d3.selectAll("input").on("change", function change() {
+            d3.selectAll("input[name=\"sun_mode\"]").on("change", function change() {
                 var value = this.value === "count"
                     ? function () {
                     return 1;
@@ -95,7 +95,7 @@ function Sunburst(width, height) {
 
     };
     this.getFooter = function() {
-        return "<form><label><input type='radio' name='mode' value='size'> Size</label>" +
-            "<label><input type='radio' name='mode' value='count' checked> Count</label></form>";
+        return "<form><label><input type='radio' name='sun_mode' value='size'> Size</label>" +
+            "<label><input type='radio' name='sun_mode' value='count' checked> Count</label></form>";
     }
 }
