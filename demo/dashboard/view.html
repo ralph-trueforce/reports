@@ -10,6 +10,8 @@
 	<a class="pull-right btn btn-primary" ng-click="addWidget('Hierarchical')"><i class="glyphicon glyphicon-plus"></i> Add Hierarchical</a>
 	<a class="pull-right btn btn-primary" ng-click="addWidget('Revenue')"><i class="glyphicon glyphicon-plus"></i> Add Revenue</a>
 	<a class="pull-right btn btn-primary" ng-click="addWidget('Sunburst')"><i class="glyphicon glyphicon-plus"></i> Add Sunburst</a>
+	<!--<dashboard-buttons></dashboard-buttons>-->
+	<!--<span class="box-link" ng-bind-html='getButtons()'></span>-->
 
 
 	<a class="pull-right btn btn-warning" ng-click="clear()"><i class="glyphicon glyphicon-trash"></i> Clear</a>
@@ -34,7 +36,6 @@
 	    			    <widget-html text="{{widget.text}}"/>
 					</span>
 				</div>
-				<!--<div class="box-link" ng-bind-html='getHtml("{{ widget.type }}")'></div>-->
 				<widget-footer type="{{ widget.type }}"></widget-footer>
 			</div>
 		</li>

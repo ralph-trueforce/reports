@@ -88,6 +88,22 @@ angular.module('app')
 	}
 }])
 
+.directive ('dashboardButtons', ['$sce', function($sce) {
+	return {
+		link: function (scope, element, attr) {
+
+			var handler = new GraphHandler();
+			var html_contents = handler.createGraphButtons();
+			html_contents = "<div>" + $sce.trustAsHtml(html_contents) + "</div>";
+
+			scope.$watch('dashboardButtons', function () {
+				 element.append(html_contents);
+			});
+		}
+	}
+}])
+
+
 .controller('DashboardCtrl', ['$scope', '$timeout', '$sce',
 	function($scope, $timeout, $sce) {
 		$scope.gridsterOptions = {
@@ -212,9 +228,12 @@ angular.module('app')
 			$scope.dashboard.widgets = [];
 		};
 
-		$scope.getHtml = function(type) {
-			var htmlText = '<span>Copyright Trademark ™ 2016.</span>';
-			return $sce.trustAsHtml(htmlText);
+		$scope.getButtons = function() {
+		   var handler = new GraphHandler();
+		   var html_contents = handler.createGraphButtons();
+		   html_contents = $sce.trustAsHtml(html_contents);
+
+		   return html_contents;
 		};
 
 		$scope.addWidget = function(type) {
