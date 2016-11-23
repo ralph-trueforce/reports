@@ -16,6 +16,11 @@
 	<script src="https://code.angularjs.org/1.2.15/angular-route.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.10.0/ui-bootstrap-tpls.min.js"></script>
 	<script src="http://d3js.org/d3.v3.min.js"></script>
+	<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+
+	<script src="js/funnel.js"></script>
+
 
 	<script src="src/angular-gridster.js"></script>
 
@@ -25,6 +30,10 @@
 	<script src="js/graph/pie.js"></script>
 	<script src="js/graph/bar.js"></script>
 	<script src="js/graph/series.js"></script>
+	<script src="js/graph/stacked.js"></script>
+	<script src="js/graph/funel.js"></script>
+	<script src="js/graph/hierarchical.js"></script>
+	<script src="js/graph/revenue.js"></script>
 
 	<script type="text/javascript">
 		(function() {
@@ -91,6 +100,10 @@
 		localStorage.removeItem('Pie_index');
 		localStorage.removeItem('Bar_index');
 		localStorage.removeItem('Series_index');
+		localStorage.removeItem('Stacked_index');
+		localStorage.removeItem('Funel_index');
+		localStorage.removeItem('Hierarchical_index');
+		localStorage.removeItem('Revenue_index');
 
 		/*var graph = new Donut(420, 380);
 		graph.draw("#Donut_1");
