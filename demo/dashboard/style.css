@@ -120,11 +120,11 @@ form {
 
 /*Funel*/
 
-body {
+/*body {
     font: 10px sans-serif;
-}
+}*/
 .arc path {
-    stroke: #fff;
+    stroke: #0aa4f3;
 }
 
 /*Hierarchical*/

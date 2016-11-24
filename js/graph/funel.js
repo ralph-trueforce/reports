@@ -19,7 +19,7 @@ function Funel(width, height) {
         var svg = d3.select(tag_id).append("svg")
             .attr("width", width)
             .attr("height", height)
-            .append("g")
+            .append("g");
 
         d3.tsv("data/datas.tsv", function (error, data) {
             var funnel = d3.funnel()
@@ -48,7 +48,7 @@ function Funel(width, height) {
                     return line(d.coordinates);
                 })
                 .style("fill", function (d) {
-                    return color(d.sales_process);
+                    return color(d.value);
                 });
 
             g.append("text")
@@ -66,14 +66,14 @@ function Funel(width, height) {
                 })
                 .style("text-anchor", "middle")
                 .text(function (d) {
-                    return d.sales_process;
+                    return d.value;
                 });
 
             d3.select("body").append("table")
                 .attr({
                     "id": "footer",
                     "width": width + "px"
-                })
+                });
 
             d3.select("body #footer").append("tr")
                 .attr({
