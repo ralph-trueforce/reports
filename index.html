@@ -26,16 +26,16 @@
 	<script src="src/angular-gridster.js"></script>
 
 	<script src="js/graph/graphic.js"></script>
-	<script src="js/graph/donut.js"></script>
-	<script src="js/graph/lines.js"></script>
-	<script src="js/graph/pie.js"></script>
-	<script src="js/graph/bar.js"></script>
-	<script src="js/graph/series.js"></script>
-	<script src="js/graph/stacked.js"></script>
-	<script src="js/graph/funel.js"></script>
-	<script src="js/graph/hierarchical.js"></script>
-	<script src="js/graph/revenue.js"></script>
-	<script src="js/graph/sunburst.js"></script>
+	<script class="graph" src="js/graph/donut.js"></script>
+	<script class="graph" src="js/graph/lines.js"></script>
+	<script class="graph" src="js/graph/pie.js"></script>
+	<script class="graph" src="js/graph/bar.js"></script>
+	<script class="graph" src="js/graph/series.js"></script>
+	<script class="graph" src="js/graph/stacked.js"></script>
+	<script class="graph" src="js/graph/funel.js"></script>
+	<script class="graph" src="js/graph/hierarchical.js"></script>
+	<script class="graph" src="js/graph/revenue.js"></script>
+	<script class="graph" src="js/graph/sunburst.js"></script>
 	<script src="js/graphhandler.js"></script>
 
 	<script type="text/javascript">
@@ -96,22 +96,10 @@
 	</div>
 <script>
 
-	window.onLoad = function () {
+	window.onload = function () {
 		var handler = new GraphHandler();
 		handler.clear();
 		//handler.createButtons();
-//		localStorage.removeItem('Html_index');
-//		localStorage.removeItem('Donut_index');
-//		localStorage.removeItem('Lines_index');
-//		localStorage.removeItem('Pie_index');
-//		localStorage.removeItem('Bar_index');
-//		localStorage.removeItem('Series_index');
-//		localStorage.removeItem('Stacked_index');
-//		localStorage.removeItem('Funel_index');
-//		localStorage.removeItem('Hierarchical_index');
-//		localStorage.removeItem('Revenue_index');
-
-//		//localStorage.clear();
 	};
 </script>
 </body>
