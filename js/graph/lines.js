@@ -10,7 +10,9 @@
  * @constructor
  */
 function Lines(width, height) {
-    this.prototype = new Graphic(width, height);
+	this.base = Graphic;
+	this.base(width, height); //call super constructor.
+	//Graphic.call(width, height);
 
     /**
      * Draw function member
@@ -19,8 +21,8 @@ function Lines(width, height) {
     this.draw = function(tag_id) {
         // Set the dimensions of the canvas / graph
         var margin = {top: 30, right: 20, bottom: 30, left: 50},
-            width = this.prototype.width - margin.left - margin.right,
-            height = this.prototype.height - margin.top - margin.bottom;
+            width = this.width - margin.left - margin.right,
+            height = this.height - margin.top - margin.bottom;
 
         // Parse the date / time
         var parseDate = d3.time.format("%d-%b-%y").parse;
@@ -84,3 +86,5 @@ function Lines(width, height) {
         return "<span class=\"glyphicon glyphicon-th-large\"></span>Compare with <a href=\"#\">https://www.domo.com/connectors/excel</a><span class=\"glyphicon glyphicon-road\"></span>";
     }
 }
+
+Lines.prototype = Object.create(Graphic.prototype);

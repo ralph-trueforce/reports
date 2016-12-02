@@ -2,12 +2,14 @@
  * Created by raeioul on 11/23/16.
  */
 function Sunburst(width, height) {
-    this.prototype = new Graphic(width, height);
+	this.base = Graphic;
+	this.base(width, height); //call super constructor.
+	//Graphic.call(width, height);
 
     this.draw = function (tag_id) {
         var margin = {top: 30, right: 20, bottom: 30, left: 50},
-            width = this.prototype.width - margin.left - margin.right,
-            height = this.prototype.height - margin.top - margin.bottom;
+            width = this.width - margin.left - margin.right,
+            height = this.height - margin.top - margin.bottom;
 
 
         var radius = Math.min(width, height) / 2,
@@ -99,3 +101,5 @@ function Sunburst(width, height) {
             "<label><input type='radio' name='sun_mode' value='count' checked> Count</label></form>";
     }
 }
+
+Sunburst.prototype = Object.create(Graphic.prototype);

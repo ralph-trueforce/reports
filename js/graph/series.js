@@ -1,13 +1,15 @@
 
 function Series(width, height) {
-    this.prototype = new Graphic(width, height);
+	this.base = Graphic;
+	this.base(width, height); //call super constructor.
+	//Graphic.call(width, height);
 
 
     this.draw = function (tag_id) {
 
         var margin = { top: 20, right: 80, bottom: 30, left: 50 },
-            width = this.prototype.width - margin.left - margin.right,
-            height = this.prototype.height - margin.top - margin.bottom;
+            width = this.width - margin.left - margin.right,
+            height = this.height - margin.top - margin.bottom;
 
 
         var parseDate = d3.time.format("%Y%m%d").parse;
@@ -31,7 +33,7 @@ function Series(width, height) {
         var line = d3.svg.line()
             .interpolate("basis")
             .x(function (d) { return x(d.date); })
-            .y(function (d) { //console.log(d); 
+            .y(function (d) { //console.log(d);
                 return y(d.temp);
             });
 
@@ -93,3 +95,6 @@ function Series(width, height) {
         return "<span class=\"glyphicon glyphicon-envelope\"></span> Share with <a href=\"https://www.domo.com/connectors/excel\">https://www.domo.com/connectors/excel</a>";
     }
 }
+
+
+Series.prototype = Object.create(Graphic.prototype);

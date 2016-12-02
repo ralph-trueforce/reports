@@ -1,12 +1,14 @@
 
 function Pie(width, height) {
-    this.prototype = new Graphic(width, height);
+	this.base = Graphic;
+	this.base(width, height); //call super constructor.
+	//Graphic.call(width, height);
 
 
     this.draw = function (tag_id) {
 
-        var width = this.prototype.width,
-            height = this.prototype.height,
+        var width = this.width,
+            height = this.height,
             radius = Math.min(width, height) / 2;
 
         var color = d3.scale.ordinal()
@@ -60,3 +62,5 @@ function Pie(width, height) {
         return "<span class=\"glyphicon glyphicon-print\"></span> <a href=\"http://www.google.com\">www.google.com</a>";
     }
 }
+
+Pie.prototype = Object.create(Graphic.prototype);

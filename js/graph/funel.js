@@ -2,15 +2,22 @@
  * Created by raeioul on 11/22/16.
  */
 
-
+/**
+ * Funel Class
+ *
+ * @param width
+ * @param height
+ * @constructor
+ */
 function Funel(width, height) {
-    this.prototype = new Graphic(width, height);
-
+	this.base = Graphic;
+	this.base(width, height); //call super constructor.
+	//Graphic.call(width, height);
 
     this.draw = function (tag_id) {
 
-        var width = this.prototype.width -20,
-            height = this.prototype.height,
+        var width = this.width -20,
+            height = this.height,
             radius = Math.min(width, height) / 2;
 
         var color = d3.scale.ordinal()
@@ -84,8 +91,6 @@ function Funel(width, height) {
                 .style("text-align", "left");
         });
     };
-
-    this.getFooter = function() {
-        return "";
-    }
 }
+
+Funel.prototype = Object.create(Graphic.prototype);

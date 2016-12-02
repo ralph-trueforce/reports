@@ -3,7 +3,7 @@
  */
 
 /**
- * Parent Graphic class
+ * Super Class Graphic
  *
  * @param width
  * @param height
@@ -13,3 +13,11 @@ function Graphic(width, height) {
     this.width = width;
     this.height = height;
 }
+
+Graphic.prototype.update = function(json) {
+
+};
+
+Graphic.prototype.getFooter = function() {
+	return "";
+};

@@ -1,8 +1,18 @@
 /**
  * Created by raeioul on 11/22/16.
  */
+
+/**
+ * Class Revenue
+ *
+ * @param width
+ * @param height
+ * @constructor
+ */
 function Revenue(width, height) {
-    this.prototype = new Graphic(width, height);
+	this.base = Graphic;
+	this.base(width, height); //call super constructor.
+	//Graphic.call(width, height);
 
     /**
      * Draw function member
@@ -11,13 +21,12 @@ function Revenue(width, height) {
     this.draw = function(tag_id) {
         // Set the dimensions of the canvas / graph
         var margin = {top: 30, right: 20, bottom: 30, left: 50},
-            w = this.prototype.width - margin.left - margin.right,
-            h = this.prototype.height - margin.top - margin.bottom;
-
+            w = this.width - margin.left - margin.right,
+            h = this.height - margin.top - margin.bottom;
 
         var padding = {top: 40, right: 40, bottom: 40, left: 40};
         var dataset;
-//Set up stack method
+		//Set up stack method
         var stack = d3.layout.stack();
 
         d3.json("data/mperday.json", function (json) {
@@ -163,146 +172,139 @@ function Revenue(width, height) {
                 .attr("text-anchor", "middle")
                 .text("Days");
 
-            svg.append("text")
+            /*svg.append("text")
                 .attr("class", "title")
                 .attr("x", (w / 2))
                 .attr("y", 20)
                 .attr("text-anchor", "middle")
                 .style("font-size", "16px")
                 .style("text-decoration", "underline")
-                .text("Number of messages per day.");
+                .text("Number of messages per day.");*/
 
             //On click, update with new data
-            d3.selectAll(".m")
-                .on("click", function () {
-                    var date = this.getAttribute("value");
+            d3.selectAll(".mo").on("click", function () {
 
-                    var str;
-                    if (date == "2014-02-19") {
-                        str = "19.json";
-                    } else if (date == "2014-02-20") {
-                        str = "20.json";
-                    } else if (date == "2014-02-21") {
-                        str = "21.json";
-                    } else if (date == "2014-02-22") {
-                        str = "22.json";
-                    } else {
-                        str = "23.json";
-                    }
+				var date = this.getAttribute("value");
+				var str = "data/" + date + ".json";
 
-                    d3.json(str, function (json) {
+				d3.json(str, function (json) {
 
-                        dataset = json;
-                        stack(dataset);
+					dataset = json;
+					stack(dataset);
 
-                        console.log(dataset);
+					// console.log(dataset);
 
-                        xScale.domain([new Date(0, 0, 0, dataset[0][0].time, 0, 0, 0), new Date(0, 0, 0, dataset[0][dataset[0].length - 1].time, 0, 0, 0)])
-                            .rangeRound([0, w - padding.left - padding.right]);
+					xScale.domain([new Date(0, 0, 0, dataset[0][0].time, 0, 0, 0), new Date(0, 0, 0, dataset[0][dataset[0].length - 1].time, 0, 0, 0)])
+						.rangeRound([0, w - padding.left - padding.right]);
 
-                        yScale.domain([0,
-                            d3.max(dataset, function (d) {
-                                return d3.max(d, function (d) {
-                                    return d.y0 + d.y;
-                                });
-                            })
-                        ])
-                            .range([h - padding.bottom - padding.top, 0]);
+					yScale.domain([0,
+						d3.max(dataset, function (d) {
+							return d3.max(d, function (d) {
+								return d.y0 + d.y;
+							});
+						})
+					])
+						.range([h - padding.bottom - padding.top, 0]);
 
-                        xAxis.scale(xScale)
-                            .ticks(d3.time.hour, 2)
-                            .tickFormat(d3.time.format("%H"));
+					xAxis.scale(xScale)
+						.ticks(d3.time.hour, 2)
+						.tickFormat(d3.time.format("%H"));
 
-                        yAxis.scale(yScale)
-                            .orient("left")
-                            .ticks(10);
+					yAxis.scale(yScale)
+						.orient("left")
+						.ticks(10);
 
-                        groups = svg.selectAll(".rgroups")
-                            .data(dataset);
+					groups = svg.selectAll(".rgroups")
+						.data(dataset);
 
-                        groups.enter().append("g")
-                            .attr("class", "rgroups")
-                            .attr("transform", "translate(" + padding.left + "," + (h - padding.bottom) + ")")
-                            .style("fill", function (d, i) {
-                                return color(i);
-                            });
+					groups.enter().append("g")
+						.attr("class", "rgroups")
+						.attr("transform", "translate(" + padding.left + "," + (h - padding.bottom) + ")")
+						.style("fill", function (d, i) {
+							return color(i);
+						});
 
 
-                        rect = groups.selectAll("rect")
-                            .data(function (d) {
-                                return d;
-                            });
+					rect = groups.selectAll("rect")
+						.data(function (d) {
+							return d;
+						});
 
-                        rect.enter()
-                            .append("rect")
-                            .attr("x", w)
-                            .attr("width", 1)
-                            .style("fill-opacity", 1e-6);
+					rect.enter()
+						.append("rect")
+						.attr("x", w)
+						.attr("width", 1)
+						.style("fill-opacity", 1e-6);
 
-                        rect.transition()
-                            .duration(1000)
-                            .ease("linear")
-                            .attr("x", function (d) {
-                                return xScale(new Date(0, 0, 0, d.time, 0, 0, 0));
-                            })
-                            .attr("y", function (d) {
-                                return -(-yScale(d.y0) - yScale(d.y) + (h - padding.top - padding.bottom) * 2);
-                            })
-                            .attr("height", function (d) {
-                                return -yScale(d.y) + (h - padding.top - padding.bottom);
-                            })
-                            .attr("width", 15)
-                            .style("fill-opacity", 1);
+					rect.transition()
+						.duration(1000)
+						.ease("linear")
+						.attr("x", function (d) {
+							return xScale(new Date(0, 0, 0, d.time, 0, 0, 0));
+						})
+						.attr("y", function (d) {
+							return -(-yScale(d.y0) - yScale(d.y) + (h - padding.top - padding.bottom) * 2);
+						})
+						.attr("height", function (d) {
+							return -yScale(d.y) + (h - padding.top - padding.bottom);
+						})
+						.attr("width", 15)
+						.style("fill-opacity", 1);
 
-                        rect.exit()
-                            .transition()
-                            .duration(1000)
-                            .ease("circle")
-                            .attr("x", w)
-                            .remove();
+					rect.exit()
+						.transition()
+						.duration(1000)
+						.ease("circle")
+						.attr("x", w)
+						.remove();
 
-                        groups.exit()
-                            .transition()
-                            .duration(1000)
-                            .ease("circle")
-                            .attr("x", w)
-                            .remove();
-
-
-                        svg.select(".x.axis")
-                            .transition()
-                            .duration(1000)
-                            .ease("circle")
-                            .call(xAxis);
-
-                        svg.select(".y.axis")
-                            .transition()
-                            .duration(1000)
-                            .ease("circle")
-                            .call(yAxis);
-
-                        svg.select(".xtext")
-                            .text("Hours");
-
-                        svg.select(".title")
-                            .text("Number of messages per hour on " + date + ".");
-                    });
-                });
+					groups.exit()
+						.transition()
+						.duration(1000)
+						.ease("circle")
+						.attr("x", w)
+						.remove();
 
 
+					svg.select(".x.axis")
+						.transition()
+						.duration(1000)
+						.ease("circle")
+						.call(xAxis);
+
+					svg.select(".y.axis")
+						.transition()
+						.duration(1000)
+						.ease("circle")
+						.call(yAxis);
+
+					svg.select(".xtext")
+						.text("Hours");
+
+					d3.select("widget-footer div.box-link div#revenue-text").html("Number of messages per hour on " + date + ".");
+					/*svg.select(".title")
+						.text("Number of messages per hour on " + date + ".");*/
+				});
+			});
         });
-
     };
+
     this.getFooter = function() {
 
-        return "<div class='btn-group pull-right'>" +
-            "<button type='button' class='btn btn-primary dropdown-toggle' data-toggle='dropdown'>Messages per hour <span class='caret'>" +
-            "</span></button><ul class='dropdown-menu' role='menu'>" +
-            "<li><a class='m' value='2014-02-19' href='#'>2014-02-19</a></li><li><a class='m' value='2014-02-20' href='#'>2014-02-20</a></li>" +
-            "<li><a class='m' value='2014-02-21' href='#'>2014-02-21</a></li><li><a class='m' value='2014-02-22' href='#'>2014-02-22</a></li>" +
-            "<li><a class='m' value='2014-02-23' href='#'>2014-02-23</a></li></ul></div>";
+        return "<div id='revenue-text' style='float: left; text-decoration: underline;'>Number of messages per day.</div>" +
+			"<div class='btn-group pull-right dropup'>" +
+            "<button type='button' class='btn btn-primary dropdown-toggle' data-toggle='dropdown'>Messages per hour <span class='caret'></span></button>" +
+			"<ul class='dropdown-menu' role='menu'>" +
+            "<li><a class='mo' value='2014-02-19' >2014-02-19</a></li>" +
+			"<li><a class='mo' value='2014-02-20' >2014-02-20</a></li>" +
+            "<li><a class='mo' value='2014-02-21' >2014-02-21</a></li>" +
+			"<li><a class='mo' value='2014-02-22' >2014-02-22</a></li>" +
+            "<li><a class='mo' value='2014-02-23' >2014-02-23</a></li>" +
+			"</ul>" +
+			"</div>";
 
     }
 
-
 }
+
+Revenue.prototype = Object.create(Graphic.prototype);

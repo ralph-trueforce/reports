@@ -2,8 +2,16 @@
  * Created by raeioul on 11/22/16.
  */
 
+/**
+ *
+ * @param width
+ * @param height
+ * @constructor
+ */
 function Hierarchical(width, height) {
-    this.prototype = new Graphic(width, height);
+	this.base = Graphic;
+	this.base(width, height); //call super constructor.
+	//Graphic.call(width, height);
 
     /**
      * Draw function member
@@ -12,8 +20,8 @@ function Hierarchical(width, height) {
     this.draw = function(tag_id) {
         // Set the dimensions of the canvas / graph
         var margin = {top: 30, right: 50, bottom: 30, left: 50},
-            width = this.prototype.width - margin.left - margin.right,
-            height = this.prototype.height - margin.top - margin.bottom;
+            width = this.width - margin.left - margin.right,
+            height = this.height - margin.top - margin.bottom;
 
         var x = d3.scale.linear()
             .range([0, width]);
@@ -266,8 +274,6 @@ function Hierarchical(width, height) {
         }
 
     };
-
-    this.getFooter = function() {
-        return "";
-    }
 }
+
+Hierarchical.prototype = Object.create(Graphic.prototype);

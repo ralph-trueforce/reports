@@ -3,7 +3,9 @@
  */
 
 function Stacked(width, height) {
-    this.prototype = new Graphic(width, height);
+	this.base = Graphic;
+	this.base(width, height); //call super constructor.
+	//Graphic.call(width, height);
 
 
     this.draw = function (tag_id) {
@@ -15,8 +17,8 @@ function Stacked(width, height) {
             };
 
         var margin = {top: 30, right: 20, bottom: 30, left: 50},
-            width = this.prototype.width - margin.left - margin.right,
-            height = this.prototype.height - margin.top - margin.bottom;
+            width = this.width - margin.left - margin.right,
+            height = this.height - margin.top - margin.bottom;
 
         var y0 = d3.scale.ordinal()
             .rangeRoundBands([height, 0], .2);
@@ -170,3 +172,5 @@ function Stacked(width, height) {
     }
 
 }
+
+Stacked.prototype = Object.create(Graphic.prototype);
