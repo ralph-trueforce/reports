@@ -1,0 +1,30 @@
+[
+	{
+		"label": "Prospecting",
+		"count": 3
+	},
+	{
+		"label": "Quallification",
+		"count":26
+	},
+	{
+		"label": "Needs Analisys",
+		"count":8
+	},
+	{
+		"label": "Value Proposition",
+		"count":2
+	},
+	{
+		"label": "Vista",
+		"count":9
+	},
+	{
+		"label": "Dismiss",
+		"count":9
+	},
+	{
+		"label": "management",
+		"count":14
+	}
+]
