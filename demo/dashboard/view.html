@@ -1,15 +1,17 @@
 <div class="page-header">
 	<a class="pull-right btn btn-primary" ng-click="addWidget('Html')"><i class="glyphicon glyphicon-plus"></i> Add Html</a>
-	<a class="pull-right btn btn-primary" ng-click="addWidget('Donut')"><i class="glyphicon glyphicon-plus"></i> Add Donut</a>
-	<a class="pull-right btn btn-primary" ng-click="addWidget('Lines')"><i class="glyphicon glyphicon-plus"></i> Add Lines</a>
-	<a class="pull-right btn btn-primary" ng-click="addWidget('Pie')"><i class="glyphicon glyphicon-plus"></i> Add Pie</a>
-	<a class="pull-right btn btn-primary" ng-click="addWidget('Bar')"><i class="glyphicon glyphicon-plus"></i> Add Bar</a>
-	<a class="pull-right btn btn-primary" ng-click="addWidget('Series')"><i class="glyphicon glyphicon-plus"></i> Add Serie</a>
-	<a class="pull-right btn btn-primary" ng-click="addWidget('Stacked')"><i class="glyphicon glyphicon-plus"></i> Add Stacked</a>
-	<a class="pull-right btn btn-primary" ng-click="addWidget('Funel')"><i class="glyphicon glyphicon-plus"></i> Add Funel</a>
-	<a class="pull-right btn btn-primary" ng-click="addWidget('Hierarchical')"><i class="glyphicon glyphicon-plus"></i> Add Hierarchical</a>
-	<a class="pull-right btn btn-primary" ng-click="addWidget('Revenue')"><i class="glyphicon glyphicon-plus"></i> Add Revenue</a>
-	<a class="pull-right btn btn-primary" ng-click="addWidget('Sunburst')"><i class="glyphicon glyphicon-plus"></i> Add Sunburst</a>
+	<div ng-repeat='graph in graphics'>
+		<a class="pull-right btn btn-primary" ng-click="addWidget(graph)"><i class="glyphicon glyphicon-plus"></i> Add {{graph}}</a>
+	</div>
+	<!--<a class="pull-right btn btn-primary" ng-click="addWidget('Lines')"><i class="glyphicon glyphicon-plus"></i> Add Lines</a>-->
+	<!--<a class="pull-right btn btn-primary" ng-click="addWidget('Pie')"><i class="glyphicon glyphicon-plus"></i> Add Pie</a>-->
+	<!--<a class="pull-right btn btn-primary" ng-click="addWidget('Bar')"><i class="glyphicon glyphicon-plus"></i> Add Bar</a>-->
+	<!--<a class="pull-right btn btn-primary" ng-click="addWidget('Series')"><i class="glyphicon glyphicon-plus"></i> Add Serie</a>-->
+	<!--<a class="pull-right btn btn-primary" ng-click="addWidget('Stacked')"><i class="glyphicon glyphicon-plus"></i> Add Stacked</a>-->
+	<!--<a class="pull-right btn btn-primary" ng-click="addWidget('Funel')"><i class="glyphicon glyphicon-plus"></i> Add Funel</a>-->
+	<!--<a class="pull-right btn btn-primary" ng-click="addWidget('Hierarchical')"><i class="glyphicon glyphicon-plus"></i> Add Hierarchical</a>-->
+	<!--<a class="pull-right btn btn-primary" ng-click="addWidget('Revenue')"><i class="glyphicon glyphicon-plus"></i> Add Revenue</a>-->
+	<!--<a class="pull-right btn btn-primary" ng-click="addWidget('Sunburst')"><i class="glyphicon glyphicon-plus"></i> Add Sunburst</a>-->
 	<!--<dashboard-buttons></dashboard-buttons>-->
 	<!--<span class="box-link" ng-bind-html='getButtons()'></span>-->
 

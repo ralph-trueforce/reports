@@ -6,10 +6,9 @@
 function GraphHandler () {
 
 	var config_graph = {
-	"Options": {
-	  "path": "js/graph/"
-	},
-	"classes": []
+		"Options": {
+		},
+		"classes": []
 	};
 
 	$("script.graph").each(function() {

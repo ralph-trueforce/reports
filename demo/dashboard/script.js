@@ -76,7 +76,12 @@ angular.module('app')
 		},
 		link: function (scope, element, attr) {
 
-			eval("graph = new " + attr.type + "(0,0);");
+			//TODO: workaround remove the html alone
+			if (attr.type == 'Html') {
+				return;
+			}
+
+			eval("var graph = new " + attr.type + "(0,0);");
 			htmlText = graph.getFooter();
 			var html_contents = "<div class=\"box-link\">" + $sce.trustAsHtml(htmlText) + "</div>";
 
@@ -95,7 +100,6 @@ angular.module('app')
 			var handler = new GraphHandler();
 			var html_contents = handler.createGraphButtons();
 			html_contents = "<div>" + $sce.trustAsHtml(html_contents) + "</div>";
-
 			scope.$watch('dashboardButtons', function () {
 				 element.append(html_contents);
 			});
@@ -106,6 +110,8 @@ angular.module('app')
 
 .controller('DashboardCtrl', ['$scope', '$timeout', '$sce',
 	function($scope, $timeout, $sce) {
+		$scope.graphics = (new GraphHandler()).getClassesNames();
+
 		$scope.gridsterOptions = {
 			margins: [20, 20],
 			columns: 4,
