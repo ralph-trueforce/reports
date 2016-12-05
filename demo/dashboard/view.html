@@ -3,18 +3,8 @@
 	<div ng-repeat='graph in graphics'>
 		<a class="pull-right btn btn-primary" ng-click="addWidget(graph)"><i class="glyphicon glyphicon-plus"></i> Add {{graph}}</a>
 	</div>
-	<!--<a class="pull-right btn btn-primary" ng-click="addWidget('Lines')"><i class="glyphicon glyphicon-plus"></i> Add Lines</a>-->
-	<!--<a class="pull-right btn btn-primary" ng-click="addWidget('Pie')"><i class="glyphicon glyphicon-plus"></i> Add Pie</a>-->
-	<!--<a class="pull-right btn btn-primary" ng-click="addWidget('Bar')"><i class="glyphicon glyphicon-plus"></i> Add Bar</a>-->
-	<!--<a class="pull-right btn btn-primary" ng-click="addWidget('Series')"><i class="glyphicon glyphicon-plus"></i> Add Serie</a>-->
-	<!--<a class="pull-right btn btn-primary" ng-click="addWidget('Stacked')"><i class="glyphicon glyphicon-plus"></i> Add Stacked</a>-->
-	<!--<a class="pull-right btn btn-primary" ng-click="addWidget('Funel')"><i class="glyphicon glyphicon-plus"></i> Add Funel</a>-->
-	<!--<a class="pull-right btn btn-primary" ng-click="addWidget('Hierarchical')"><i class="glyphicon glyphicon-plus"></i> Add Hierarchical</a>-->
-	<!--<a class="pull-right btn btn-primary" ng-click="addWidget('Revenue')"><i class="glyphicon glyphicon-plus"></i> Add Revenue</a>-->
-	<!--<a class="pull-right btn btn-primary" ng-click="addWidget('Sunburst')"><i class="glyphicon glyphicon-plus"></i> Add Sunburst</a>-->
 	<!--<dashboard-buttons></dashboard-buttons>-->
 	<!--<span class="box-link" ng-bind-html='getButtons()'></span>-->
-
 
 	<a class="pull-right btn btn-warning" ng-click="clear()"><i class="glyphicon glyphicon-trash"></i> Clear</a>
 	<h1 style="display: inline-block; width: 200px;">Dashboard</h1>
@@ -27,13 +17,20 @@
 		<li gridster-item="widget" ng-repeat="widget in dashboard.widgets">
 			<div class="box" ng-controller="CustomWidgetCtrl">
 				<div class="box-header">
-					<h3>{{ widget.name }} {{ widget.type }}_{{ widget.id }}</h3>
+					<h3>{{ widget.name }}</h3>
 					<div class="box-header-btns pull-right">
+						<a title="settings" ng-click="showMenu()"><i class="glyphicon glyphicon-list"></i>
+							<ul class="sub-nav" ng-show="isShowing()" style="position: absolute; background-color: white; padding: 5px; border: 1px solid #CCC;">
+								<li ng-repeat="element in modules">
+									<a ng-click="changeGraphTo(widget, element)" style="text-decoration: none;">{{element}}</a>
+								</li>
+							</ul>
+						</a>
 						<a title="settings" ng-click="openSettings(widget)"><i class="glyphicon glyphicon-cog"></i></a>
 						<a title="Remove widget" ng-click="remove(widget)"><i class="glyphicon glyphicon-trash"></i></a>
 					</div>
 				</div>
-				<div class="box-content" id="{{ widget.type }}_{{ widget.id }}" get-size style="border:1px solid beige;">
+				<div class="box-content" id="{{ widget.id }}" title="{{ widget.type }}" get-size style="border:1px solid beige;">
 					<span ng-if="widget.type == 'Html'" >
 	    			    <widget-html text="{{widget.text}}"/>
 					</span>

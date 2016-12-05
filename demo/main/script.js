@@ -27,7 +27,7 @@ angular.module('app')
 				element.css('height', (element[0].parentElement.clientHeight - 10) + 'px');
 				var ID = element[0].id;
 				if (isNaN(ID) && !isAngularModelVar(ID)) {
-					var _Class = ID.split("_")[0];
+					var _Class = element[0].title;
 					if (_Class == 'Html') {
 						return;
 					}
@@ -63,153 +63,10 @@ angular.module('app')
 	};
 
 	// these map directly to gridsterItem options
-	$scope.standardItems = [{
-		sizeX: 2,
-		sizeY: 1,
-		row: 1,
-		col: 0,
-		id: 'Pie__1'
-	}, {
-		sizeX: 2,
-		sizeY: 2,
-		row: 1,
-		col: 2,
-		id: 'Lines__1'
-	}, {
-		sizeX: 1,
-		sizeY: 1,
-		row: 1,
-		col: 4,
-		id: 'Bar__3'
-	}, {
-		sizeX: 1,
-		sizeY: 2,
-		row: 1,
-		col: 5,
-		id: 'Pie__3'
-	}, {
-		sizeX: 2,
-		sizeY: 1,
-		row: 2,
-		col: 0,
-		id: 'Bar__1'
-	}, {
-		sizeX: 1,
-		sizeY: 1,
-		row: 2,
-		col: 4,
-		id: 'Donut__1'
-	}, {
-		sizeX: 1,
-		sizeY: 1,
-		row: 3,
-		col: 1,
-		id: 'Series__1'
-	}, {
-		sizeX: 1,
-		sizeY: 1,
-		row: 3,
-		col: 4,
-		id: 'Pie__2'
-	}, {
-		sizeX: 1,
-		sizeY: 1,
-		row: 3,
-		col: 5,
-		id: 'Series__2'
-	}, {
-		sizeX: 2,
-		sizeY: 1,
-		row: 3,
-		col: 2,
-		id: 'Bar__2'
-	}, {
-		sizeX: 1,
-		sizeY: 1,
-		row: 3,
-		col: 0,
-		id: 'Lines__2'
-	}];
+	$scope.standardItems = STANDARD_ITEMS;
 
 	// these are non-standard, so they require mapping options
-	$scope.customItems = [{
-		size: {
-			x: 2,
-			y: 1
-		},
-		position: [1, 0],
-		id: 'Lines__3'
-	}, {
-		size: {
-			x: 2,
-			y: 2
-		},
-		position: [1, 2],
-		id: 'Donut__2'
-	}, {
-		size: {
-			x: 1,
-			y: 1
-		},
-		position: [2, 4],
-		id: 'Pie__4'
-	}, {
-		size: {
-			x: 1,
-			y: 2
-		},
-		position: [2, 5],
-		id: 'Bar__4'
-	}, {
-		size: {
-			x: 1,
-			y: 1
-		},
-		position: [3, 0],
-		id: 'Series__4'
-	}, {
-		size: {
-			x: 2,
-			y: 1
-		},
-		position: [3, 1],
-		id: 'Bar__6'
-	}, {
-		size: {
-			x: 1,
-			y: 1
-		},
-		position: [3, 3],
-		id: 'Pie__5'
-	}, {
-		size: {
-			x: 1,
-			y: 1
-		},
-		position: [1, 4],
-		id: 'Bar__5'
-	}, {
-		size: {
-			x: 1,
-			y: 1
-		},
-		position: [1, 5],
-		id: 'Lines__4'
-	}, {
-		size: {
-			x: 2,
-			y: 1
-		},
-		position: [1, 0],
-		id: 'Series__5'
-	}, {
-		size: {
-			x: 1,
-			y: 1
-		},
-		position: [3, 4],
-		id: 'Donut__3'
-	}];
+	$scope.customItems = CUSTOM_ITEMS;
 
 	// map the gridsterItem to the custom item structure
 	$scope.customItemMap = {

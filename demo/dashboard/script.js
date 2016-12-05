@@ -27,7 +27,7 @@ angular.module('app')
 				element.css('height', (element[0].parentElement.clientHeight - 100) + 'px');
 				var ID = element[0].id;
 				if (isNaN(ID) && !isAngularModelVar(ID)) {
-					var _Class = ID.split("_")[0];
+					var _Class = element[0].title;
 					if (_Class == 'Html') {
 						return;
 					}
@@ -110,6 +110,11 @@ angular.module('app')
 
 .controller('DashboardCtrl', ['$scope', '$timeout', '$sce',
 	function($scope, $timeout, $sce) {
+
+		$scope.getRandom = function(min, max) {
+			return Math.random() * (max - min) + min;
+		};
+
 		$scope.graphics = (new GraphHandler()).getClassesNames();
 
 		$scope.gridsterOptions = {
@@ -120,115 +125,7 @@ angular.module('app')
 			}
 		};
 
-		$scope.dashboards = {
-			'1': {
-				id: '1',
-				name: 'Home',
-				widgets: [{
-					col: 0,
-					row: 1,
-					sizeY: 1,
-					sizeX: 1,
-					name: "Widget",
-					id: 1,
-					type: 'Donut'
-				}, {
-					col: 1,
-					row: 1,
-					sizeY: 1,
-					sizeX: 1,
-					name: "Widget",
-					id: 1,
-					type: 'Lines'
-				}, {
-					col: 2,
-					row: 1,
-					sizeY: 1,
-					sizeX: 1,
-					name: "Widget",
-					id: 1,
-					type: 'Bar'
-				}, {
-					col: 3,
-					row: 1,
-					sizeY: 1,
-					sizeX: 1,
-					name: "Widget",
-					id: 1,
-					type: 'Pie'
-				}, {
-					col: 1,
-					row: 3,
-					sizeY: 1,
-					sizeX: 2,
-					name: "Widget",
-					id: 1,
-					type: 'Stacked'
-				}, {
-					col: 3,
-					row: 3,
-					sizeY: 1,
-					sizeX: 1,
-					name: "Widget",
-					id: 1,
-					type: 'Funel'
-				}, {
-					col: 0,
-					row: 2,
-					sizeY: 1,
-					sizeX: 1,
-					name: "Widget",
-					id: 1,
-					type: 'Hierarchical'
-				}, {
-					col: 0,
-					row: 4,
-					sizeY: 2,
-					sizeX: 4,
-					name: "Widget",
-					id: 1,
-					type: 'Revenue'
-				}, {
-					col: 0,
-					row: 5,
-					sizeY: 2,
-					sizeX: 2,
-					name: "Widget",
-					id: 1,
-					type: 'Sunburst'
-				}, {
-					col: 1,
-					row: 2,
-					sizeY: 2,
-					sizeX: 4,
-					name: "Widget",
-					id: 1,
-					type: 'Series'
-				}]
-			},
-			'2': {
-				id: '2',
-				name: 'Other',
-				widgets: [{
-					col: 1,
-					row: 1,
-					sizeY: 1,
-					sizeX: 2,
-					name: "Other Widget 1",
-					id: 1,
-					type: 'Lines'
-				}, {
-
-					col: 1,
-					row: 3,
-					sizeY: 1,
-					sizeX: 1,
-					name: "Other Widget 2",
-					id: 1,
-					type: 'Donut'
-				}]
-			}
-		};
+		$scope.dashboards = CONFIG_DASHBOARD;
 
 		$scope.clear = function() {
 			$scope.dashboard.widgets = [];
@@ -243,13 +140,17 @@ angular.module('app')
 		};
 
 		$scope.addWidget = function(type) {
-			if (localStorage[type + '_index']) {
+			var hasher1 = new jsSHA('SHA-1', 'BYTES');
+			hasher1.update($scope.getRandom(1, 1000000).toString());
+			var widgetIndex = hasher1.getHash('HEX');
+
+			/*if (localStorage[type + '_index']) {
 				widgetIndex = localStorage[type + '_index'];
 				widgetIndex++;
 			} else {
 				widgetIndex = 2;
 			}
-			localStorage[type + '_index'] = widgetIndex;
+			localStorage[type + '_index'] = widgetIndex;*/
 
 			var html_text;
 			/*if (type == 'Html') {
@@ -282,6 +183,7 @@ angular.module('app')
 
 .controller('CustomWidgetCtrl', ['$scope', '$modal',
 	function($scope, $modal) {
+		$scope.display = false;
 
 		$scope.remove = function(widget) {
 			$scope.dashboard.widgets.splice($scope.dashboard.widgets.indexOf(widget), 1);
@@ -299,6 +201,27 @@ angular.module('app')
 				}
 			});
 		};
+
+		$scope.showMenu = function() {
+			$scope.display =!$scope.display;
+		};
+
+		$scope.isShowing = function() {
+			return $scope.display;
+		};
+
+		$scope.changeGraphTo = function(widget, to) {
+			angular.element(document.querySelector("#" + widget.id)).empty();
+			var width = 448 * widget.sizeX;
+			var height = 348 * widget.sizeY;
+			eval("var graph = new " + to + "(" + width + ", " + height + ");");
+			graph.draw("#" + widget.id);
+
+			$scope.display = false;
+		};
+
+		$scope.modules = (new GraphHandler()).getClassesNames();
+
 	}
 ])
 
@@ -307,13 +230,15 @@ angular.module('app')
 		$scope.widget = widget;
 
 		$scope.form = {
+			id: widget.id,
 			name: widget.name,
 			sizeX: widget.sizeX,
 			sizeY: widget.sizeY,
 			col: widget.col,
 			row: widget.row,
 			type: widget.type,
-			source: 'File'
+			source: 'File',
+			old_type: widget.type
 		};
 
 		$scope.sizeOptions = [{
@@ -344,6 +269,23 @@ angular.module('app')
 
 			$modalInstance.close(widget);
 
+			/*console.log(widget.id);
+			console.log($scope.form.type);
+			console.log($scope.form.source);
+			console.log(widget);
+			console.log($scope);*/
+
+			//$scope.$parent.$$listeners.gridster-item-initialized[0].updateGraph();
+			var _Class = $scope.form.type;
+			if (_Class == 'Html') {
+			 	return;
+			}
+			var ID = widget.id;
+			angular.element(document.querySelector("#" + ID)).empty();
+			var width = 448 * widget.sizeX;
+			var height = 348 * widget.sizeY;
+			eval("var graph = new " + _Class + "(" + width + ", " + height + ");");
+			graph.draw("#" + ID);
 
 		};
 
