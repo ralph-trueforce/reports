@@ -1,0 +1,66 @@
+{
+	"colors": [
+		"#98abc5",
+		"#8a89a6",
+		"#7b6888",
+		"#6b486b",
+		"#a05d56",
+		"#d0743c",
+		"#ff8c00"
+	],
+	"width": "400px",
+	"height": "400px",
+	"background_color": "antiquewhite",
+	"tooltip": {
+		"name": "tooltip",
+		"position": "absolute",
+		"width": "200px",
+		"height": "auto",
+		"padding": "10px",
+		"background_color": "white",
+		"border": "1px solid #ccc",
+		"classname": "toolmessage",
+		"display": "none",
+		"opacity": 0.8,
+		"paragraph": {
+			"margin": 0,
+			"font_family": "sans-serif",
+			"font_size": "16px",
+			"line_height": "20px",
+			"span": {
+				"id": "value",
+				"color": "black"
+			}
+		}
+	},
+	"slice":{
+		"mouseover":{
+			"duration": 200,
+			"elements":[
+				{
+					"id": "#tooltip",
+					"style":{
+						"display": "block"
+					}
+				}, {
+					"id": "#value",
+					"html": ""
+				}
+			]
+		},
+		"mouseout": {
+			"duration": 100,
+			"elements":[
+				{
+					"id": "#tooltip",
+					"style":{
+						"display": "none"
+					}
+				}
+			]
+		},
+		"text": {
+			"dy": ".35em"
+		}
+	}
+}
