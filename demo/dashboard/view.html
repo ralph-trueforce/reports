@@ -30,7 +30,7 @@
 						<a title="Remove widget" ng-click="remove(widget)"><i class="glyphicon glyphicon-trash"></i></a>
 					</div>
 				</div>
-				<div class="box-content" id="{{ widget.id }}" title="{{ widget.type }}" get-size style="border:1px solid beige;">
+				<div class="box-content" id="{{ widget.id }}" title="{{ widget.type }}" draw-graph style="border:1px solid beige;">
 					<span ng-if="widget.type == 'Html'" >
 	    			    <widget-html text="{{widget.text}}"/>
 					</span>

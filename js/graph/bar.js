@@ -6,77 +6,78 @@
  * @constructor
  */
 function Bar(width, height) {
-	this.base = Graphic;
+	this.base = Cartesian;
 	this.base(width, height); //call super constructor.
-	//Graphic.call(width, height);
+	this.name = arguments.callee.name.toLowerCase();
 
-    this.draw = function (tag_id) {
-        var margin = { top: 20, right: 20, bottom: 70, left: 40 },
-            width = this.width - margin.left - margin.right,
-            height = this.height - margin.top - margin.bottom;
+	//TODO: Should be a private function
+	this.process = function(tag_id) {
 
+		var _this = this;
 
-        var x = d3.scale.ordinal().rangeRoundBands([0, width], .05);
+		var width = this.width - this.margin.left - this.margin.right,
+			height = this.height - this.margin.top - this.margin.bottom;
 
-        var y = d3.scale.linear().range([height, 0]);
+		var x = d3.scale.ordinal().rangeRoundBands([0, width], .05);
 
-        var xAxis = d3.svg.axis()
-            .scale(x)
-            .orient("bottom")
-            ;
+		var y = d3.scale.linear().range([height, 0]);
 
-        var yAxis = d3.svg.axis()
-            .scale(y)
-            .orient("left")
-            .ticks(10);
+		var xAxis = d3.svg.axis()
+			.scale(x)
+			.orient("bottom");
 
-        var svg = d3.select(tag_id).append("svg")
-            .attr("width", width + margin.left + margin.right)
-            .attr("height", height + margin.top + margin.bottom)
-            .append("g")
-            .attr("transform",
-            "translate(" + margin.left + "," + margin.top + ")");
+		var yAxis = d3.svg.axis()
+			.scale(y)
+			.orient("left")
+			.ticks(10);
 
-        d3.csv("data/dataBar.csv", function (error, data) {
+		var svg = d3.select(tag_id).append("svg")
+			.attr("width", width + this.margin.left + this.margin.right)
+			.attr("height", height + this.margin.top + this.margin.bottom)
+			.append("g")
+			.attr("transform",
+			"translate(" + this.margin.left + "," + this.margin.top + ")");
 
-            data.forEach(function (d) {
-                //d.date = parseDate(d.date);
-                d.population = +d.population;
-            });
+		d3.csv("data/dataBar.csv", function (error, data) {
 
-            x.domain(data.map(function (d) { return d.age; }));
-            y.domain([0, d3.max(data, function (d) { return d.population; })]);
+			data.forEach(function (d) {
+				//d.date = parseDate(d.date);
+				d.population = +d.population;
+			});
 
-            svg.append("g")
-                .attr("class", "x axis")
-                .attr("transform", "translate(0," + height + ")")
-                .call(xAxis)
-                .selectAll("text")
-                .style("text-anchor", "end")
-                .attr("dx", "-.8em")
-                .attr("dy", "-.55em")
-                .attr("transform", "rotate(-90)");
+			x.domain(data.map(function (d) { return d.age; }));
+			y.domain([0, d3.max(data, function (d) { return d.population; })]);
 
-            svg.append("g")
-                .attr("class", "y axis")
-                .call(yAxis)
-                .append("text")
-                .attr("transform", "rotate(-90)")
-                .attr("y", 6)
-                .attr("dy", ".71em")
-                .style("text-anchor", "end")
-                ;
+			svg.append("g")
+				.attr("class", "x axis")
+				.attr("transform", "translate(0," + height + ")")
+				.call(xAxis)
+				.selectAll("text")
+				.style("text-anchor", "end")
+				.attr("dx", "-.8em")
+				.attr("dy", "-.55em")
+				.attr("transform", "rotate(-90)");
 
-            svg.selectAll("bar")
-                .data(data)
-                .enter().append("rect")
-                .style("fill", "steelblue")
-                .attr("x", function (d) { return x(d.age); })
-                .attr("width", x.rangeBand())
-                .attr("y", function (d) { return y(d.population); })
-                .attr("height", function (d) { return height - y(d.population); });
+			svg.append("g")
+				.attr("class", "y axis")
+				.call(yAxis)
+				.append("text")
+				.attr("transform", "rotate(-90)")
+				.attr("y", 6)
+				.attr("dy", ".71em")
+				.style("text-anchor", "end");
 
-        });
+			svg.selectAll("bar")
+				.data(data)
+				.enter()
+				.append("rect")
+				.style("fill", function(d) { return _this.color(d.age); })
+				.attr("x", function (d) { return x(d.age)+5; })
+				.attr("y", function (d) { return y(d.population); })
+				.attr("width", x.rangeBand()-10)
+				.attr("height", function (d) { return height - y(d.population); });
+
+		});
     };
 
     this.getFooter = function() {
@@ -84,4 +85,4 @@ function Bar(width, height) {
     }
 }
 
-Bar.prototype = Object.create(Graphic.prototype);
+Bar.prototype = Object.create(Cartesian.prototype);

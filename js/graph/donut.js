@@ -23,14 +23,20 @@ function Donut(width, height) {
 
         var radius = Math.min(this.width, this.height) / 2;
         var color = d3.scale.category20();
-        var pie = d3.layout.pie().value(function(d) { return d.count; }).sort(null);
-        var arc = d3.svg.arc().innerRadius(radius - 10).outerRadius(radius - 70);
+        var pie = d3.layout.pie()
+			.value(function(d) {
+				return d.count;
+			})
+			.sort(null);
+        var arc = d3.svg.arc()
+			.innerRadius(radius - 10)
+			.outerRadius(radius - 70);
+
         var legendRectSize = 18;
         var legendSpacing = 4;
 
         //Creates svg canvas
-        var svg = d3.select(tag_id)
-            .append("svg")
+        var svg = d3.select(tag_id).append("svg")
             .attr("width", this.width)
             .attr("height", this.height)
             .append("g")
@@ -48,8 +54,6 @@ function Donut(width, height) {
 				.attr("d", arc);
 			path.append("text")
 				.attr("transform", function (d) {
-					//console.log(d);
-					//console.log(arc.centroid(d));
 					return "translate(" + arc.centroid(d) + ")";
 				})
 				.attr("text-anchor", "middle")

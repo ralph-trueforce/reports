@@ -7,9 +7,9 @@ function Sunburst(width, height) {
 	//Graphic.call(width, height);
 
     this.draw = function (tag_id) {
-        var margin = {top: 30, right: 20, bottom: 30, left: 50},
-            width = this.width - margin.left - margin.right,
-            height = this.height - margin.top - margin.bottom;
+        var /*margin = {top: 30, right: 20, bottom: 30, left: 50},*/
+            width = this.width /*- margin.left - margin.right*/,
+            height = this.height/* - margin.top - margin.bottom*/;
 
 
         var radius = Math.min(width, height) / 2,
@@ -19,7 +19,7 @@ function Sunburst(width, height) {
             .attr("width", width)
             .attr("height", height)
             .append("g")
-            .attr("transform", "translate(" + width / 2 + "," + height * .52 + ")");
+            .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
 
         var partition = d3.layout.partition()
             .sort(null)

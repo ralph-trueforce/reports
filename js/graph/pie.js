@@ -1,66 +1,123 @@
-
+/**
+ * Class Pie
+ *
+ * @param width
+ * @param height
+ * @constructor
+ */
 function Pie(width, height) {
-	this.base = Graphic;
+	this.base = Round;
 	this.base(width, height); //call super constructor.
-	//Graphic.call(width, height);
+	this.name = arguments.callee.name.toLowerCase();
 
+	//TODO: Should be a private function
+	this.process = function(tag_id) {
 
-    this.draw = function (tag_id) {
+		var _this = this;
 
-        var width = this.width,
-            height = this.height,
-            radius = Math.min(width, height) / 2;
+		var arc = d3.svg.arc()
+			.outerRadius(this.radius - 10)
+			.innerRadius(this.radius - this.radius);
 
-        var color = d3.scale.ordinal()
-            .range(["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56", "#d0743c", "#ff8c00"]);
+		var labelArc = d3.svg.arc()
+			.outerRadius(this.radius - 40)
+			.innerRadius(this.radius - 40);
 
-        var arc = d3.svg.arc()
-            .outerRadius(radius - 10)
-            .innerRadius(0);
+		var arcOver = d3.svg.arc()
+			.outerRadius(this.radius + 5)
+			.innerRadius(5);
 
-        var labelArc = d3.svg.arc()
-            .outerRadius(radius - 40)
-            .innerRadius(radius - 40);
+		var pie = d3.layout.pie()
+			.sort(null)
+			.value(function (d) {
+				return d.population;
+			});
 
-        var pie = d3.layout.pie()
-            .sort(null)
-            .value(function(d) { return d.population; });
+		var svg = d3.select(tag_id).append("svg")
+			.attr("width",  this.width)
+			.attr("height", this.height)
+			.append("g")
+			.attr("transform", "translate(" + this.width / 2 + "," + this.height / 2 + ")");
 
+		d3.select(tag_id).style("background-color", this.config.background_color);
 
+		//Tooltip needs to be refactor, must be as a lib for all the graphs
+		var tooltip_config = this.config.tooltip;
+		var tooltip = d3.select(tag_id).append("div")
+			.attr("id",        tooltip_config.name)
+			.style("position", tooltip_config.position)
+			.style("width",    tooltip_config.width)
+			.style("height",   tooltip_config.height)
+			.style("padding",  tooltip_config.padding)
+			.style("background-color", tooltip_config.background_color)
+			.style("border",   tooltip_config.border)
+			.attr("class",     tooltip_config.classname)
+			.style("display",  tooltip_config.display)
+			.style("opacity",  tooltip_config.opacity);
 
-        var svg = d3.select(tag_id).append("svg")
-            .attr("width", width)
-            .attr("height", height)
-          .append("g")
-            .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
+		var p_config = tooltip_config.paragraph;
+		var tooltipP = tooltip.append("p")
+			.style("margin",      p_config.margin)
+			.style("font-family", p_config.font_family)
+			.style("font-size",   p_config.font_size)
+			.style("line-height", p_config.line_height);
 
-        d3.csv("data/dataBar.csv", typePie, function(error, data) {
-          if (error) throw error;
+		var span_config = p_config.span;
+		tooltipP.append("span")
+			.attr("id", span_config.id)
+			.style("color", span_config.color);
 
-          var g = svg.selectAll(".arc")
-              .data(pie(data))
-            .enter().append("g")
-              .attr("class", "arc");
+		//Json data input
+		d3.json("data/pie.json", function (error, data) {
+			if (error) throw error;
 
-          g.append("path")
-              .attr("d", arc)
-              .style("fill", function(d) { return color(d.data.age); });
+			var config_slice = _this.config.slice;
+			var g = svg.selectAll(".arc")
+				.data(pie(data))
+				.enter()
+				.append("g")
+				.attr("class", "arc")
+				.on("mouseover", function (d) {
+					d3.select(this).select("path").transition()
+						.duration(config_slice.mouseover.duration)
+						.attr("d", arcOver);
 
-          g.append("text")
-              .attr("transform", function(d) { return "translate(" + labelArc.centroid(d) + ")"; })
-              .attr("dy", ".35em")
-              .text(function(d) { return d.data.age; });
-        });
-    };
+					d3.select(config_slice.mouseover.elements[0].id)
+						.style("left", d3.event.layerX + "px")
+						.style("top",  d3.event.layerY + "px")
+						.style("display", config_slice.mouseover.elements[0].style.display)
+						.select(config_slice.mouseover.elements[1].id)
+						.html("<p>Age: " + d.data.age + "<br/> Population: " + d.data.population + "</p>");//TODO: needs you know what
+				})
+				.on("mouseout", function (d) {
+					d3.select(this).select("path").transition()
+						.duration(config_slice.mouseout.duration)
+						.attr("d", arc);
 
-    function typePie(d) {
-      d.population = +d.population;
-      return d;
-    }
+					d3.select(config_slice.mouseout.elements[0].id)
+						.style("display", config_slice.mouseout.elements[0].style.display);
+				});
+
+			g.append("path")
+				.attr("d", arc)
+				.style("fill", function (d) {
+					return _this.color(d.data.age);
+				});
+
+			g.append("text")
+				.attr("transform", function (d) {
+					return "translate(" + labelArc.centroid(d) + ")";
+				})
+				.attr("dy", config_slice.text.dy)
+				.text(function (d) {
+					return d.data.age;
+				});
+		});
+	};
 
     this.getFooter = function() {
-        return "<span class=\"glyphicon glyphicon-print\"></span> <a href=\"http://www.google.com\">www.google.com</a>";
+        return "<span class=\"glyphicon glyphicon-print\"></span> <a href=\"http://www.trueforce.com\">www.trueforce.com</a>";
     }
 }
 
-Pie.prototype = Object.create(Graphic.prototype);
+Pie.prototype = Object.create(Round.prototype);

@@ -1,6 +1,6 @@
 angular.module('app')
 
-.directive( 'getSize', function() {
+.directive( 'drawGraph', function() {
 	return {
 		link: function( scope, element, attrs ) {
 
@@ -36,7 +36,7 @@ angular.module('app')
 					graph.draw("#" + ID);
 				}
 			}
-			scope.$watch
+			/*scope.$watch
 			(
 				function () {
 					return '{"height":' + (element[0].clientHeight + 3) + ', "width":' + (element[0].clientWidth + 2) + '}';
@@ -48,7 +48,7 @@ angular.module('app')
 						var ID = element[0].id;
 					}
 				}
-			);
+			);*/
 			scope.$on('gridster-item-resized',        updateGraph);
 			scope.$on('gridster-item-transition-end', updateGraph);
 			scope.$on('gridster-resized',             updateGraph);
@@ -93,19 +93,19 @@ angular.module('app')
 	}
 }])
 
-.directive ('dashboardButtons', ['$sce', function($sce) {
-	return {
-		link: function (scope, element, attr) {
-
-			var handler = new GraphHandler();
-			var html_contents = handler.createGraphButtons();
-			html_contents = "<div>" + $sce.trustAsHtml(html_contents) + "</div>";
-			scope.$watch('dashboardButtons', function () {
-				 element.append(html_contents);
-			});
-		}
-	}
-}])
+// .directive ('dashboardButtons', ['$sce', function($sce) {
+// 	return {
+// 		link: function (scope, element, attr) {
+//
+// 			var handler = new GraphHandler();
+// 			var html_contents = handler.createGraphButtons();
+// 			html_contents = "<div>" + $sce.trustAsHtml(html_contents) + "</div>";
+// 			scope.$watch('dashboardButtons', function () {
+// 				 element.append(html_contents);
+// 			});
+// 		}
+// 	}
+// }])
 
 
 .controller('DashboardCtrl', ['$scope', '$timeout', '$sce',
@@ -131,19 +131,19 @@ angular.module('app')
 			$scope.dashboard.widgets = [];
 		};
 
-		$scope.getButtons = function() {
-		   var handler = new GraphHandler();
-		   var html_contents = handler.createGraphButtons();
-		   html_contents = $sce.trustAsHtml(html_contents);
-
-		   return html_contents;
-		};
+		// $scope.getButtons = function() {
+		//    var handler = new GraphHandler();
+		//    var html_contents = handler.createGraphButtons();
+		//    html_contents = $sce.trustAsHtml(html_contents);
+        //
+		//    return html_contents;
+		// };
 
 		$scope.addWidget = function(type) {
 			var hasher1 = new jsSHA('SHA-1', 'BYTES');
 			hasher1.update($scope.getRandom(1, 1000000).toString());
 			var widgetIndex = hasher1.getHash('HEX');
-
+			widgetIndex = "a" + widgetIndex;
 			/*if (localStorage[type + '_index']) {
 				widgetIndex = localStorage[type + '_index'];
 				widgetIndex++;
