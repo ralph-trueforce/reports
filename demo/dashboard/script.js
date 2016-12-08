@@ -36,19 +36,7 @@ angular.module('app')
 					graph.draw("#" + ID);
 				}
 			}
-			/*scope.$watch
-			(
-				function () {
-					return '{"height":' + (element[0].clientHeight + 3) + ', "width":' + (element[0].clientWidth + 2) + '}';
-				},
-				function (newSize, oldSize) {
-					var div_size = JSON.parse(newSize);
-					var old_div_size = JSON.parse(oldSize);
-					if (div_size.height > 408 || div_size.width > 450) {
-						var ID = element[0].id;
-					}
-				}
-			);*/
+
 			scope.$on('gridster-item-resized',        updateGraph);
 			scope.$on('gridster-item-transition-end', updateGraph);
 			scope.$on('gridster-resized',             updateGraph);
@@ -93,21 +81,6 @@ angular.module('app')
 	}
 }])
 
-// .directive ('dashboardButtons', ['$sce', function($sce) {
-// 	return {
-// 		link: function (scope, element, attr) {
-//
-// 			var handler = new GraphHandler();
-// 			var html_contents = handler.createGraphButtons();
-// 			html_contents = "<div>" + $sce.trustAsHtml(html_contents) + "</div>";
-// 			scope.$watch('dashboardButtons', function () {
-// 				 element.append(html_contents);
-// 			});
-// 		}
-// 	}
-// }])
-
-
 .controller('DashboardCtrl', ['$scope', '$timeout', '$sce',
 	function($scope, $timeout, $sce) {
 
@@ -131,26 +104,11 @@ angular.module('app')
 			$scope.dashboard.widgets = [];
 		};
 
-		// $scope.getButtons = function() {
-		//    var handler = new GraphHandler();
-		//    var html_contents = handler.createGraphButtons();
-		//    html_contents = $sce.trustAsHtml(html_contents);
-        //
-		//    return html_contents;
-		// };
-
 		$scope.addWidget = function(type) {
 			var hasher1 = new jsSHA('SHA-1', 'BYTES');
 			hasher1.update($scope.getRandom(1, 1000000).toString());
 			var widgetIndex = hasher1.getHash('HEX');
 			widgetIndex = "a" + widgetIndex;
-			/*if (localStorage[type + '_index']) {
-				widgetIndex = localStorage[type + '_index'];
-				widgetIndex++;
-			} else {
-				widgetIndex = 2;
-			}
-			localStorage[type + '_index'] = widgetIndex;*/
 
 			var html_text;
 			/*if (type == 'Html') {
@@ -280,12 +238,6 @@ angular.module('app')
 			angular.extend(widget, $scope.form);
 
 			$modalInstance.close(widget);
-
-			/*console.log(widget.id);
-			console.log($scope.form.type);
-			console.log($scope.form.source);
-			console.log(widget);
-			console.log($scope);*/
 
 			//$scope.$parent.$$listeners.gridster-item-initialized[0].updateGraph();
 			var _Class = $scope.form.type;
