@@ -206,6 +206,18 @@ angular.module('app')
 			$scope.display =!$scope.display;
 		};
 
+		$scope.update = function(widget) {
+			angular.element(document.querySelector("#" + widget.id)).empty();
+			var width = 448 * widget.sizeX;
+			var height = 348 * widget.sizeY;
+			eval("var graph = new " + widget.type + "(" + width + ", " + height + ");");
+			graph.update("#" + widget.id);
+		};
+
+		$scope.changeSource = function(widget) {
+			alert("Under construction.");
+		};
+
 		$scope.isShowing = function() {
 			return $scope.display;
 		};

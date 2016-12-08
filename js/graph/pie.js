@@ -44,7 +44,7 @@ function Pie(width, height) {
 		//Tooltip needs to be refactor, must be as a lib for all the graphs
 		var tooltip_config = this.config.tooltip;
 		var tooltip = d3.select(tag_id).append("div")
-			.attr("id",        tooltip_config.name)
+			.attr("id",        tooltip_config.name + this.id)
 			.style("position", tooltip_config.position)
 			.style("width",    tooltip_config.width)
 			.style("height",   tooltip_config.height)
@@ -82,7 +82,7 @@ function Pie(width, height) {
 						.duration(config_slice.mouseover.duration)
 						.attr("d", arcOver);
 
-					d3.select(config_slice.mouseover.elements[0].id)
+					d3.select(config_slice.mouseover.elements[0].id + _this.id)
 						.style("left", d3.event.layerX + "px")
 						.style("top",  d3.event.layerY + "px")
 						.style("display", config_slice.mouseover.elements[0].style.display)
@@ -94,7 +94,7 @@ function Pie(width, height) {
 						.duration(config_slice.mouseout.duration)
 						.attr("d", arc);
 
-					d3.select(config_slice.mouseout.elements[0].id)
+					d3.select(config_slice.mouseout.elements[0].id + _this.id)
 						.style("display", config_slice.mouseout.elements[0].style.display);
 				});
 
@@ -109,6 +109,9 @@ function Pie(width, height) {
 					return "translate(" + labelArc.centroid(d) + ")";
 				})
 				.attr("dy", config_slice.text.dy)
+				.style("font-family", config_slice.text.font_family)
+				.style("font-size",   config_slice.text.font_size)
+				.style("fill",        config_slice.text.font_color)
 				.text(function (d) {
 					return d.data.age;
 				});

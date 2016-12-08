@@ -38,6 +38,17 @@ function Bar(width, height) {
 			.attr("transform",
 			"translate(" + this.margin.left + "," + this.margin.top + ")");
 
+		var tooltip = d3.select(tag_id).append("div")
+			.attr("id",        "tooltip" + this.id)
+			.style("position", "absolute")
+			.style("width",    "auto")
+			.style("height",   "30px")
+			.style("padding",  "5px")
+			.style("background-color", "white")
+			.style("border",   "1px solid")
+			.style("display",  "none")
+			.style("opacity",  .8);
+
 		d3.csv("data/dataBar.csv", function (error, data) {
 
 			data.forEach(function (d) {
@@ -72,10 +83,36 @@ function Bar(width, height) {
 				.enter()
 				.append("rect")
 				.style("fill", function(d) { return _this.color(d.age); })
-				.attr("x", function (d) { return x(d.age)+5; })
+				.attr("x", function (d) { return x(d.age) + 5; })
 				.attr("y", function (d) { return y(d.population); })
-				.attr("width", x.rangeBand()-10)
+				.attr("width", x.rangeBand() - 10)
 				.attr("height", function (d) { return height - y(d.population); });
+
+			var cache_color;
+			svg.selectAll("rect")
+			.on("mouseover", function (d) {
+				cache_color = d3.select(this).style("fill");
+				cache_width = d3.select(this).attr("width");
+				var colour = d3.rgb(cache_color);
+				colour.r +=40;
+				colour.g +=40;
+				colour.b +=40;
+				d3.select(this)
+					.style("fill", "rgb(" + colour.r + ", " + colour.g + ", " + colour.b + ")")
+					.style("border","1px solid black");
+				tooltip
+					.style("top", y(d.population) + 40 + "px")
+					.style("left", x(d.age) + 40 + (cache_width/2) + "px")
+					.style("display", "block")
+					.html("<p>" + d.population + "</p>");
+			})
+			.on("mouseout", function (d) {
+				d3.select(this).style("fill", cache_color).style("border","none");
+				tooltip
+					.style("display", "none");
+			});
+
+
 
 		});
     };

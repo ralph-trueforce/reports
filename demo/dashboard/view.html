@@ -19,6 +19,8 @@
 				<div class="box-header">
 					<h3>{{ widget.name }}</h3>
 					<div class="box-header-btns pull-right">
+						<a title="settings" ng-click="update(widget)"><i class="glyphicon glyphicon-refresh"></i>
+						<a title="settings" ng-click="changeSource(widget)"><i class="glyphicon glyphicon-file"></i>
 						<a title="settings" ng-click="showMenu()"><i class="glyphicon glyphicon-list"></i>
 							<ul class="sub-nav" ng-show="isShowing()" style="position: absolute; background-color: white; padding: 5px; border: 1px solid #CCC;">
 								<li ng-repeat="element in modules">

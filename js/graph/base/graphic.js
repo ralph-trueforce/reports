@@ -63,7 +63,7 @@ Graphic.prototype.process = function(tag_id) {};
 Graphic.prototype.draw = function(tag_id) {
 	var _this = this;
 	this.config_filename = this.name + '.config';
-	this.id = tag_id;
+	this.id = tag_id.replace("#", "");
 
 	if (localStorage[this.config_filename] === undefined) {
 		//Asynchronous json reading
@@ -78,12 +78,14 @@ Graphic.prototype.draw = function(tag_id) {
 };
 
 /**
- *  TODO
- * @param json
+ * Update the graphic reading again from config file.
+ * @param tag_id
  */
-Graphic.prototype.update = function(json) {
+Graphic.prototype.update = function(tag_id) {
+	this.config_filename = this.name + '.config';
+	localStorage.removeItem(this.config_filename);
 
-	//TODO: set the necessary data.
+	this.draw(tag_id);
 };
 
 /**

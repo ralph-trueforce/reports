@@ -25,7 +25,7 @@
 		"paragraph": {
 			"margin": 0,
 			"font_family": "sans-serif",
-			"font_size": "16px",
+			"font_size": "12px",
 			"line_height": "20px",
 			"span": {
 				"id": "value",
@@ -60,7 +60,10 @@
 			]
 		},
 		"text": {
-			"dy": ".35em"
+			"dy": ".35em",
+			"font_family": "sans-serif",
+			"font_size": "10px",
+			"font_color": "#333"
 		}
 	}
 }
