@@ -32,6 +32,8 @@ angular.module('app')
 						return;
 					}
 					angular.element(document.querySelector("#" + ID)).empty();
+					localStorage[ID + "widget.width"] = element[0].clientWidth;
+					localStorage[ID + "widget.height"] = element[0].clientHeight;
 					eval("var graph = new " + _Class + "(" + element[0].clientWidth + ", " + (element[0].clientHeight) + ");");
 					graph.draw("#" + ID);
 				}
@@ -166,8 +168,8 @@ angular.module('app')
 
 		$scope.update = function(widget) {
 			angular.element(document.querySelector("#" + widget.id)).empty();
-			var width = 448 * widget.sizeX;
-			var height = 348 * widget.sizeY;
+			var width = ((localStorage[widget.id + "widget.width"] !== undefined)?localStorage[widget.id + "widget.width"] : (448 * widget.sizeX));
+			var height = ((localStorage[widget.id + "widget.height"] !== undefined)?localStorage[widget.id + "widget.height"] : (348 * widget.sizeY));
 			eval("var graph = new " + widget.type + "(" + width + ", " + height + ");");
 			graph.update("#" + widget.id);
 		};
@@ -182,8 +184,8 @@ angular.module('app')
 
 		$scope.changeGraphTo = function(widget, to) {
 			angular.element(document.querySelector("#" + widget.id)).empty();
-			var width = 448 * widget.sizeX;
-			var height = 348 * widget.sizeY;
+			var width = ((localStorage[widget.id + "widget.width"] !== undefined)?localStorage[widget.id + "widget.width"] : (448 * widget.sizeX));
+			var height = ((localStorage[widget.id + "widget.height"] !== undefined)?localStorage[widget.id + "widget.height"] : (348 * widget.sizeY));
 			eval("var graph = new " + to + "(" + width + ", " + height + ");");
 			graph.draw("#" + widget.id);
 
@@ -246,8 +248,8 @@ angular.module('app')
 			}
 			var ID = widget.id;
 			angular.element(document.querySelector("#" + ID)).empty();
-			var width = 448 * widget.sizeX;
-			var height = 348 * widget.sizeY;
+			var width = ((localStorage[widget.id + "widget.width"] !== undefined)?localStorage[widget.id + "widget.width"] : (448 * widget.sizeX));
+			var height = ((localStorage[widget.id + "widget.height"] !== undefined)?localStorage[widget.id + "widget.height"] : (348 * widget.sizeY));
 			eval("var graph = new " + _Class + "(" + width + ", " + height + ");");
 			graph.draw("#" + ID);
 
