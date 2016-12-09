@@ -89,7 +89,7 @@ function Donut(width, height) {
 				})
 				.attr("text-anchor", "middle")
 				.text(function (d) {
-					return d.value / 100;
+					return d.value / 10;
 				});
 
 			var config_slice = _this.config.slice;
@@ -102,7 +102,7 @@ function Donut(width, height) {
 						.style("top",  d3.event.layerY + "px")
 						.style("display", config_slice.mouseover.elements[0].style.display)
 						.select(config_slice.mouseover.elements[1].id)
-						.html("<p>Age: " + d.data.age + "<br/> Population: " + d.data.population + "</p>");//TODO: needs you know what
+						.html("<p>Asset: " + d.data.label + "<br/> Count: " + d.data.count + "</p>");//TODO: needs you know what
 				})
 				.on("mouseout", function (d) {
 					d3.select(this).transition()
