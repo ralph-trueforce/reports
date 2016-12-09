@@ -1,0 +1,4112 @@
+[
+	{
+		"date": 20120101,
+		"city": "New York",
+		"temp": 46.3
+	},
+	{
+		"date": 20120102,
+		"city": "New York",
+		"temp": 43.2
+	},
+	{
+		"date": 20120103,
+		"city": "New York",
+		"temp": 30.3
+	},
+	{
+		"date": 20120104,
+		"city": "New York",
+		"temp": 19.2
+	},
+	{
+		"date": 20120105,
+		"city": "New York",
+		"temp": 32.1
+	},
+	{
+		"date": 20120106,
+		"city": "New York",
+		"temp": 41.2
+	},
+	{
+		"date": 20120107,
+		"city": "New York",
+		"temp": 47
+	},
+	{
+		"date": 20120108,
+		"city": "New York",
+		"temp": 46
+	},
+	{
+		"date": 20120109,
+		"city": "New York",
+		"temp": 34.7
+	},
+	{
+		"date": 20120110,
+		"city": "New York",
+		"temp": 39.4
+	},
+	{
+		"date": 20120111,
+		"city": "New York",
+		"temp": 40.4
+	},
+	{
+		"date": 20120112,
+		"city": "New York",
+		"temp": 45.4
+	},
+	{
+		"date": 20120113,
+		"city": "New York",
+		"temp": 40.7
+	},
+	{
+		"date": 20120114,
+		"city": "New York",
+		"temp": 30.4
+	},
+	{
+		"date": 20120115,
+		"city": "New York",
+		"temp": 23.9
+	},
+	{
+		"date": 20120116,
+		"city": "New York",
+		"temp": 22.6
+	},
+	{
+		"date": 20120117,
+		"city": "New York",
+		"temp": 39.8
+	},
+	{
+		"date": 20120118,
+		"city": "New York",
+		"temp": 43.2
+	},
+	{
+		"date": 20120119,
+		"city": "New York",
+		"temp": 26.3
+	},
+	{
+		"date": 20120120,
+		"city": "New York",
+		"temp": 32.8
+	},
+	{
+		"date": 20120121,
+		"city": "New York",
+		"temp": 27.4
+	},
+	{
+		"date": 20120122,
+		"city": "New York",
+		"temp": 25
+	},
+	{
+		"date": 20120123,
+		"city": "New York",
+		"temp": 39.4
+	},
+	{
+		"date": 20120124,
+		"city": "New York",
+		"temp": 48.7
+	},
+	{
+		"date": 20120125,
+		"city": "New York",
+		"temp": 43
+	},
+	{
+		"date": 20120126,
+		"city": "New York",
+		"temp": 37.1
+	},
+	{
+		"date": 20120127,
+		"city": "New York",
+		"temp": 48.2
+	},
+	{
+		"date": 20120128,
+		"city": "New York",
+		"temp": 43.7
+	},
+	{
+		"date": 20120129,
+		"city": "New York",
+		"temp": 40.1
+	},
+	{
+		"date": 20120130,
+		"city": "New York",
+		"temp": 38
+	},
+	{
+		"date": 20120131,
+		"city": "New York",
+		"temp": 43.5
+	},
+	{
+		"date": 20120201,
+		"city": "New York",
+		"temp": 50.4
+	},
+	{
+		"date": 20120202,
+		"city": "New York",
+		"temp": 45.8
+	},
+	{
+		"date": 20120203,
+		"city": "New York",
+		"temp": 37.5
+	},
+	{
+		"date": 20120204,
+		"city": "New York",
+		"temp": 40.8
+	},
+	{
+		"date": 20120205,
+		"city": "New York",
+		"temp": 36.5
+	},
+	{
+		"date": 20120206,
+		"city": "New York",
+		"temp": 39.1
+	},
+	{
+		"date": 20120207,
+		"city": "New York",
+		"temp": 43.2
+	},
+	{
+		"date": 20120208,
+		"city": "New York",
+		"temp": 36.5
+	},
+	{
+		"date": 20120209,
+		"city": "New York",
+		"temp": 36.5
+	},
+	{
+		"date": 20120210,
+		"city": "New York",
+		"temp": 38.3
+	},
+	{
+		"date": 20120211,
+		"city": "New York",
+		"temp": 36.9
+	},
+	{
+		"date": 20120212,
+		"city": "New York",
+		"temp": 29.7
+	},
+	{
+		"date": 20120213,
+		"city": "New York",
+		"temp": 33.1
+	},
+	{
+		"date": 20120214,
+		"city": "New York",
+		"temp": 39.6
+	},
+	{
+		"date": 20120215,
+		"city": "New York",
+		"temp": 42.3
+	},
+	{
+		"date": 20120216,
+		"city": "New York",
+		"temp": 39.7
+	},
+	{
+		"date": 20120217,
+		"city": "New York",
+		"temp": 46
+	},
+	{
+		"date": 20120218,
+		"city": "New York",
+		"temp": 41.2
+	},
+	{
+		"date": 20120219,
+		"city": "New York",
+		"temp": 39.8
+	},
+	{
+		"date": 20120220,
+		"city": "New York",
+		"temp": 38.1
+	},
+	{
+		"date": 20120221,
+		"city": "New York",
+		"temp": 37.1
+	},
+	{
+		"date": 20120222,
+		"city": "New York",
+		"temp": 45.5
+	},
+	{
+		"date": 20120223,
+		"city": "New York",
+		"temp": 50.6
+	},
+	{
+		"date": 20120224,
+		"city": "New York",
+		"temp": 42.7
+	},
+	{
+		"date": 20120225,
+		"city": "New York",
+		"temp": 42.6
+	},
+	{
+		"date": 20120226,
+		"city": "New York",
+		"temp": 36.9
+	},
+	{
+		"date": 20120227,
+		"city": "New York",
+		"temp": 40.9
+	},
+	{
+		"date": 20120228,
+		"city": "New York",
+		"temp": 45.9
+	},
+	{
+		"date": 20120229,
+		"city": "New York",
+		"temp": 40.7
+	},
+	{
+		"date": 20120301,
+		"city": "New York",
+		"temp": 41.3
+	},
+	{
+		"date": 20120302,
+		"city": "New York",
+		"temp": 36.8
+	},
+	{
+		"date": 20120303,
+		"city": "New York",
+		"temp": 47.6
+	},
+	{
+		"date": 20120304,
+		"city": "New York",
+		"temp": 44.2
+	},
+	{
+		"date": 20120305,
+		"city": "New York",
+		"temp": 38.5
+	},
+	{
+		"date": 20120306,
+		"city": "New York",
+		"temp": 32.9
+	},
+	{
+		"date": 20120307,
+		"city": "New York",
+		"temp": 43.3
+	},
+	{
+		"date": 20120308,
+		"city": "New York",
+		"temp": 51.2
+	},
+	{
+		"date": 20120309,
+		"city": "New York",
+		"temp": 47.8
+	},
+	{
+		"date": 20120310,
+		"city": "New York",
+		"temp": 37.2
+	},
+	{
+		"date": 20120311,
+		"city": "New York",
+		"temp": 42.9
+	},
+	{
+		"date": 20120312,
+		"city": "New York",
+		"temp": 48.8
+	},
+	{
+		"date": 20120313,
+		"city": "New York",
+		"temp": 52.6
+	},
+	{
+		"date": 20120314,
+		"city": "New York",
+		"temp": 60.5
+	},
+	{
+		"date": 20120315,
+		"city": "New York",
+		"temp": 47.2
+	},
+	{
+		"date": 20120316,
+		"city": "New York",
+		"temp": 44.7
+	},
+	{
+		"date": 20120317,
+		"city": "New York",
+		"temp": 48.2
+	},
+	{
+		"date": 20120318,
+		"city": "New York",
+		"temp": 48.2
+	},
+	{
+		"date": 20120319,
+		"city": "New York",
+		"temp": 53.1
+	},
+	{
+		"date": 20120320,
+		"city": "New York",
+		"temp": 57.8
+	},
+	{
+		"date": 20120321,
+		"city": "New York",
+		"temp": 57.5
+	},
+	{
+		"date": 20120322,
+		"city": "New York",
+		"temp": 57.3
+	},
+	{
+		"date": 20120323,
+		"city": "New York",
+		"temp": 61.7
+	},
+	{
+		"date": 20120324,
+		"city": "New York",
+		"temp": 55.8
+	},
+	{
+		"date": 20120325,
+		"city": "New York",
+		"temp": 48.4
+	},
+	{
+		"date": 20120326,
+		"city": "New York",
+		"temp": 49.8
+	},
+	{
+		"date": 20120327,
+		"city": "New York",
+		"temp": 39.6
+	},
+	{
+		"date": 20120328,
+		"city": "New York",
+		"temp": 49.7
+	},
+	{
+		"date": 20120329,
+		"city": "New York",
+		"temp": 56.8
+	},
+	{
+		"date": 20120330,
+		"city": "New York",
+		"temp": 46.5
+	},
+	{
+		"date": 20120331,
+		"city": "New York",
+		"temp": 42.2
+	},
+	{
+		"date": 20120401,
+		"city": "New York",
+		"temp": 45.3
+	},
+	{
+		"date": 20120402,
+		"city": "New York",
+		"temp": 48.1
+	},
+	{
+		"date": 20120403,
+		"city": "New York",
+		"temp": 51.2
+	},
+	{
+		"date": 20120404,
+		"city": "New York",
+		"temp": 61
+	},
+	{
+		"date": 20120405,
+		"city": "New York",
+		"temp": 50.7
+	},
+	{
+		"date": 20120406,
+		"city": "New York",
+		"temp": 48
+	},
+	{
+		"date": 20120407,
+		"city": "New York",
+		"temp": 51.1
+	},
+	{
+		"date": 20120408,
+		"city": "New York",
+		"temp": 55.7
+	},
+	{
+		"date": 20120409,
+		"city": "New York",
+		"temp": 58.3
+	},
+	{
+		"date": 20120410,
+		"city": "New York",
+		"temp": 55
+	},
+	{
+		"date": 20120411,
+		"city": "New York",
+		"temp": 49
+	},
+	{
+		"date": 20120412,
+		"city": "New York",
+		"temp": 51.7
+	},
+	{
+		"date": 20120413,
+		"city": "New York",
+		"temp": 53.1
+	},
+	{
+		"date": 20120414,
+		"city": "New York",
+		"temp": 55.2
+	},
+	{
+		"date": 20120415,
+		"city": "New York",
+		"temp": 62.3
+	},
+	{
+		"date": 20120416,
+		"city": "New York",
+		"temp": 62.9
+	},
+	{
+		"date": 20120417,
+		"city": "New York",
+		"temp": 69.3
+	},
+	{
+		"date": 20120418,
+		"city": "New York",
+		"temp": 59
+	},
+	{
+		"date": 20120419,
+		"city": "New York",
+		"temp": 54.1
+	},
+	{
+		"date": 20120420,
+		"city": "New York",
+		"temp": 56.5
+	},
+	{
+		"date": 20120421,
+		"city": "New York",
+		"temp": 58.2
+	},
+	{
+		"date": 20120422,
+		"city": "New York",
+		"temp": 52.4
+	},
+	{
+		"date": 20120423,
+		"city": "New York",
+		"temp": 51.6
+	},
+	{
+		"date": 20120424,
+		"city": "New York",
+		"temp": 49.3
+	},
+	{
+		"date": 20120425,
+		"city": "New York",
+		"temp": 52.5
+	},
+	{
+		"date": 20120426,
+		"city": "New York",
+		"temp": 50.5
+	},
+	{
+		"date": 20120427,
+		"city": "New York",
+		"temp": 51.9
+	},
+	{
+		"date": 20120428,
+		"city": "New York",
+		"temp": 47.4
+	},
+	{
+		"date": 20120429,
+		"city": "New York",
+		"temp": 54.1
+	},
+	{
+		"date": 20120430,
+		"city": "New York",
+		"temp": 51.9
+	},
+	{
+		"date": 20120501,
+		"city": "New York",
+		"temp": 57.4
+	},
+	{
+		"date": 20120502,
+		"city": "New York",
+		"temp": 53.7
+	},
+	{
+		"date": 20120503,
+		"city": "New York",
+		"temp": 53.1
+	},
+	{
+		"date": 20120504,
+		"city": "New York",
+		"temp": 57.2
+	},
+	{
+		"date": 20120505,
+		"city": "New York",
+		"temp": 57
+	},
+	{
+		"date": 20120506,
+		"city": "New York",
+		"temp": 56.6
+	},
+	{
+		"date": 20120507,
+		"city": "New York",
+		"temp": 54.6
+	},
+	{
+		"date": 20120508,
+		"city": "New York",
+		"temp": 57.9
+	},
+	{
+		"date": 20120509,
+		"city": "New York",
+		"temp": 59.2
+	},
+	{
+		"date": 20120510,
+		"city": "New York",
+		"temp": 61.1
+	},
+	{
+		"date": 20120511,
+		"city": "New York",
+		"temp": 59.7
+	},
+	{
+		"date": 20120512,
+		"city": "New York",
+		"temp": 64.1
+	},
+	{
+		"date": 20120513,
+		"city": "New York",
+		"temp": 65.3
+	},
+	{
+		"date": 20120514,
+		"city": "New York",
+		"temp": 64.2
+	},
+	{
+		"date": 20120515,
+		"city": "New York",
+		"temp": 62
+	},
+	{
+		"date": 20120516,
+		"city": "New York",
+		"temp": 63.8
+	},
+	{
+		"date": 20120517,
+		"city": "New York",
+		"temp": 64.5
+	},
+	{
+		"date": 20120518,
+		"city": "New York",
+		"temp": 61
+	},
+	{
+		"date": 20120519,
+		"city": "New York",
+		"temp": 62.6
+	},
+	{
+		"date": 20120520,
+		"city": "New York",
+		"temp": 66.2
+	},
+	{
+		"date": 20120521,
+		"city": "New York",
+		"temp": 62.7
+	},
+	{
+		"date": 20120522,
+		"city": "New York",
+		"temp": 63.7
+	},
+	{
+		"date": 20120523,
+		"city": "New York",
+		"temp": 66.4
+	},
+	{
+		"date": 20120524,
+		"city": "New York",
+		"temp": 64.5
+	},
+	{
+		"date": 20120525,
+		"city": "New York",
+		"temp": 65.4
+	},
+	{
+		"date": 20120526,
+		"city": "New York",
+		"temp": 69.4
+	},
+	{
+		"date": 20120527,
+		"city": "New York",
+		"temp": 71.9
+	},
+	{
+		"date": 20120528,
+		"city": "New York",
+		"temp": 74.4
+	},
+	{
+		"date": 20120529,
+		"city": "New York",
+		"temp": 75.9
+	},
+	{
+		"date": 20120530,
+		"city": "New York",
+		"temp": 72.9
+	},
+	{
+		"date": 20120531,
+		"city": "New York",
+		"temp": 72.5
+	},
+	{
+		"date": 20120601,
+		"city": "New York",
+		"temp": 67.2
+	},
+	{
+		"date": 20120602,
+		"city": "New York",
+		"temp": 68.3
+	},
+	{
+		"date": 20120603,
+		"city": "New York",
+		"temp": 67.7
+	},
+	{
+		"date": 20120604,
+		"city": "New York",
+		"temp": 61.9
+	},
+	{
+		"date": 20120605,
+		"city": "New York",
+		"temp": 58.3
+	},
+	{
+		"date": 20120606,
+		"city": "New York",
+		"temp": 61.7
+	},
+	{
+		"date": 20120607,
+		"city": "New York",
+		"temp": 66.7
+	},
+	{
+		"date": 20120608,
+		"city": "New York",
+		"temp": 68.7
+	},
+	{
+		"date": 20120609,
+		"city": "New York",
+		"temp": 72.2
+	},
+	{
+		"date": 20120610,
+		"city": "New York",
+		"temp": 72.6
+	},
+	{
+		"date": 20120611,
+		"city": "New York",
+		"temp": 69.2
+	},
+	{
+		"date": 20120612,
+		"city": "New York",
+		"temp": 66.9
+	},
+	{
+		"date": 20120613,
+		"city": "New York",
+		"temp": 66.7
+	},
+	{
+		"date": 20120614,
+		"city": "New York",
+		"temp": 67.7
+	},
+	{
+		"date": 20120615,
+		"city": "New York",
+		"temp": 68.5
+	},
+	{
+		"date": 20120616,
+		"city": "New York",
+		"temp": 67.5
+	},
+	{
+		"date": 20120617,
+		"city": "New York",
+		"temp": 64.2
+	},
+	{
+		"date": 20120618,
+		"city": "New York",
+		"temp": 61.7
+	},
+	{
+		"date": 20120619,
+		"city": "New York",
+		"temp": 66.4
+	},
+	{
+		"date": 20120620,
+		"city": "New York",
+		"temp": 77.9
+	},
+	{
+		"date": 20120621,
+		"city": "New York",
+		"temp": 88.3
+	},
+	{
+		"date": 20120622,
+		"city": "New York",
+		"temp": 82.2
+	},
+	{
+		"date": 20120623,
+		"city": "New York",
+		"temp": 77
+	},
+	{
+		"date": 20120624,
+		"city": "New York",
+		"temp": 75.4
+	},
+	{
+		"date": 20120625,
+		"city": "New York",
+		"temp": 70.9
+	},
+	{
+		"date": 20120626,
+		"city": "New York",
+		"temp": 65.9
+	},
+	{
+		"date": 20120627,
+		"city": "New York",
+		"temp": 73.5
+	},
+	{
+		"date": 20120628,
+		"city": "New York",
+		"temp": 77.4
+	},
+	{
+		"date": 20120629,
+		"city": "New York",
+		"temp": 79.6
+	},
+	{
+		"date": 20120630,
+		"city": "New York",
+		"temp": 84.2
+	},
+	{
+		"date": 20120701,
+		"city": "New York",
+		"temp": 81.8
+	},
+	{
+		"date": 20120702,
+		"city": "New York",
+		"temp": 82.5
+	},
+	{
+		"date": 20120703,
+		"city": "New York",
+		"temp": 80.2
+	},
+	{
+		"date": 20120704,
+		"city": "New York",
+		"temp": 77.8
+	},
+	{
+		"date": 20120705,
+		"city": "New York",
+		"temp": 86.1
+	},
+	{
+		"date": 20120706,
+		"city": "New York",
+		"temp": 79.9
+	},
+	{
+		"date": 20120707,
+		"city": "New York",
+		"temp": 83.5
+	},
+	{
+		"date": 20120708,
+		"city": "New York",
+		"temp": 81.5
+	},
+	{
+		"date": 20120709,
+		"city": "New York",
+		"temp": 77.8
+	},
+	{
+		"date": 20120710,
+		"city": "New York",
+		"temp": 76.1
+	},
+	{
+		"date": 20120711,
+		"city": "New York",
+		"temp": 76.3
+	},
+	{
+		"date": 20120712,
+		"city": "New York",
+		"temp": 75.8
+	},
+	{
+		"date": 20120713,
+		"city": "New York",
+		"temp": 77.2
+	},
+	{
+		"date": 20120714,
+		"city": "New York",
+		"temp": 79.3
+	},
+	{
+		"date": 20120715,
+		"city": "New York",
+		"temp": 78.9
+	},
+	{
+		"date": 20120716,
+		"city": "New York",
+		"temp": 79.6
+	},
+	{
+		"date": 20120717,
+		"city": "New York",
+		"temp": 83.3
+	},
+	{
+		"date": 20120718,
+		"city": "New York",
+		"temp": 84.3
+	},
+	{
+		"date": 20120719,
+		"city": "New York",
+		"temp": 75.1
+	},
+	{
+		"date": 20120720,
+		"city": "New York",
+		"temp": 68.4
+	},
+	{
+		"date": 20120721,
+		"city": "New York",
+		"temp": 68.4
+	},
+	{
+		"date": 20120722,
+		"city": "New York",
+		"temp": 72.2
+	},
+	{
+		"date": 20120723,
+		"city": "New York",
+		"temp": 75.6
+	},
+	{
+		"date": 20120724,
+		"city": "New York",
+		"temp": 82.6
+	},
+	{
+		"date": 20120725,
+		"city": "New York",
+		"temp": 78.4
+	},
+	{
+		"date": 20120726,
+		"city": "New York",
+		"temp": 77
+	},
+	{
+		"date": 20120727,
+		"city": "New York",
+		"temp": 79.4
+	},
+	{
+		"date": 20120728,
+		"city": "New York",
+		"temp": 77.4
+	},
+	{
+		"date": 20120729,
+		"city": "New York",
+		"temp": 72.5
+	},
+	{
+		"date": 20120730,
+		"city": "New York",
+		"temp": 72.9
+	},
+	{
+		"date": 20120731,
+		"city": "New York",
+		"temp": 73.6
+	},
+	{
+		"date": 20120801,
+		"city": "New York",
+		"temp": 75
+	},
+	{
+		"date": 20120802,
+		"city": "New York",
+		"temp": 77.7
+	},
+	{
+		"date": 20120803,
+		"city": "New York",
+		"temp": 79.7
+	},
+	{
+		"date": 20120804,
+		"city": "New York",
+		"temp": 79.6
+	},
+	{
+		"date": 20120805,
+		"city": "New York",
+		"temp": 81.5
+	},
+	{
+		"date": 20120806,
+		"city": "New York",
+		"temp": 80
+	},
+	{
+		"date": 20120807,
+		"city": "New York",
+		"temp": 75.7
+	},
+	{
+		"date": 20120808,
+		"city": "New York",
+		"temp": 77.8
+	},
+	{
+		"date": 20120809,
+		"city": "New York",
+		"temp": 78.6
+	},
+	{
+		"date": 20120810,
+		"city": "New York",
+		"temp": 77.8
+	},
+	{
+		"date": 20120811,
+		"city": "New York",
+		"temp": 78.5
+	},
+	{
+		"date": 20120812,
+		"city": "New York",
+		"temp": 78.8
+	},
+	{
+		"date": 20120813,
+		"city": "New York",
+		"temp": 78.6
+	},
+	{
+		"date": 20120814,
+		"city": "New York",
+		"temp": 76.8
+	},
+	{
+		"date": 20120815,
+		"city": "New York",
+		"temp": 76.7
+	},
+	{
+		"date": 20120816,
+		"city": "New York",
+		"temp": 75.9
+	},
+	{
+		"date": 20120817,
+		"city": "New York",
+		"temp": 77.6
+	},
+	{
+		"date": 20120818,
+		"city": "New York",
+		"temp": 72.6
+	},
+	{
+		"date": 20120819,
+		"city": "New York",
+		"temp": 70.4
+	},
+	{
+		"date": 20120820,
+		"city": "New York",
+		"temp": 71.8
+	},
+	{
+		"date": 20120821,
+		"city": "New York",
+		"temp": 73.6
+	},
+	{
+		"date": 20120822,
+		"city": "New York",
+		"temp": 74.7
+	},
+	{
+		"date": 20120823,
+		"city": "New York",
+		"temp": 74.6
+	},
+	{
+		"date": 20120824,
+		"city": "New York",
+		"temp": 76
+	},
+	{
+		"date": 20120825,
+		"city": "New York",
+		"temp": 76.2
+	},
+	{
+		"date": 20120826,
+		"city": "New York",
+		"temp": 73.4
+	},
+	{
+		"date": 20120827,
+		"city": "New York",
+		"temp": 74.6
+	},
+	{
+		"date": 20120828,
+		"city": "New York",
+		"temp": 79.4
+	},
+	{
+		"date": 20120829,
+		"city": "New York",
+		"temp": 74.7
+	},
+	{
+		"date": 20120830,
+		"city": "New York",
+		"temp": 73.5
+	},
+	{
+		"date": 20120831,
+		"city": "New York",
+		"temp": 77.9
+	},
+	{
+		"date": 20120901,
+		"city": "New York",
+		"temp": 80.7
+	},
+	{
+		"date": 20120902,
+		"city": "New York",
+		"temp": 75.1
+	},
+	{
+		"date": 20120903,
+		"city": "New York",
+		"temp": 73.5
+	},
+	{
+		"date": 20120904,
+		"city": "New York",
+		"temp": 73.5
+	},
+	{
+		"date": 20120905,
+		"city": "New York",
+		"temp": 77.7
+	},
+	{
+		"date": 20120906,
+		"city": "New York",
+		"temp": 74.2
+	},
+	{
+		"date": 20120907,
+		"city": "New York",
+		"temp": 76
+	},
+	{
+		"date": 20120908,
+		"city": "New York",
+		"temp": 77.1
+	},
+	{
+		"date": 20120909,
+		"city": "New York",
+		"temp": 69.7
+	},
+	{
+		"date": 20120910,
+		"city": "New York",
+		"temp": 67.8
+	},
+	{
+		"date": 20120911,
+		"city": "New York",
+		"temp": 64
+	},
+	{
+		"date": 20120912,
+		"city": "New York",
+		"temp": 68.1
+	},
+	{
+		"date": 20120913,
+		"city": "New York",
+		"temp": 69.3
+	},
+	{
+		"date": 20120914,
+		"city": "New York",
+		"temp": 70
+	},
+	{
+		"date": 20120915,
+		"city": "New York",
+		"temp": 69.3
+	},
+	{
+		"date": 20120916,
+		"city": "New York",
+		"temp": 66.3
+	},
+	{
+		"date": 20120917,
+		"city": "New York",
+		"temp": 67
+	},
+	{
+		"date": 20120918,
+		"city": "New York",
+		"temp": 72.8
+	},
+	{
+		"date": 20120919,
+		"city": "New York",
+		"temp": 67.2
+	},
+	{
+		"date": 20120920,
+		"city": "New York",
+		"temp": 62.1
+	},
+	{
+		"date": 20120921,
+		"city": "New York",
+		"temp": 64
+	},
+	{
+		"date": 20120922,
+		"city": "New York",
+		"temp": 65.5
+	},
+	{
+		"date": 20120923,
+		"city": "New York",
+		"temp": 65.7
+	},
+	{
+		"date": 20120924,
+		"city": "New York",
+		"temp": 60.4
+	},
+	{
+		"date": 20120925,
+		"city": "New York",
+		"temp": 63.2
+	},
+	{
+		"date": 20120926,
+		"city": "New York",
+		"temp": 68.5
+	},
+	{
+		"date": 20120927,
+		"city": "New York",
+		"temp": 69.2
+	},
+	{
+		"date": 20120928,
+		"city": "New York",
+		"temp": 68.7
+	},
+	{
+		"date": 20120929,
+		"city": "New York",
+		"temp": 62.5
+	},
+	{
+		"date": 20120930,
+		"city": "New York",
+		"temp": 62.3
+	},
+	{
+		"date": 20120101,
+		"city": "San Francisco",
+		"temp": 53.9
+	},
+	{
+		"date": 20120102,
+		"city": "San Francisco",
+		"temp": 53.1
+	},
+	{
+		"date": 20120103,
+		"city": "San Francisco",
+		"temp": 49.7
+	},
+	{
+		"date": 20120104,
+		"city": "San Francisco",
+		"temp": 52.7
+	},
+	{
+		"date": 20120105,
+		"city": "San Francisco",
+		"temp": 52.6
+	},
+	{
+		"date": 20120106,
+		"city": "San Francisco",
+		"temp": 49
+	},
+	{
+		"date": 20120107,
+		"city": "San Francisco",
+		"temp": 51
+	},
+	{
+		"date": 20120108,
+		"city": "San Francisco",
+		"temp": 56.8
+	},
+	{
+		"date": 20120109,
+		"city": "San Francisco",
+		"temp": 52.3
+	},
+	{
+		"date": 20120110,
+		"city": "San Francisco",
+		"temp": 51.6
+	},
+	{
+		"date": 20120111,
+		"city": "San Francisco",
+		"temp": 49.8
+	},
+	{
+		"date": 20120112,
+		"city": "San Francisco",
+		"temp": 51.9
+	},
+	{
+		"date": 20120113,
+		"city": "San Francisco",
+		"temp": 53.7
+	},
+	{
+		"date": 20120114,
+		"city": "San Francisco",
+		"temp": 52.9
+	},
+	{
+		"date": 20120115,
+		"city": "San Francisco",
+		"temp": 49.7
+	},
+	{
+		"date": 20120116,
+		"city": "San Francisco",
+		"temp": 45.3
+	},
+	{
+		"date": 20120117,
+		"city": "San Francisco",
+		"temp": 43.6
+	},
+	{
+		"date": 20120118,
+		"city": "San Francisco",
+		"temp": 45
+	},
+	{
+		"date": 20120119,
+		"city": "San Francisco",
+		"temp": 47.3
+	},
+	{
+		"date": 20120120,
+		"city": "San Francisco",
+		"temp": 51.4
+	},
+	{
+		"date": 20120121,
+		"city": "San Francisco",
+		"temp": 53.7
+	},
+	{
+		"date": 20120122,
+		"city": "San Francisco",
+		"temp": 48.3
+	},
+	{
+		"date": 20120123,
+		"city": "San Francisco",
+		"temp": 52.9
+	},
+	{
+		"date": 20120124,
+		"city": "San Francisco",
+		"temp": 49.1
+	},
+	{
+		"date": 20120125,
+		"city": "San Francisco",
+		"temp": 52.1
+	},
+	{
+		"date": 20120126,
+		"city": "San Francisco",
+		"temp": 53.6
+	},
+	{
+		"date": 20120127,
+		"city": "San Francisco",
+		"temp": 50.4
+	},
+	{
+		"date": 20120128,
+		"city": "San Francisco",
+		"temp": 50.3
+	},
+	{
+		"date": 20120129,
+		"city": "San Francisco",
+		"temp": 53.8
+	},
+	{
+		"date": 20120130,
+		"city": "San Francisco",
+		"temp": 51.9
+	},
+	{
+		"date": 20120131,
+		"city": "San Francisco",
+		"temp": 50
+	},
+	{
+		"date": 20120201,
+		"city": "San Francisco",
+		"temp": 50
+	},
+	{
+		"date": 20120202,
+		"city": "San Francisco",
+		"temp": 51.3
+	},
+	{
+		"date": 20120203,
+		"city": "San Francisco",
+		"temp": 51.5
+	},
+	{
+		"date": 20120204,
+		"city": "San Francisco",
+		"temp": 52
+	},
+	{
+		"date": 20120205,
+		"city": "San Francisco",
+		"temp": 53.8
+	},
+	{
+		"date": 20120206,
+		"city": "San Francisco",
+		"temp": 54.6
+	},
+	{
+		"date": 20120207,
+		"city": "San Francisco",
+		"temp": 54.3
+	},
+	{
+		"date": 20120208,
+		"city": "San Francisco",
+		"temp": 51.9
+	},
+	{
+		"date": 20120209,
+		"city": "San Francisco",
+		"temp": 53.8
+	},
+	{
+		"date": 20120210,
+		"city": "San Francisco",
+		"temp": 53.9
+	},
+	{
+		"date": 20120211,
+		"city": "San Francisco",
+		"temp": 52.3
+	},
+	{
+		"date": 20120212,
+		"city": "San Francisco",
+		"temp": 50.1
+	},
+	{
+		"date": 20120213,
+		"city": "San Francisco",
+		"temp": 49.5
+	},
+	{
+		"date": 20120214,
+		"city": "San Francisco",
+		"temp": 48.6
+	},
+	{
+		"date": 20120215,
+		"city": "San Francisco",
+		"temp": 49.9
+	},
+	{
+		"date": 20120216,
+		"city": "San Francisco",
+		"temp": 52.4
+	},
+	{
+		"date": 20120217,
+		"city": "San Francisco",
+		"temp": 49.9
+	},
+	{
+		"date": 20120218,
+		"city": "San Francisco",
+		"temp": 51.6
+	},
+	{
+		"date": 20120219,
+		"city": "San Francisco",
+		"temp": 47.8
+	},
+	{
+		"date": 20120220,
+		"city": "San Francisco",
+		"temp": 48.7
+	},
+	{
+		"date": 20120221,
+		"city": "San Francisco",
+		"temp": 49.7
+	},
+	{
+		"date": 20120222,
+		"city": "San Francisco",
+		"temp": 53.4
+	},
+	{
+		"date": 20120223,
+		"city": "San Francisco",
+		"temp": 54.1
+	},
+	{
+		"date": 20120224,
+		"city": "San Francisco",
+		"temp": 55.9
+	},
+	{
+		"date": 20120225,
+		"city": "San Francisco",
+		"temp": 51.7
+	},
+	{
+		"date": 20120226,
+		"city": "San Francisco",
+		"temp": 47.7
+	},
+	{
+		"date": 20120227,
+		"city": "San Francisco",
+		"temp": 45.4
+	},
+	{
+		"date": 20120228,
+		"city": "San Francisco",
+		"temp": 47
+	},
+	{
+		"date": 20120229,
+		"city": "San Francisco",
+		"temp": 49.8
+	},
+	{
+		"date": 20120301,
+		"city": "San Francisco",
+		"temp": 48.9
+	},
+	{
+		"date": 20120302,
+		"city": "San Francisco",
+		"temp": 48.1
+	},
+	{
+		"date": 20120303,
+		"city": "San Francisco",
+		"temp": 50.7
+	},
+	{
+		"date": 20120304,
+		"city": "San Francisco",
+		"temp": 55
+	},
+	{
+		"date": 20120305,
+		"city": "San Francisco",
+		"temp": 48.8
+	},
+	{
+		"date": 20120306,
+		"city": "San Francisco",
+		"temp": 48.4
+	},
+	{
+		"date": 20120307,
+		"city": "San Francisco",
+		"temp": 49.9
+	},
+	{
+		"date": 20120308,
+		"city": "San Francisco",
+		"temp": 49.2
+	},
+	{
+		"date": 20120309,
+		"city": "San Francisco",
+		"temp": 51.7
+	},
+	{
+		"date": 20120310,
+		"city": "San Francisco",
+		"temp": 49.3
+	},
+	{
+		"date": 20120311,
+		"city": "San Francisco",
+		"temp": 50
+	},
+	{
+		"date": 20120312,
+		"city": "San Francisco",
+		"temp": 48.6
+	},
+	{
+		"date": 20120313,
+		"city": "San Francisco",
+		"temp": 53.9
+	},
+	{
+		"date": 20120314,
+		"city": "San Francisco",
+		"temp": 55.2
+	},
+	{
+		"date": 20120315,
+		"city": "San Francisco",
+		"temp": 55.9
+	},
+	{
+		"date": 20120316,
+		"city": "San Francisco",
+		"temp": 54.6
+	},
+	{
+		"date": 20120317,
+		"city": "San Francisco",
+		"temp": 48.2
+	},
+	{
+		"date": 20120318,
+		"city": "San Francisco",
+		"temp": 47.1
+	},
+	{
+		"date": 20120319,
+		"city": "San Francisco",
+		"temp": 45.8
+	},
+	{
+		"date": 20120320,
+		"city": "San Francisco",
+		"temp": 49.7
+	},
+	{
+		"date": 20120321,
+		"city": "San Francisco",
+		"temp": 51.4
+	},
+	{
+		"date": 20120322,
+		"city": "San Francisco",
+		"temp": 51.4
+	},
+	{
+		"date": 20120323,
+		"city": "San Francisco",
+		"temp": 48.4
+	},
+	{
+		"date": 20120324,
+		"city": "San Francisco",
+		"temp": 49
+	},
+	{
+		"date": 20120325,
+		"city": "San Francisco",
+		"temp": 46.4
+	},
+	{
+		"date": 20120326,
+		"city": "San Francisco",
+		"temp": 49.7
+	},
+	{
+		"date": 20120327,
+		"city": "San Francisco",
+		"temp": 54.1
+	},
+	{
+		"date": 20120328,
+		"city": "San Francisco",
+		"temp": 54.6
+	},
+	{
+		"date": 20120329,
+		"city": "San Francisco",
+		"temp": 52.3
+	},
+	{
+		"date": 20120330,
+		"city": "San Francisco",
+		"temp": 54.5
+	},
+	{
+		"date": 20120331,
+		"city": "San Francisco",
+		"temp": 56.2
+	},
+	{
+		"date": 20120401,
+		"city": "San Francisco",
+		"temp": 51.1
+	},
+	{
+		"date": 20120402,
+		"city": "San Francisco",
+		"temp": 50.5
+	},
+	{
+		"date": 20120403,
+		"city": "San Francisco",
+		"temp": 52.2
+	},
+	{
+		"date": 20120404,
+		"city": "San Francisco",
+		"temp": 50.6
+	},
+	{
+		"date": 20120405,
+		"city": "San Francisco",
+		"temp": 47.9
+	},
+	{
+		"date": 20120406,
+		"city": "San Francisco",
+		"temp": 47.4
+	},
+	{
+		"date": 20120407,
+		"city": "San Francisco",
+		"temp": 49.4
+	},
+	{
+		"date": 20120408,
+		"city": "San Francisco",
+		"temp": 50
+	},
+	{
+		"date": 20120409,
+		"city": "San Francisco",
+		"temp": 51.3
+	},
+	{
+		"date": 20120410,
+		"city": "San Francisco",
+		"temp": 53.8
+	},
+	{
+		"date": 20120411,
+		"city": "San Francisco",
+		"temp": 52.9
+	},
+	{
+		"date": 20120412,
+		"city": "San Francisco",
+		"temp": 53.9
+	},
+	{
+		"date": 20120413,
+		"city": "San Francisco",
+		"temp": 50.2
+	},
+	{
+		"date": 20120414,
+		"city": "San Francisco",
+		"temp": 50.9
+	},
+	{
+		"date": 20120415,
+		"city": "San Francisco",
+		"temp": 51.5
+	},
+	{
+		"date": 20120416,
+		"city": "San Francisco",
+		"temp": 51.9
+	},
+	{
+		"date": 20120417,
+		"city": "San Francisco",
+		"temp": 53.2
+	},
+	{
+		"date": 20120418,
+		"city": "San Francisco",
+		"temp": 53
+	},
+	{
+		"date": 20120419,
+		"city": "San Francisco",
+		"temp": 55.1
+	},
+	{
+		"date": 20120420,
+		"city": "San Francisco",
+		"temp": 55.8
+	},
+	{
+		"date": 20120421,
+		"city": "San Francisco",
+		"temp": 58
+	},
+	{
+		"date": 20120422,
+		"city": "San Francisco",
+		"temp": 52.8
+	},
+	{
+		"date": 20120423,
+		"city": "San Francisco",
+		"temp": 55.1
+	},
+	{
+		"date": 20120424,
+		"city": "San Francisco",
+		"temp": 57.9
+	},
+	{
+		"date": 20120425,
+		"city": "San Francisco",
+		"temp": 57.5
+	},
+	{
+		"date": 20120426,
+		"city": "San Francisco",
+		"temp": 55.3
+	},
+	{
+		"date": 20120427,
+		"city": "San Francisco",
+		"temp": 53.5
+	},
+	{
+		"date": 20120428,
+		"city": "San Francisco",
+		"temp": 54.7
+	},
+	{
+		"date": 20120429,
+		"city": "San Francisco",
+		"temp": 54
+	},
+	{
+		"date": 20120430,
+		"city": "San Francisco",
+		"temp": 53.4
+	},
+	{
+		"date": 20120501,
+		"city": "San Francisco",
+		"temp": 52.7
+	},
+	{
+		"date": 20120502,
+		"city": "San Francisco",
+		"temp": 50.7
+	},
+	{
+		"date": 20120503,
+		"city": "San Francisco",
+		"temp": 52.6
+	},
+	{
+		"date": 20120504,
+		"city": "San Francisco",
+		"temp": 53.4
+	},
+	{
+		"date": 20120505,
+		"city": "San Francisco",
+		"temp": 53.1
+	},
+	{
+		"date": 20120506,
+		"city": "San Francisco",
+		"temp": 56.5
+	},
+	{
+		"date": 20120507,
+		"city": "San Francisco",
+		"temp": 55.3
+	},
+	{
+		"date": 20120508,
+		"city": "San Francisco",
+		"temp": 52
+	},
+	{
+		"date": 20120509,
+		"city": "San Francisco",
+		"temp": 52.4
+	},
+	{
+		"date": 20120510,
+		"city": "San Francisco",
+		"temp": 53.4
+	},
+	{
+		"date": 20120511,
+		"city": "San Francisco",
+		"temp": 53.1
+	},
+	{
+		"date": 20120512,
+		"city": "San Francisco",
+		"temp": 49.9
+	},
+	{
+		"date": 20120513,
+		"city": "San Francisco",
+		"temp": 52
+	},
+	{
+		"date": 20120514,
+		"city": "San Francisco",
+		"temp": 56
+	},
+	{
+		"date": 20120515,
+		"city": "San Francisco",
+		"temp": 53
+	},
+	{
+		"date": 20120516,
+		"city": "San Francisco",
+		"temp": 51
+	},
+	{
+		"date": 20120517,
+		"city": "San Francisco",
+		"temp": 51.4
+	},
+	{
+		"date": 20120518,
+		"city": "San Francisco",
+		"temp": 52.2
+	},
+	{
+		"date": 20120519,
+		"city": "San Francisco",
+		"temp": 52.4
+	},
+	{
+		"date": 20120520,
+		"city": "San Francisco",
+		"temp": 54.5
+	},
+	{
+		"date": 20120521,
+		"city": "San Francisco",
+		"temp": 52.8
+	},
+	{
+		"date": 20120522,
+		"city": "San Francisco",
+		"temp": 53.9
+	},
+	{
+		"date": 20120523,
+		"city": "San Francisco",
+		"temp": 56.5
+	},
+	{
+		"date": 20120524,
+		"city": "San Francisco",
+		"temp": 54.7
+	},
+	{
+		"date": 20120525,
+		"city": "San Francisco",
+		"temp": 52.5
+	},
+	{
+		"date": 20120526,
+		"city": "San Francisco",
+		"temp": 52.1
+	},
+	{
+		"date": 20120527,
+		"city": "San Francisco",
+		"temp": 52.2
+	},
+	{
+		"date": 20120528,
+		"city": "San Francisco",
+		"temp": 52.9
+	},
+	{
+		"date": 20120529,
+		"city": "San Francisco",
+		"temp": 52.1
+	},
+	{
+		"date": 20120530,
+		"city": "San Francisco",
+		"temp": 52.1
+	},
+	{
+		"date": 20120531,
+		"city": "San Francisco",
+		"temp": 53.3
+	},
+	{
+		"date": 20120601,
+		"city": "San Francisco",
+		"temp": 54.8
+	},
+	{
+		"date": 20120602,
+		"city": "San Francisco",
+		"temp": 54
+	},
+	{
+		"date": 20120603,
+		"city": "San Francisco",
+		"temp": 52.3
+	},
+	{
+		"date": 20120604,
+		"city": "San Francisco",
+		"temp": 55.3
+	},
+	{
+		"date": 20120605,
+		"city": "San Francisco",
+		"temp": 53.5
+	},
+	{
+		"date": 20120606,
+		"city": "San Francisco",
+		"temp": 54.1
+	},
+	{
+		"date": 20120607,
+		"city": "San Francisco",
+		"temp": 53.9
+	},
+	{
+		"date": 20120608,
+		"city": "San Francisco",
+		"temp": 54.4
+	},
+	{
+		"date": 20120609,
+		"city": "San Francisco",
+		"temp": 55
+	},
+	{
+		"date": 20120610,
+		"city": "San Francisco",
+		"temp": 60
+	},
+	{
+		"date": 20120611,
+		"city": "San Francisco",
+		"temp": 57.2
+	},
+	{
+		"date": 20120612,
+		"city": "San Francisco",
+		"temp": 55.1
+	},
+	{
+		"date": 20120613,
+		"city": "San Francisco",
+		"temp": 53.3
+	},
+	{
+		"date": 20120614,
+		"city": "San Francisco",
+		"temp": 53.4
+	},
+	{
+		"date": 20120615,
+		"city": "San Francisco",
+		"temp": 54.6
+	},
+	{
+		"date": 20120616,
+		"city": "San Francisco",
+		"temp": 57
+	},
+	{
+		"date": 20120617,
+		"city": "San Francisco",
+		"temp": 55.6
+	},
+	{
+		"date": 20120618,
+		"city": "San Francisco",
+		"temp": 52.5
+	},
+	{
+		"date": 20120619,
+		"city": "San Francisco",
+		"temp": 53.9
+	},
+	{
+		"date": 20120620,
+		"city": "San Francisco",
+		"temp": 55.3
+	},
+	{
+		"date": 20120621,
+		"city": "San Francisco",
+		"temp": 53.3
+	},
+	{
+		"date": 20120622,
+		"city": "San Francisco",
+		"temp": 54.1
+	},
+	{
+		"date": 20120623,
+		"city": "San Francisco",
+		"temp": 55.2
+	},
+	{
+		"date": 20120624,
+		"city": "San Francisco",
+		"temp": 55.8
+	},
+	{
+		"date": 20120625,
+		"city": "San Francisco",
+		"temp": 56.8
+	},
+	{
+		"date": 20120626,
+		"city": "San Francisco",
+		"temp": 57.5
+	},
+	{
+		"date": 20120627,
+		"city": "San Francisco",
+		"temp": 57.7
+	},
+	{
+		"date": 20120628,
+		"city": "San Francisco",
+		"temp": 56.6
+	},
+	{
+		"date": 20120629,
+		"city": "San Francisco",
+		"temp": 56.4
+	},
+	{
+		"date": 20120630,
+		"city": "San Francisco",
+		"temp": 58.4
+	},
+	{
+		"date": 20120701,
+		"city": "San Francisco",
+		"temp": 58.8
+	},
+	{
+		"date": 20120702,
+		"city": "San Francisco",
+		"temp": 56.4
+	},
+	{
+		"date": 20120703,
+		"city": "San Francisco",
+		"temp": 56.5
+	},
+	{
+		"date": 20120704,
+		"city": "San Francisco",
+		"temp": 55.8
+	},
+	{
+		"date": 20120705,
+		"city": "San Francisco",
+		"temp": 54.8
+	},
+	{
+		"date": 20120706,
+		"city": "San Francisco",
+		"temp": 54.9
+	},
+	{
+		"date": 20120707,
+		"city": "San Francisco",
+		"temp": 54.7
+	},
+	{
+		"date": 20120708,
+		"city": "San Francisco",
+		"temp": 52.8
+	},
+	{
+		"date": 20120709,
+		"city": "San Francisco",
+		"temp": 53.7
+	},
+	{
+		"date": 20120710,
+		"city": "San Francisco",
+		"temp": 53.1
+	},
+	{
+		"date": 20120711,
+		"city": "San Francisco",
+		"temp": 52.7
+	},
+	{
+		"date": 20120712,
+		"city": "San Francisco",
+		"temp": 52
+	},
+	{
+		"date": 20120713,
+		"city": "San Francisco",
+		"temp": 53.4
+	},
+	{
+		"date": 20120714,
+		"city": "San Francisco",
+		"temp": 54
+	},
+	{
+		"date": 20120715,
+		"city": "San Francisco",
+		"temp": 54
+	},
+	{
+		"date": 20120716,
+		"city": "San Francisco",
+		"temp": 54.5
+	},
+	{
+		"date": 20120717,
+		"city": "San Francisco",
+		"temp": 56.7
+	},
+	{
+		"date": 20120718,
+		"city": "San Francisco",
+		"temp": 57.5
+	},
+	{
+		"date": 20120719,
+		"city": "San Francisco",
+		"temp": 57.1
+	},
+	{
+		"date": 20120720,
+		"city": "San Francisco",
+		"temp": 58.1
+	},
+	{
+		"date": 20120721,
+		"city": "San Francisco",
+		"temp": 57.6
+	},
+	{
+		"date": 20120722,
+		"city": "San Francisco",
+		"temp": 56
+	},
+	{
+		"date": 20120723,
+		"city": "San Francisco",
+		"temp": 56.6
+	},
+	{
+		"date": 20120724,
+		"city": "San Francisco",
+		"temp": 57.8
+	},
+	{
+		"date": 20120725,
+		"city": "San Francisco",
+		"temp": 57.5
+	},
+	{
+		"date": 20120726,
+		"city": "San Francisco",
+		"temp": 56.4
+	},
+	{
+		"date": 20120727,
+		"city": "San Francisco",
+		"temp": 55.3
+	},
+	{
+		"date": 20120728,
+		"city": "San Francisco",
+		"temp": 55
+	},
+	{
+		"date": 20120729,
+		"city": "San Francisco",
+		"temp": 55.6
+	},
+	{
+		"date": 20120730,
+		"city": "San Francisco",
+		"temp": 55.6
+	},
+	{
+		"date": 20120731,
+		"city": "San Francisco",
+		"temp": 55.9
+	},
+	{
+		"date": 20120801,
+		"city": "San Francisco",
+		"temp": 55.4
+	},
+	{
+		"date": 20120802,
+		"city": "San Francisco",
+		"temp": 54.4
+	},
+	{
+		"date": 20120803,
+		"city": "San Francisco",
+		"temp": 53.7
+	},
+	{
+		"date": 20120804,
+		"city": "San Francisco",
+		"temp": 54.1
+	},
+	{
+		"date": 20120805,
+		"city": "San Francisco",
+		"temp": 57.8
+	},
+	{
+		"date": 20120806,
+		"city": "San Francisco",
+		"temp": 58.2
+	},
+	{
+		"date": 20120807,
+		"city": "San Francisco",
+		"temp": 58
+	},
+	{
+		"date": 20120808,
+		"city": "San Francisco",
+		"temp": 57
+	},
+	{
+		"date": 20120809,
+		"city": "San Francisco",
+		"temp": 55
+	},
+	{
+		"date": 20120810,
+		"city": "San Francisco",
+		"temp": 54.8
+	},
+	{
+		"date": 20120811,
+		"city": "San Francisco",
+		"temp": 53
+	},
+	{
+		"date": 20120812,
+		"city": "San Francisco",
+		"temp": 52.5
+	},
+	{
+		"date": 20120813,
+		"city": "San Francisco",
+		"temp": 53.3
+	},
+	{
+		"date": 20120814,
+		"city": "San Francisco",
+		"temp": 53.9
+	},
+	{
+		"date": 20120815,
+		"city": "San Francisco",
+		"temp": 56.2
+	},
+	{
+		"date": 20120816,
+		"city": "San Francisco",
+		"temp": 57.1
+	},
+	{
+		"date": 20120817,
+		"city": "San Francisco",
+		"temp": 55.3
+	},
+	{
+		"date": 20120818,
+		"city": "San Francisco",
+		"temp": 56.2
+	},
+	{
+		"date": 20120819,
+		"city": "San Francisco",
+		"temp": 54.3
+	},
+	{
+		"date": 20120820,
+		"city": "San Francisco",
+		"temp": 53.1
+	},
+	{
+		"date": 20120821,
+		"city": "San Francisco",
+		"temp": 53.4
+	},
+	{
+		"date": 20120822,
+		"city": "San Francisco",
+		"temp": 54.5
+	},
+	{
+		"date": 20120823,
+		"city": "San Francisco",
+		"temp": 55.7
+	},
+	{
+		"date": 20120824,
+		"city": "San Francisco",
+		"temp": 54.8
+	},
+	{
+		"date": 20120825,
+		"city": "San Francisco",
+		"temp": 53.8
+	},
+	{
+		"date": 20120826,
+		"city": "San Francisco",
+		"temp": 56.5
+	},
+	{
+		"date": 20120827,
+		"city": "San Francisco",
+		"temp": 58.3
+	},
+	{
+		"date": 20120828,
+		"city": "San Francisco",
+		"temp": 58.7
+	},
+	{
+		"date": 20120829,
+		"city": "San Francisco",
+		"temp": 57.5
+	},
+	{
+		"date": 20120830,
+		"city": "San Francisco",
+		"temp": 55.9
+	},
+	{
+		"date": 20120831,
+		"city": "San Francisco",
+		"temp": 55.4
+	},
+	{
+		"date": 20120901,
+		"city": "San Francisco",
+		"temp": 55.7
+	},
+	{
+		"date": 20120902,
+		"city": "San Francisco",
+		"temp": 53.1
+	},
+	{
+		"date": 20120903,
+		"city": "San Francisco",
+		"temp": 53.5
+	},
+	{
+		"date": 20120904,
+		"city": "San Francisco",
+		"temp": 52.5
+	},
+	{
+		"date": 20120905,
+		"city": "San Francisco",
+		"temp": 54.5
+	},
+	{
+		"date": 20120906,
+		"city": "San Francisco",
+		"temp": 56.3
+	},
+	{
+		"date": 20120907,
+		"city": "San Francisco",
+		"temp": 56.4
+	},
+	{
+		"date": 20120908,
+		"city": "San Francisco",
+		"temp": 56.5
+	},
+	{
+		"date": 20120909,
+		"city": "San Francisco",
+		"temp": 56.4
+	},
+	{
+		"date": 20120910,
+		"city": "San Francisco",
+		"temp": 55.4
+	},
+	{
+		"date": 20120911,
+		"city": "San Francisco",
+		"temp": 56.2
+	},
+	{
+		"date": 20120912,
+		"city": "San Francisco",
+		"temp": 55.7
+	},
+	{
+		"date": 20120913,
+		"city": "San Francisco",
+		"temp": 54.3
+	},
+	{
+		"date": 20120914,
+		"city": "San Francisco",
+		"temp": 55.2
+	},
+	{
+		"date": 20120915,
+		"city": "San Francisco",
+		"temp": 54.3
+	},
+	{
+		"date": 20120916,
+		"city": "San Francisco",
+		"temp": 52.9
+	},
+	{
+		"date": 20120917,
+		"city": "San Francisco",
+		"temp": 54.8
+	},
+	{
+		"date": 20120918,
+		"city": "San Francisco",
+		"temp": 54.8
+	},
+	{
+		"date": 20120919,
+		"city": "San Francisco",
+		"temp": 56.8
+	},
+	{
+		"date": 20120920,
+		"city": "San Francisco",
+		"temp": 55.4
+	},
+	{
+		"date": 20120921,
+		"city": "San Francisco",
+		"temp": 55.8
+	},
+	{
+		"date": 20120922,
+		"city": "San Francisco",
+		"temp": 55.9
+	},
+	{
+		"date": 20120923,
+		"city": "San Francisco",
+		"temp": 52.8
+	},
+	{
+		"date": 20120924,
+		"city": "San Francisco",
+		"temp": 54.5
+	},
+	{
+		"date": 20120925,
+		"city": "San Francisco",
+		"temp": 53.3
+	},
+	{
+		"date": 20120926,
+		"city": "San Francisco",
+		"temp": 53.6
+	},
+	{
+		"date": 20120927,
+		"city": "San Francisco",
+		"temp": 52.1
+	},
+	{
+		"date": 20120928,
+		"city": "San Francisco",
+		"temp": 52.6
+	},
+	{
+		"date": 20120929,
+		"city": "San Francisco",
+		"temp": 53.9
+	},
+	{
+		"date": 20120930,
+		"city": "San Francisco",
+		"temp": 55.1
+	},
+	{
+		"date": 20120101,
+		"city": "Austin",
+		"temp": 55.9
+	},
+	{
+		"date": 20120102,
+		"city": "Austin",
+		"temp": 48.2
+	},
+	{
+		"date": 20120103,
+		"city": "Austin",
+		"temp": 41
+	},
+	{
+		"date": 20120104,
+		"city": "Austin",
+		"temp": 48.9
+	},
+	{
+		"date": 20120105,
+		"city": "Austin",
+		"temp": 54.8
+	},
+	{
+		"date": 20120106,
+		"city": "Austin",
+		"temp": 61.2
+	},
+	{
+		"date": 20120107,
+		"city": "Austin",
+		"temp": 59.7
+	},
+	{
+		"date": 20120108,
+		"city": "Austin",
+		"temp": 52.5
+	},
+	{
+		"date": 20120109,
+		"city": "Austin",
+		"temp": 54
+	},
+	{
+		"date": 20120110,
+		"city": "Austin",
+		"temp": 47.7
+	},
+	{
+		"date": 20120111,
+		"city": "Austin",
+		"temp": 49.2
+	},
+	{
+		"date": 20120112,
+		"city": "Austin",
+		"temp": 48.4
+	},
+	{
+		"date": 20120113,
+		"city": "Austin",
+		"temp": 40.2
+	},
+	{
+		"date": 20120114,
+		"city": "Austin",
+		"temp": 43.9
+	},
+	{
+		"date": 20120115,
+		"city": "Austin",
+		"temp": 45.2
+	},
+	{
+		"date": 20120116,
+		"city": "Austin",
+		"temp": 65
+	},
+	{
+		"date": 20120117,
+		"city": "Austin",
+		"temp": 68.2
+	},
+	{
+		"date": 20120118,
+		"city": "Austin",
+		"temp": 47.5
+	},
+	{
+		"date": 20120119,
+		"city": "Austin",
+		"temp": 57.1
+	},
+	{
+		"date": 20120120,
+		"city": "Austin",
+		"temp": 61.9
+	},
+	{
+		"date": 20120121,
+		"city": "Austin",
+		"temp": 54.6
+	},
+	{
+		"date": 20120122,
+		"city": "Austin",
+		"temp": 56.7
+	},
+	{
+		"date": 20120123,
+		"city": "Austin",
+		"temp": 54.4
+	},
+	{
+		"date": 20120124,
+		"city": "Austin",
+		"temp": 52.7
+	},
+	{
+		"date": 20120125,
+		"city": "Austin",
+		"temp": 61.8
+	},
+	{
+		"date": 20120126,
+		"city": "Austin",
+		"temp": 55
+	},
+	{
+		"date": 20120127,
+		"city": "Austin",
+		"temp": 50.7
+	},
+	{
+		"date": 20120128,
+		"city": "Austin",
+		"temp": 52.9
+	},
+	{
+		"date": 20120129,
+		"city": "Austin",
+		"temp": 44.4
+	},
+	{
+		"date": 20120130,
+		"city": "Austin",
+		"temp": 49.1
+	},
+	{
+		"date": 20120131,
+		"city": "Austin",
+		"temp": 62.8
+	},
+	{
+		"date": 20120201,
+		"city": "Austin",
+		"temp": 64.6
+	},
+	{
+		"date": 20120202,
+		"city": "Austin",
+		"temp": 61.1
+	},
+	{
+		"date": 20120203,
+		"city": "Austin",
+		"temp": 70
+	},
+	{
+		"date": 20120204,
+		"city": "Austin",
+		"temp": 61.3
+	},
+	{
+		"date": 20120205,
+		"city": "Austin",
+		"temp": 48.2
+	},
+	{
+		"date": 20120206,
+		"city": "Austin",
+		"temp": 44.2
+	},
+	{
+		"date": 20120207,
+		"city": "Austin",
+		"temp": 51.3
+	},
+	{
+		"date": 20120208,
+		"city": "Austin",
+		"temp": 49.2
+	},
+	{
+		"date": 20120209,
+		"city": "Austin",
+		"temp": 45.7
+	},
+	{
+		"date": 20120210,
+		"city": "Austin",
+		"temp": 54.1
+	},
+	{
+		"date": 20120211,
+		"city": "Austin",
+		"temp": 44.9
+	},
+	{
+		"date": 20120212,
+		"city": "Austin",
+		"temp": 36.5
+	},
+	{
+		"date": 20120213,
+		"city": "Austin",
+		"temp": 44.8
+	},
+	{
+		"date": 20120214,
+		"city": "Austin",
+		"temp": 52.3
+	},
+	{
+		"date": 20120215,
+		"city": "Austin",
+		"temp": 68
+	},
+	{
+		"date": 20120216,
+		"city": "Austin",
+		"temp": 54.6
+	},
+	{
+		"date": 20120217,
+		"city": "Austin",
+		"temp": 53.8
+	},
+	{
+		"date": 20120218,
+		"city": "Austin",
+		"temp": 56.2
+	},
+	{
+		"date": 20120219,
+		"city": "Austin",
+		"temp": 50.8
+	},
+	{
+		"date": 20120220,
+		"city": "Austin",
+		"temp": 53
+	},
+	{
+		"date": 20120221,
+		"city": "Austin",
+		"temp": 61
+	},
+	{
+		"date": 20120222,
+		"city": "Austin",
+		"temp": 68.8
+	},
+	{
+		"date": 20120223,
+		"city": "Austin",
+		"temp": 69.4
+	},
+	{
+		"date": 20120224,
+		"city": "Austin",
+		"temp": 59.3
+	},
+	{
+		"date": 20120225,
+		"city": "Austin",
+		"temp": 47.2
+	},
+	{
+		"date": 20120226,
+		"city": "Austin",
+		"temp": 47.7
+	},
+	{
+		"date": 20120227,
+		"city": "Austin",
+		"temp": 61.9
+	},
+	{
+		"date": 20120228,
+		"city": "Austin",
+		"temp": 67.2
+	},
+	{
+		"date": 20120229,
+		"city": "Austin",
+		"temp": 70.1
+	},
+	{
+		"date": 20120301,
+		"city": "Austin",
+		"temp": 62.1
+	},
+	{
+		"date": 20120302,
+		"city": "Austin",
+		"temp": 72.7
+	},
+	{
+		"date": 20120303,
+		"city": "Austin",
+		"temp": 59
+	},
+	{
+		"date": 20120304,
+		"city": "Austin",
+		"temp": 51.8
+	},
+	{
+		"date": 20120305,
+		"city": "Austin",
+		"temp": 55
+	},
+	{
+		"date": 20120306,
+		"city": "Austin",
+		"temp": 61.8
+	},
+	{
+		"date": 20120307,
+		"city": "Austin",
+		"temp": 67.1
+	},
+	{
+		"date": 20120308,
+		"city": "Austin",
+		"temp": 72
+	},
+	{
+		"date": 20120309,
+		"city": "Austin",
+		"temp": 46.4
+	},
+	{
+		"date": 20120310,
+		"city": "Austin",
+		"temp": 46.7
+	},
+	{
+		"date": 20120311,
+		"city": "Austin",
+		"temp": 56.9
+	},
+	{
+		"date": 20120312,
+		"city": "Austin",
+		"temp": 61.9
+	},
+	{
+		"date": 20120313,
+		"city": "Austin",
+		"temp": 68.8
+	},
+	{
+		"date": 20120314,
+		"city": "Austin",
+		"temp": 71.9
+	},
+	{
+		"date": 20120315,
+		"city": "Austin",
+		"temp": 72
+	},
+	{
+		"date": 20120316,
+		"city": "Austin",
+		"temp": 72.5
+	},
+	{
+		"date": 20120317,
+		"city": "Austin",
+		"temp": 71.7
+	},
+	{
+		"date": 20120318,
+		"city": "Austin",
+		"temp": 71.1
+	},
+	{
+		"date": 20120319,
+		"city": "Austin",
+		"temp": 73
+	},
+	{
+		"date": 20120320,
+		"city": "Austin",
+		"temp": 63.8
+	},
+	{
+		"date": 20120321,
+		"city": "Austin",
+		"temp": 60
+	},
+	{
+		"date": 20120322,
+		"city": "Austin",
+		"temp": 62.3
+	},
+	{
+		"date": 20120323,
+		"city": "Austin",
+		"temp": 61.1
+	},
+	{
+		"date": 20120324,
+		"city": "Austin",
+		"temp": 62
+	},
+	{
+		"date": 20120325,
+		"city": "Austin",
+		"temp": 64.6
+	},
+	{
+		"date": 20120326,
+		"city": "Austin",
+		"temp": 66
+	},
+	{
+		"date": 20120327,
+		"city": "Austin",
+		"temp": 65.8
+	},
+	{
+		"date": 20120328,
+		"city": "Austin",
+		"temp": 69.2
+	},
+	{
+		"date": 20120329,
+		"city": "Austin",
+		"temp": 69.5
+	},
+	{
+		"date": 20120330,
+		"city": "Austin",
+		"temp": 73.5
+	},
+	{
+		"date": 20120331,
+		"city": "Austin",
+		"temp": 73.9
+	},
+	{
+		"date": 20120401,
+		"city": "Austin",
+		"temp": 75.3
+	},
+	{
+		"date": 20120402,
+		"city": "Austin",
+		"temp": 75.4
+	},
+	{
+		"date": 20120403,
+		"city": "Austin",
+		"temp": 77.3
+	},
+	{
+		"date": 20120404,
+		"city": "Austin",
+		"temp": 67
+	},
+	{
+		"date": 20120405,
+		"city": "Austin",
+		"temp": 71.1
+	},
+	{
+		"date": 20120406,
+		"city": "Austin",
+		"temp": 70.4
+	},
+	{
+		"date": 20120407,
+		"city": "Austin",
+		"temp": 73.6
+	},
+	{
+		"date": 20120408,
+		"city": "Austin",
+		"temp": 71.1
+	},
+	{
+		"date": 20120409,
+		"city": "Austin",
+		"temp": 70
+	},
+	{
+		"date": 20120410,
+		"city": "Austin",
+		"temp": 69
+	},
+	{
+		"date": 20120411,
+		"city": "Austin",
+		"temp": 69.2
+	},
+	{
+		"date": 20120412,
+		"city": "Austin",
+		"temp": 74.5
+	},
+	{
+		"date": 20120413,
+		"city": "Austin",
+		"temp": 73.4
+	},
+	{
+		"date": 20120414,
+		"city": "Austin",
+		"temp": 76
+	},
+	{
+		"date": 20120415,
+		"city": "Austin",
+		"temp": 74.5
+	},
+	{
+		"date": 20120416,
+		"city": "Austin",
+		"temp": 63.6
+	},
+	{
+		"date": 20120417,
+		"city": "Austin",
+		"temp": 67.3
+	},
+	{
+		"date": 20120418,
+		"city": "Austin",
+		"temp": 65.1
+	},
+	{
+		"date": 20120419,
+		"city": "Austin",
+		"temp": 67.9
+	},
+	{
+		"date": 20120420,
+		"city": "Austin",
+		"temp": 68.9
+	},
+	{
+		"date": 20120421,
+		"city": "Austin",
+		"temp": 65.1
+	},
+	{
+		"date": 20120422,
+		"city": "Austin",
+		"temp": 65.4
+	},
+	{
+		"date": 20120423,
+		"city": "Austin",
+		"temp": 70.1
+	},
+	{
+		"date": 20120424,
+		"city": "Austin",
+		"temp": 67
+	},
+	{
+		"date": 20120425,
+		"city": "Austin",
+		"temp": 75.4
+	},
+	{
+		"date": 20120426,
+		"city": "Austin",
+		"temp": 77.5
+	},
+	{
+		"date": 20120427,
+		"city": "Austin",
+		"temp": 77
+	},
+	{
+		"date": 20120428,
+		"city": "Austin",
+		"temp": 77.7
+	},
+	{
+		"date": 20120429,
+		"city": "Austin",
+		"temp": 77.7
+	},
+	{
+		"date": 20120430,
+		"city": "Austin",
+		"temp": 77.7
+	},
+	{
+		"date": 20120501,
+		"city": "Austin",
+		"temp": 77
+	},
+	{
+		"date": 20120502,
+		"city": "Austin",
+		"temp": 77.9
+	},
+	{
+		"date": 20120503,
+		"city": "Austin",
+		"temp": 79.1
+	},
+	{
+		"date": 20120504,
+		"city": "Austin",
+		"temp": 80.1
+	},
+	{
+		"date": 20120505,
+		"city": "Austin",
+		"temp": 82.1
+	},
+	{
+		"date": 20120506,
+		"city": "Austin",
+		"temp": 79
+	},
+	{
+		"date": 20120507,
+		"city": "Austin",
+		"temp": 79.8
+	},
+	{
+		"date": 20120508,
+		"city": "Austin",
+		"temp": 70
+	},
+	{
+		"date": 20120509,
+		"city": "Austin",
+		"temp": 69.8
+	},
+	{
+		"date": 20120510,
+		"city": "Austin",
+		"temp": 71.3
+	},
+	{
+		"date": 20120511,
+		"city": "Austin",
+		"temp": 69.4
+	},
+	{
+		"date": 20120512,
+		"city": "Austin",
+		"temp": 72
+	},
+	{
+		"date": 20120513,
+		"city": "Austin",
+		"temp": 72.4
+	},
+	{
+		"date": 20120514,
+		"city": "Austin",
+		"temp": 72.5
+	},
+	{
+		"date": 20120515,
+		"city": "Austin",
+		"temp": 67.6
+	},
+	{
+		"date": 20120516,
+		"city": "Austin",
+		"temp": 69
+	},
+	{
+		"date": 20120517,
+		"city": "Austin",
+		"temp": 72.7
+	},
+	{
+		"date": 20120518,
+		"city": "Austin",
+		"temp": 73.7
+	},
+	{
+		"date": 20120519,
+		"city": "Austin",
+		"temp": 77.5
+	},
+	{
+		"date": 20120520,
+		"city": "Austin",
+		"temp": 75.8
+	},
+	{
+		"date": 20120521,
+		"city": "Austin",
+		"temp": 76.9
+	},
+	{
+		"date": 20120522,
+		"city": "Austin",
+		"temp": 78.8
+	},
+	{
+		"date": 20120523,
+		"city": "Austin",
+		"temp": 77.7
+	},
+	{
+		"date": 20120524,
+		"city": "Austin",
+		"temp": 80.6
+	},
+	{
+		"date": 20120525,
+		"city": "Austin",
+		"temp": 81.4
+	},
+	{
+		"date": 20120526,
+		"city": "Austin",
+		"temp": 82.3
+	},
+	{
+		"date": 20120527,
+		"city": "Austin",
+		"temp": 80.3
+	},
+	{
+		"date": 20120528,
+		"city": "Austin",
+		"temp": 80.3
+	},
+	{
+		"date": 20120529,
+		"city": "Austin",
+		"temp": 82.2
+	},
+	{
+		"date": 20120530,
+		"city": "Austin",
+		"temp": 81.9
+	},
+	{
+		"date": 20120531,
+		"city": "Austin",
+		"temp": 82.4
+	},
+	{
+		"date": 20120601,
+		"city": "Austin",
+		"temp": 77.9
+	},
+	{
+		"date": 20120602,
+		"city": "Austin",
+		"temp": 81.1
+	},
+	{
+		"date": 20120603,
+		"city": "Austin",
+		"temp": 82.2
+	},
+	{
+		"date": 20120604,
+		"city": "Austin",
+		"temp": 81.2
+	},
+	{
+		"date": 20120605,
+		"city": "Austin",
+		"temp": 83
+	},
+	{
+		"date": 20120606,
+		"city": "Austin",
+		"temp": 83.2
+	},
+	{
+		"date": 20120607,
+		"city": "Austin",
+		"temp": 82.1
+	},
+	{
+		"date": 20120608,
+		"city": "Austin",
+		"temp": 77.5
+	},
+	{
+		"date": 20120609,
+		"city": "Austin",
+		"temp": 77.9
+	},
+	{
+		"date": 20120610,
+		"city": "Austin",
+		"temp": 82.9
+	},
+	{
+		"date": 20120611,
+		"city": "Austin",
+		"temp": 86.8
+	},
+	{
+		"date": 20120612,
+		"city": "Austin",
+		"temp": 85.3
+	},
+	{
+		"date": 20120613,
+		"city": "Austin",
+		"temp": 76.9
+	},
+	{
+		"date": 20120614,
+		"city": "Austin",
+		"temp": 84.5
+	},
+	{
+		"date": 20120615,
+		"city": "Austin",
+		"temp": 84.4
+	},
+	{
+		"date": 20120616,
+		"city": "Austin",
+		"temp": 83.8
+	},
+	{
+		"date": 20120617,
+		"city": "Austin",
+		"temp": 82.5
+	},
+	{
+		"date": 20120618,
+		"city": "Austin",
+		"temp": 82.9
+	},
+	{
+		"date": 20120619,
+		"city": "Austin",
+		"temp": 82.5
+	},
+	{
+		"date": 20120620,
+		"city": "Austin",
+		"temp": 81.3
+	},
+	{
+		"date": 20120621,
+		"city": "Austin",
+		"temp": 80.8
+	},
+	{
+		"date": 20120622,
+		"city": "Austin",
+		"temp": 81.7
+	},
+	{
+		"date": 20120623,
+		"city": "Austin",
+		"temp": 83.9
+	},
+	{
+		"date": 20120624,
+		"city": "Austin",
+		"temp": 85.5
+	},
+	{
+		"date": 20120625,
+		"city": "Austin",
+		"temp": 87.2
+	},
+	{
+		"date": 20120626,
+		"city": "Austin",
+		"temp": 88
+	},
+	{
+		"date": 20120627,
+		"city": "Austin",
+		"temp": 89.6
+	},
+	{
+		"date": 20120628,
+		"city": "Austin",
+		"temp": 86.7
+	},
+	{
+		"date": 20120629,
+		"city": "Austin",
+		"temp": 85.3
+	},
+	{
+		"date": 20120630,
+		"city": "Austin",
+		"temp": 81.7
+	},
+	{
+		"date": 20120701,
+		"city": "Austin",
+		"temp": 78.5
+	},
+	{
+		"date": 20120702,
+		"city": "Austin",
+		"temp": 83.1
+	},
+	{
+		"date": 20120703,
+		"city": "Austin",
+		"temp": 83.1
+	},
+	{
+		"date": 20120704,
+		"city": "Austin",
+		"temp": 84.5
+	},
+	{
+		"date": 20120705,
+		"city": "Austin",
+		"temp": 84.6
+	},
+	{
+		"date": 20120706,
+		"city": "Austin",
+		"temp": 84.2
+	},
+	{
+		"date": 20120707,
+		"city": "Austin",
+		"temp": 86.7
+	},
+	{
+		"date": 20120708,
+		"city": "Austin",
+		"temp": 84.3
+	},
+	{
+		"date": 20120709,
+		"city": "Austin",
+		"temp": 83.7
+	},
+	{
+		"date": 20120710,
+		"city": "Austin",
+		"temp": 77.1
+	},
+	{
+		"date": 20120711,
+		"city": "Austin",
+		"temp": 77.4
+	},
+	{
+		"date": 20120712,
+		"city": "Austin",
+		"temp": 80.6
+	},
+	{
+		"date": 20120713,
+		"city": "Austin",
+		"temp": 81.4
+	},
+	{
+		"date": 20120714,
+		"city": "Austin",
+		"temp": 80.2
+	},
+	{
+		"date": 20120715,
+		"city": "Austin",
+		"temp": 81.8
+	},
+	{
+		"date": 20120716,
+		"city": "Austin",
+		"temp": 77.3
+	},
+	{
+		"date": 20120717,
+		"city": "Austin",
+		"temp": 80.8
+	},
+	{
+		"date": 20120718,
+		"city": "Austin",
+		"temp": 81.6
+	},
+	{
+		"date": 20120719,
+		"city": "Austin",
+		"temp": 80.9
+	},
+	{
+		"date": 20120720,
+		"city": "Austin",
+		"temp": 83.9
+	},
+	{
+		"date": 20120721,
+		"city": "Austin",
+		"temp": 85.6
+	},
+	{
+		"date": 20120722,
+		"city": "Austin",
+		"temp": 83.6
+	},
+	{
+		"date": 20120723,
+		"city": "Austin",
+		"temp": 84
+	},
+	{
+		"date": 20120724,
+		"city": "Austin",
+		"temp": 83
+	},
+	{
+		"date": 20120725,
+		"city": "Austin",
+		"temp": 84.8
+	},
+	{
+		"date": 20120726,
+		"city": "Austin",
+		"temp": 84.4
+	},
+	{
+		"date": 20120727,
+		"city": "Austin",
+		"temp": 84.3
+	},
+	{
+		"date": 20120728,
+		"city": "Austin",
+		"temp": 83.9
+	},
+	{
+		"date": 20120729,
+		"city": "Austin",
+		"temp": 85
+	},
+	{
+		"date": 20120730,
+		"city": "Austin",
+		"temp": 84.9
+	},
+	{
+		"date": 20120731,
+		"city": "Austin",
+		"temp": 86.3
+	},
+	{
+		"date": 20120801,
+		"city": "Austin",
+		"temp": 86.5
+	},
+	{
+		"date": 20120802,
+		"city": "Austin",
+		"temp": 85.8
+	},
+	{
+		"date": 20120803,
+		"city": "Austin",
+		"temp": 85.3
+	},
+	{
+		"date": 20120804,
+		"city": "Austin",
+		"temp": 86
+	},
+	{
+		"date": 20120805,
+		"city": "Austin",
+		"temp": 84.2
+	},
+	{
+		"date": 20120806,
+		"city": "Austin",
+		"temp": 81.9
+	},
+	{
+		"date": 20120807,
+		"city": "Austin",
+		"temp": 86.5
+	},
+	{
+		"date": 20120808,
+		"city": "Austin",
+		"temp": 86.1
+	},
+	{
+		"date": 20120809,
+		"city": "Austin",
+		"temp": 86.8
+	},
+	{
+		"date": 20120810,
+		"city": "Austin",
+		"temp": 88
+	},
+	{
+		"date": 20120811,
+		"city": "Austin",
+		"temp": 85.1
+	},
+	{
+		"date": 20120812,
+		"city": "Austin",
+		"temp": 87.4
+	},
+	{
+		"date": 20120813,
+		"city": "Austin",
+		"temp": 88
+	},
+	{
+		"date": 20120814,
+		"city": "Austin",
+		"temp": 88
+	},
+	{
+		"date": 20120815,
+		"city": "Austin",
+		"temp": 87.2
+	},
+	{
+		"date": 20120816,
+		"city": "Austin",
+		"temp": 86.1
+	},
+	{
+		"date": 20120817,
+		"city": "Austin",
+		"temp": 86.8
+	},
+	{
+		"date": 20120818,
+		"city": "Austin",
+		"temp": 84.9
+	},
+	{
+		"date": 20120819,
+		"city": "Austin",
+		"temp": 76.8
+	},
+	{
+		"date": 20120820,
+		"city": "Austin",
+		"temp": 80.6
+	},
+	{
+		"date": 20120821,
+		"city": "Austin",
+		"temp": 80
+	},
+	{
+		"date": 20120822,
+		"city": "Austin",
+		"temp": 78.2
+	},
+	{
+		"date": 20120823,
+		"city": "Austin",
+		"temp": 79.1
+	},
+	{
+		"date": 20120824,
+		"city": "Austin",
+		"temp": 81.9
+	},
+	{
+		"date": 20120825,
+		"city": "Austin",
+		"temp": 84.7
+	},
+	{
+		"date": 20120826,
+		"city": "Austin",
+		"temp": 83.5
+	},
+	{
+		"date": 20120827,
+		"city": "Austin",
+		"temp": 82.1
+	},
+	{
+		"date": 20120828,
+		"city": "Austin",
+		"temp": 84
+	},
+	{
+		"date": 20120829,
+		"city": "Austin",
+		"temp": 85.7
+	},
+	{
+		"date": 20120830,
+		"city": "Austin",
+		"temp": 87.2
+	},
+	{
+		"date": 20120831,
+		"city": "Austin",
+		"temp": 82.9
+	},
+	{
+		"date": 20120901,
+		"city": "Austin",
+		"temp": 84.8
+	},
+	{
+		"date": 20120902,
+		"city": "Austin",
+		"temp": 83.9
+	},
+	{
+		"date": 20120903,
+		"city": "Austin",
+		"temp": 85.5
+	},
+	{
+		"date": 20120904,
+		"city": "Austin",
+		"temp": 86.4
+	},
+	{
+		"date": 20120905,
+		"city": "Austin",
+		"temp": 85.8
+	},
+	{
+		"date": 20120906,
+		"city": "Austin",
+		"temp": 85.4
+	},
+	{
+		"date": 20120907,
+		"city": "Austin",
+		"temp": 85.3
+	},
+	{
+		"date": 20120908,
+		"city": "Austin",
+		"temp": 81.9
+	},
+	{
+		"date": 20120909,
+		"city": "Austin",
+		"temp": 74.8
+	},
+	{
+		"date": 20120910,
+		"city": "Austin",
+		"temp": 71.6
+	},
+	{
+		"date": 20120911,
+		"city": "Austin",
+		"temp": 75.9
+	},
+	{
+		"date": 20120912,
+		"city": "Austin",
+		"temp": 82.1
+	},
+	{
+		"date": 20120913,
+		"city": "Austin",
+		"temp": 80.5
+	},
+	{
+		"date": 20120914,
+		"city": "Austin",
+		"temp": 70
+	},
+	{
+		"date": 20120915,
+		"city": "Austin",
+		"temp": 71.2
+	},
+	{
+		"date": 20120916,
+		"city": "Austin",
+		"temp": 70.3
+	},
+	{
+		"date": 20120917,
+		"city": "Austin",
+		"temp": 72.1
+	},
+	{
+		"date": 20120918,
+		"city": "Austin",
+		"temp": 73.7
+	},
+	{
+		"date": 20120919,
+		"city": "Austin",
+		"temp": 72.7
+	},
+	{
+		"date": 20120920,
+		"city": "Austin",
+		"temp": 71.7
+	},
+	{
+		"date": 20120921,
+		"city": "Austin",
+		"temp": 72.9
+	},
+	{
+		"date": 20120922,
+		"city": "Austin",
+		"temp": 73.1
+	},
+	{
+		"date": 20120923,
+		"city": "Austin",
+		"temp": 75.6
+	},
+	{
+		"date": 20120924,
+		"city": "Austin",
+		"temp": 78.3
+	},
+	{
+		"date": 20120925,
+		"city": "Austin",
+		"temp": 78.3
+	},
+	{
+		"date": 20120926,
+		"city": "Austin",
+		"temp": 79.6
+	},
+	{
+		"date": 20120927,
+		"city": "Austin",
+		"temp": 76.4
+	},
+	{
+		"date": 20120928,
+		"city": "Austin",
+		"temp": 77.2
+	},
+	{
+		"date": 20120929,
+		"city": "Austin",
+		"temp": 75.2
+	},
+	{
+		"date": 20120930,
+		"city": "Austin",
+		"temp": 71.9
+	}
+]

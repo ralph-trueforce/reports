@@ -43,21 +43,20 @@ function Series(width, height) {
             .append("g")
             .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-        d3.csv("data/dataSeries.csv", function (error, data) {
+        d3.json("data/series.json", function (error, data) {
 
 
             color.domain(d3.keys(data[0]).filter(function (key) { return key == "city"; }));
 
             // first we need to corerce the data into the right formats
 
-            data = data.map(function (d) {
-                return {
-                    city: d.city,
-                    date: parseDate(d.date),
-                    temp: +d.temp
-                };
-            });
-
+             data = data.map(function (d) {
+                 return {
+                     city: d.city,
+                     date: parseDate(d.date.toString()),
+                     temp: +d.temp
+                 };
+             });
 
             // then we need to nest the data on city since we want to only draw one
             // line per city
