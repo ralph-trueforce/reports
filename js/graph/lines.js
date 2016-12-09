@@ -10,19 +10,18 @@
  * @constructor
  */
 function Lines(width, height) {
-	this.base = Graphic;
+	this.base = Cartesian;
 	this.base(width, height); //call super constructor.
-	//Graphic.call(width, height);
+	this.name = arguments.callee.name.toLowerCase();
 
     /**
-     * Draw function member
+     * Process function member
      * @param tag_id
      */
-    this.draw = function(tag_id) {
+    this.process = function(tag_id) {
         // Set the dimensions of the canvas / graph
-        var margin = {top: 30, right: 20, bottom: 30, left: 50},
-            width = this.width - margin.left - margin.right,
-            height = this.height - margin.top - margin.bottom;
+        var width = this.width - this.margin.left - this.margin.right,
+            height = this.height - this.margin.top - this.margin.bottom;
 
         // Parse the date / time
         var parseDate = d3.time.format("%d-%b-%y").parse;
@@ -33,10 +32,10 @@ function Lines(width, height) {
 
         // Define the axes
         var xAxis = d3.svg.axis().scale(x)
-            .orient("bottom").ticks(5);
+            .orient("bottom").ticks(this.config.x_axis.ticks);
 
         var yAxis = d3.svg.axis().scale(y)
-            .orient("left").ticks(5);
+            .orient("left").ticks(this.config.y_axis.ticks);
 
         // Define the line
         var valueline = d3.svg.line()
@@ -46,14 +45,16 @@ function Lines(width, height) {
         // Adds the svg canvas
         var svg = d3.select(tag_id)
             .append("svg")
-            .attr("width", width + margin.left + margin.right)
-            .attr("height", height + margin.top + margin.bottom)
+            .attr("width", width + this.margin.left + this.margin.right)
+            .attr("height", height + this.margin.top + this.margin.bottom)
             .append("g")
-            .attr("transform",
-                "translate(" + margin.left + "," + margin.top + ")");
+            .attr("transform", "translate(" + this.margin.left + "," + this.margin.top + ")");
+
+		d3.select(tag_id).style("background-color", this.config.background_color);
 
         // Get the data
-        d3.csv("data/data.csv", function(error, data) {
+        d3.json("data/lines.json", function(error, data) {
+
             data.forEach(function(d) {
                 d.date = parseDate(d.date);
                 d.close = +d.close;
@@ -87,4 +88,4 @@ function Lines(width, height) {
     }
 }
 
-Lines.prototype = Object.create(Graphic.prototype);
+Lines.prototype = Object.create(Cartesian.prototype);
