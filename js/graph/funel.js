@@ -28,7 +28,7 @@ function Funel(width, height) {
             .attr("height", height)
             .append("g");
 
-        d3.tsv("data/datas.tsv", function (error, data) {
+        d3.json("data/funel.json", function (error, data) {
             var funnel = d3.funnel()
                 .size([width, height])
                 .mouth([100, 100])
@@ -76,13 +76,13 @@ function Funel(width, height) {
                     return d.value;
                 });
 
-            d3.select("body").append("table")
+            d3.select(tag_id).append("table")
                 .attr({
                     "id": "footer",
                     "width": width + "px"
                 });
 
-            d3.select("body #footer").append("tr")
+            d3.select(tag_id + " #footer").append("tr")
                 .attr({
                     "class": "PykCharts-credits",
                     "id": "credit-datasource"
