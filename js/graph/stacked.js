@@ -3,12 +3,13 @@
  */
 
 function Stacked(width, height) {
-	this.base = Graphic;
+	this.base = Cartesian;
 	this.base(width, height); //call super constructor.
-	//Graphic.call(width, height);
+	this.name = arguments.callee.name.toLowerCase();
 
 
-    this.draw = function (tag_id) {
+    this.process = function (tag_id) {
+    	var _this = this;
 
         var parseDate = d3.time.format("%Y-%m").parse,
             formatYear = d3.format("02d"),
@@ -16,9 +17,9 @@ function Stacked(width, height) {
                 return "Q" + ((d.getMonth() / 3 | 0) + 1) + formatYear(d.getFullYear() % 100);
             };
 
-        var margin = {top: 30, right: 20, bottom: 30, left: 50},
-            width = this.width - margin.left - margin.right,
-            height = this.height - margin.top - margin.bottom;
+        var /*margin = {top: 30, right: 20, bottom: 30, left: 50},*/
+            width = this.width - this.margin.left - this.margin.right,
+            height = this.height - this.margin.top - this.margin.bottom;
 
         var y0 = d3.scale.ordinal()
             .rangeRoundBands([height, 0], .2);
@@ -52,13 +53,15 @@ function Stacked(width, height) {
                 d.valueOffset = y0;
             });
 
-        var color = d3.scale.category10();
+        this.color = d3.scale.category10();
 
         var svg = d3.select(tag_id).append("svg")
-            .attr("width", width + margin.left + margin.right)
-            .attr("height", height + margin.top + margin.bottom)
+            .attr("width", width + this.margin.left + this.margin.right)
+            .attr("height", height + this.margin.top + this.margin.bottom)
             .append("g")
-            .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+            .attr("transform", "translate(" + this.margin.left + "," + this.margin.top + ")");
+
+		d3.select(tag_id).style("background-color", this.config.background_color);
 
         d3.json("data/stacked.json", function (error, data) {
             if (error) throw error;
@@ -106,7 +109,7 @@ function Stacked(width, height) {
                 })
                 .enter().append("rect")
                 .style("fill", function (d) {
-                    return color(d.group);
+                    return _this.color(d.group);
                 })
                 .attr("x", function (d) {
                     return x(d.date);
@@ -130,7 +133,7 @@ function Stacked(width, height) {
 
             var timeout = setTimeout(function () {
                 d3.select("input[value=\"stacked\"]").property("checked", true).each(change);
-            }, 2000);
+            }, _this.config.timeout);
 
             function change() {
                 clearTimeout(timeout);
@@ -142,7 +145,7 @@ function Stacked(width, height) {
             }
 
             function transitionMultiples() {
-                var t = svg.transition().duration(750),
+                var t = svg.transition().duration(_this.config.transition),
                     g = t.selectAll(".group").attr("transform", function (d) {
                         return "translate(0," + y0(d.key) + ")";
                     });
@@ -155,7 +158,7 @@ function Stacked(width, height) {
             }
 
             function transitionStacked() {
-                var t = svg.transition().duration(750),
+                var t = svg.transition().duration(_this.config.transition),
                     g = t.selectAll(".group").attr("transform", "translate(0," + y0(y0.domain()[0]) + ")");
                 g.selectAll("rect").attr("y", function (d) {
                     return y1(d.value + d.valueOffset);
@@ -165,8 +168,8 @@ function Stacked(width, height) {
                 })
             }
         });
-
     };
+
     this.getFooter = function() {
         return "<form><label><input type='radio' name='stacked_mode' value='multiples' checked> Multiples</label>" +
             "<label><input type='radio' name='stacked_mode' value='stacked'> Stacked</label></form>";
