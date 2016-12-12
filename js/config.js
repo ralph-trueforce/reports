@@ -105,7 +105,7 @@ var CONFIG_DASHBOARD = {
 		}, {
 			col: 1,
 			row: 2,
-			sizeY: 2,
+			sizeY: 1,
 			sizeX: 4,
 			name: "Widget_Series",
 			id: 'b5150a7d30a8017ef67f9cfddc543b6c9ddd14e3',
