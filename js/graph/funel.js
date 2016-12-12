@@ -17,11 +17,18 @@ function Funel(width, height) {
     this.draw = function (tag_id) {
 
         var width = this.width -20,
-            height = this.height,
+            height = this.height - 10,
             radius = Math.min(width, height) / 2;
 
         var color = d3.scale.ordinal()
-            .range(["#255aee", "#3a6fff", "#4f84ff", "rgb(101,154,302)", "rgb(122,175,323)", "rgb(144,197,345)", "rgb(165,218,366)"]);
+            .range([
+            	"#255a71",
+				"#3a6f71",
+				"#4f8471",
+				"rgb(101,154,113)",
+				"rgb(122,175,113)",
+				"rgb(144,197,113)",
+				"rgb(165,218,113"]);
 
         var svg = d3.select(tag_id).append("svg")
             .attr("width", width)
@@ -55,7 +62,7 @@ function Funel(width, height) {
                     return line(d.coordinates);
                 })
                 .style("fill", function (d) {
-                    return color(d.value);
+                    return color(d.process);
                 });
 
             g.append("text")
@@ -73,22 +80,8 @@ function Funel(width, height) {
                 })
                 .style("text-anchor", "middle")
                 .text(function (d) {
-                    return d.value;
+                    return d.process;
                 });
-
-            d3.select(tag_id).append("table")
-                .attr({
-                    "id": "footer",
-                    "width": width + "px"
-                });
-
-            d3.select(tag_id + " #footer").append("tr")
-                .attr({
-                    "class": "PykCharts-credits",
-                    "id": "credit-datasource"
-                })
-                .append("td")
-                .style("text-align", "left");
         });
     };
 }
