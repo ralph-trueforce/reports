@@ -7,7 +7,7 @@
     <div gridster="gridsterOpts">
         <ul>
             <li gridster-item="item" ng-repeat="item in standardItems">
-                <div id="{{item.id}}" drawing>
+                <div id="{{item.id}}" title="{{ item.type }}" drawing>
                 </div>
             </li>
         </ul>
@@ -20,7 +20,7 @@
     <div gridster="gridsterOpts">
         <ul>
             <li gridster-item="customItemMap" ng-repeat="item in customItems">
-                <div id="{{item.id}}" drawing>
+                <div id="{{item.id}}" title="{{ item.type }}" drawing>
                 </div>
             </li>
         </ul>
@@ -33,7 +33,7 @@
     <div gridster="gridsterOpts">
         <ul>
             <li gridster-item row="item.position[0]" col="item.position[1]" size-x="item.size.x" size-y="item.size.y" ng-repeat="item in customItems">
-                <div id="{{item.id}}" drawing>
+                <div id="{{item.id}}" title="{{ item.type }}" drawing>
                 </div>
             </li>
         </ul>

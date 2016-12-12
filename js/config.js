@@ -143,67 +143,78 @@ var STANDARD_ITEMS = [{
 	sizeY: 1,
 	row: 1,
 	col: 0,
-	id: 'Pie__1'
+	id: 'Pie__1',
+	type: 'Pie'
 }, {
 	sizeX: 2,
 	sizeY: 2,
 	row: 1,
 	col: 2,
-	id: 'Lines__1'
+	id: 'Lines__1',
+	type: 'Lines'
 }, {
 	sizeX: 1,
 	sizeY: 1,
 	row: 1,
 	col: 4,
-	id: 'Bar__3'
+	id: 'Bar__3',
+	type: 'Bar'
 }, {
 	sizeX: 1,
 	sizeY: 2,
 	row: 1,
 	col: 5,
-	id: 'Pie__3'
+	id: 'Pie__3',
+	type: 'Pie'
 }, {
 	sizeX: 2,
 	sizeY: 1,
 	row: 2,
 	col: 0,
-	id: 'Bar__1'
+	id: 'Bar__1',
+	type: 'Bar'
 }, {
 	sizeX: 1,
 	sizeY: 1,
 	row: 2,
 	col: 4,
-	id: 'Donut__1'
+	id: 'Donut__1',
+	type: 'Donut'
 }, {
 	sizeX: 1,
 	sizeY: 1,
 	row: 3,
 	col: 1,
-	id: 'Series__1'
+	id: 'Series__1',
+	type: 'Series'
 }, {
 	sizeX: 1,
 	sizeY: 1,
 	row: 3,
 	col: 4,
-	id: 'Pie__2'
+	id: 'Pie__2',
+	type: 'Pie'
 }, {
 	sizeX: 1,
 	sizeY: 1,
 	row: 3,
 	col: 5,
-	id: 'Series__2'
+	id: 'Series__2',
+	type: 'Series'
 }, {
 	sizeX: 2,
 	sizeY: 1,
 	row: 3,
 	col: 2,
-	id: 'Bar__2'
+	id: 'Bar__2',
+	type: 'Bar'
 }, {
 	sizeX: 1,
 	sizeY: 1,
 	row: 3,
 	col: 0,
-	id: 'Lines__2'
+	id: 'Lines__2',
+	type: 'Lines'
 }];
 
 // these are non-standard, so they require mapping options
@@ -213,75 +224,86 @@ var CUSTOM_ITEMS = [{
 		y: 1
 	},
 	position: [1, 0],
-	id: 'Lines__3'
+	id: 'Lines__3',
+	type: 'Lines'
 }, {
 	size: {
 		x: 2,
 		y: 2
 	},
 	position: [1, 2],
-	id: 'Donut__2'
+	id: 'Donut__2',
+	type: 'Donut'
 }, {
 	size: {
 		x: 1,
 		y: 1
 	},
 	position: [2, 4],
-	id: 'Pie__4'
+	id: 'Pie__4',
+	type: 'Pie'
 }, {
 	size: {
 		x: 1,
 		y: 2
 	},
 	position: [2, 5],
-	id: 'Bar__4'
+	id: 'Bar__4',
+	type: 'Bar'
 }, {
 	size: {
 		x: 1,
 		y: 1
 	},
 	position: [3, 0],
-	id: 'Series__4'
+	id: 'Series__4',
+	type: 'Series'
 }, {
 	size: {
 		x: 2,
 		y: 1
 	},
 	position: [3, 1],
-	id: 'Bar__6'
+	id: 'Bar__6',
+	type: 'Bar'
 }, {
 	size: {
 		x: 1,
 		y: 1
 	},
 	position: [3, 3],
-	id: 'Pie__5'
+	id: 'Pie__5',
+	type: 'Pie'
 }, {
 	size: {
 		x: 1,
 		y: 1
 	},
 	position: [1, 4],
-	id: 'Bar__5'
+	id: 'Bar__5',
+	type: 'Bar'
 }, {
 	size: {
 		x: 1,
 		y: 1
 	},
 	position: [1, 5],
-	id: 'Lines__4'
+	id: 'Lines__4',
+	type: 'Lines'
 }, {
 	size: {
 		x: 2,
 		y: 1
 	},
 	position: [1, 0],
-	id: 'Series__5'
+	id: 'Series__5',
+	type: 'Series'
 }, {
 	size: {
 		x: 1,
 		y: 1
 	},
 	position: [3, 4],
-	id: 'Donut__3'
+	id: 'Donut__3',
+	type: 'Donut'
 }];
