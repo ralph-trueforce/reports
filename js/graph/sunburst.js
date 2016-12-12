@@ -1,25 +1,29 @@
 /**
  * Created by raeioul on 11/23/16.
  */
+
+/**
+ * Class Sunburst
+ *
+ * @param width
+ * @param height
+ * @constructor
+ */
 function Sunburst(width, height) {
-	this.base = Graphic;
+	this.base = Round;
 	this.base(width, height); //call super constructor.
-	//Graphic.call(width, height);
+	this.name = arguments.callee.name.toLowerCase();
 
-    this.draw = function (tag_id) {
-        var margin = {top: 30, right: 20, bottom: 30, left: 50},
-            width = this.width - margin.left - margin.right,
-            height = this.height - margin.top - margin.bottom;
+    this.process = function (tag_id) {
+    	var _this = this;
 
-
-        var radius = Math.min(width, height) / 2,
-            color = d3.scale.category20c();
+		this.color = d3.scale.category20c();
 
         var svg = d3.select(tag_id).append("svg")
-            .attr("width", width)
-            .attr("height", height)
+            .attr("width", this.width)
+            .attr("height", this.height)
             .append("g")
-            .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
+            .attr("transform", "translate(" + this.width / 2 + "," + this.height / 2 + ")");
 
         var partition = d3.layout.partition()
             .sort(null)
@@ -54,35 +58,36 @@ function Sunburst(width, height) {
                 .attr("d", arc)
                 .style("stroke", "#fff")
                 .style("fill", function (d) {
-                    return color((d.children ? d : d.parent).name);
+                    return _this.color((d.children ? d : d.parent).name);
                 })
                 .style("fill-rule", "evenodd")
                 .each(stash);
 
-            d3.selectAll("input[name=\"sun_mode\"]").on("change", function change() {
-                var value = this.value === "count"
-                    ? function () {
-                    return 1;
-                }
-                    : function (d) {
-                    return d.size;
-                };
+            d3.selectAll("input[name=\"sun_mode\"]")
+				.on("change", function change() {
+					var value = this.value === "count"
+						? function () {
+						return 1;
+					}
+						: function (d) {
+						return d.size;
+					};
 
-                path
-                    .data(partition.value(value).nodes)
-                    .transition()
-                    .duration(1500)
-                    .attrTween("d", arcTween);
-            });
+					path
+						.data(partition.value(value).nodes)
+						.transition()
+						.duration(_this.config.transition)
+						.attrTween("d", arcTween);
+				});
         });
 
-// Stash the old values for transition.
+        // Stash the old values for transition.
         function stash(d) {
             d.x0 = d.x;
             d.dx0 = d.dx;
         }
 
-// Interpolate the arcs in data space.
+		// Interpolate the arcs in data space.
         function arcTween(a) {
             var i = d3.interpolate({x: a.x0, dx: a.dx0}, a);
             return function (t) {
@@ -92,14 +97,13 @@ function Sunburst(width, height) {
                 return arc(b);
             };
         }
-
-        d3.select(self.frameElement).style("height", height + "px");
-
+        d3.select(self.frameElement).style("height", this.height + "px");
     };
+
     this.getFooter = function() {
         return "<form><label><input type='radio' name='sun_mode' value='size'> Size</label>" +
             "<label><input type='radio' name='sun_mode' value='count' checked> Count</label></form>";
     }
 }
 
-Sunburst.prototype = Object.create(Graphic.prototype);
+Sunburst.prototype = Object.create(Round.prototype);
