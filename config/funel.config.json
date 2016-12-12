@@ -1,0 +1,33 @@
+{
+	"colors": [
+		"#255a71",
+		"#3a6f71",
+		"#4f8471",
+		"rgb(101,154,113)",
+		"rgb(122,175,113)",
+		"rgb(144,197,113)",
+		"rgb(165,218,113"
+	],
+	"width": "400px",
+	"height": "400px",
+	"background_color": "#FFFaFE",
+	"tooltip": {
+		"name": "tooltip",
+		"position": "absolute",
+		"width": "auto",
+		"height": "30px",
+		"padding": "5px",
+		"background_color": "white",
+		"border": "1px solid",
+		"display": "none",
+		"opacity": 0.8
+	},
+	"bar": {
+		"mouseover": {
+			"html":""
+		},
+		"mouseout": {
+
+		}
+	}
+}

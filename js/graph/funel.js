@@ -10,33 +10,27 @@
  * @constructor
  */
 function Funel(width, height) {
-	this.base = Graphic;
+	this.base = Round;
 	this.base(width, height); //call super constructor.
-	//Graphic.call(width, height);
+	this.name = arguments.callee.name.toLowerCase();
 
-    this.draw = function (tag_id) {
+    this.process = function (tag_id) {
 
-        var width = this.width -20,
-            height = this.height - 10,
-            radius = Math.min(width, height) / 2;
+		var _this = this;
 
-        var color = d3.scale.ordinal()
-            .range([
-            	"#255a71",
-				"#3a6f71",
-				"#4f8471",
-				"rgb(101,154,113)",
-				"rgb(122,175,113)",
-				"rgb(144,197,113)",
-				"rgb(165,218,113"]);
+        var width = this.width - 20,
+            height = this.height - 10;
 
         var svg = d3.select(tag_id).append("svg")
             .attr("width", width)
             .attr("height", height)
             .append("g");
 
+		d3.select(tag_id).style("background-color", this.config.background_color);
+
         d3.json("data/funel.json", function (error, data) {
-            var funnel = d3.funnel()
+
+        	var funnel = d3.funnel()
                 .size([width, height])
                 .mouth([100, 100])
                 .value(function (d) {
@@ -62,7 +56,7 @@ function Funel(width, height) {
                     return line(d.coordinates);
                 })
                 .style("fill", function (d) {
-                    return color(d.process);
+                    return _this.color(d.process);
                 });
 
             g.append("text")
@@ -86,4 +80,4 @@ function Funel(width, height) {
     };
 }
 
-Funel.prototype = Object.create(Graphic.prototype);
+Funel.prototype = Object.create(Round.prototype);
