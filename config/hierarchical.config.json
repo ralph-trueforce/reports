@@ -1,0 +1,37 @@
+{
+	"colors": [
+		"steelblue",
+		"#ccc"
+	],
+	"margins": {
+		"top": 30,
+		"right": 50,
+		"bottom": 30,
+		"left": 50
+	},
+	"width": "400px",
+	"height": "400px",
+	"background_color": "white",
+	"barHeight": 20,
+	"duration": 750,
+	"delay": 25,
+	"tooltip": {
+		"name": "tooltip",
+		"position": "absolute",
+		"width": "auto",
+		"height": "30px",
+		"padding": "5px",
+		"background_color": "white",
+		"border": "1px solid",
+		"display": "none",
+		"opacity": 0.8
+	},
+	"bar": {
+		"mouseover": {
+			"html":""
+		},
+		"mouseout": {
+
+		}
+	}
+}
