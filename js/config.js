@@ -87,16 +87,16 @@ var CONFIG_DASHBOARD = {
 			id: 'b84b50477b0e135113261f0f52054472b62b8318',
 			type: 'Hierarchical'
 		}, {
-			col: 0,
+			col: 2,
 			row: 4,
 			sizeY: 2,
-			sizeX: 4,
+			sizeX: 2,
 			name: "Widget_Revenue",
 			id: 'bafcf1f61a98dfe0253bdc22275432ee9686e968',
 			type: 'Revenue'
 		}, {
 			col: 0,
-			row: 5,
+			row: 4,
 			sizeY: 2,
 			sizeX: 2,
 			name: "Widget_Sunburst",

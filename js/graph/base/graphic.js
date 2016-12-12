@@ -23,6 +23,7 @@ function Graphic(width, height) {
  */
 Graphic.prototype.configure_base = function(data, error) {
 	if (error) {
+		console.log(error);
 		throw error;
 	}
 	if (this.width === undefined) {
