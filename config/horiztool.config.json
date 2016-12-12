@@ -1,0 +1,25 @@
+{
+  "colors": [
+    "#F0C27B",
+    "#E4DBBF",
+    "#DC5B21",
+    "#70AB8F",
+    "#FFE361",
+    "#00ACE9",
+    "#D43F3F",
+    "#6A9A1F",
+    "#EB593C"
+  ],
+  "width": "400px",
+  "height": "400px",
+  "fontSize": "12px",
+  "background_color": "white",
+  "fontType": "Helvetica",
+  "barfillColor": "red",
+  "margins": {
+    "top": 20,
+    "right": 20,
+    "bottom": 70,
+    "left": 40
+  }
+}
