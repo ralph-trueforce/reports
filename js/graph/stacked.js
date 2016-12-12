@@ -60,7 +60,8 @@ function Stacked(width, height) {
             .append("g")
             .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-        d3.tsv("data/datas.tsv", function (error, data) {
+        d3.json("data/stacked.json", function (error, data) {
+            if (error) throw error;
 
             data.forEach(function (d) {
                 d.date = parseDate(d.date);

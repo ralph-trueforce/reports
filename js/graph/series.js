@@ -44,7 +44,7 @@ function Series(width, height) {
             .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
         d3.json("data/series.json", function (error, data) {
-
+			if (error) throw error;
 
             color.domain(d3.keys(data[0]).filter(function (key) { return key == "city"; }));
 

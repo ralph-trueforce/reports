@@ -29,7 +29,7 @@ function Revenue(width, height) {
 		//Set up stack method
         var stack = d3.layout.stack();
 
-        d3.json("data/mperday.json", function (json) {
+        d3.json("data/revenue.json", function (json) {
             dataset = json;
 
             //Data, stacked

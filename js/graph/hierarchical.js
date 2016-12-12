@@ -63,7 +63,7 @@ function Hierarchical(width, height) {
             .append("line")
             .attr("y1", "100%");
 
-        d3.json("data/readme.json", function (error, root) {
+        d3.json("data/hierarchical.json", function (error, root) {
             if (error) throw error;
 
             partition.nodes(root);
