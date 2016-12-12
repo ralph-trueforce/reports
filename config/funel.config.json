@@ -10,6 +10,16 @@
 	],
 	"width": "400px",
 	"height": "400px",
-	"background_color": "#FFFaFE"
-
+	"background_color": "#FFFaFE",
+	"tooltip": {
+		"name": "tooltip",
+		"position": "absolute",
+		"width": "auto",
+		"height": "30px",
+		"padding": "5px",
+		"background_color": "white",
+		"border": "1px solid",
+		"display": "none",
+		"opacity": 0.8
+	}
 }

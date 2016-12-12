@@ -28,6 +28,18 @@ function Funel(width, height) {
 
 		d3.select(tag_id).style("background-color", this.config.background_color);
 
+		var config_tooltip = this.config.tooltip;
+		var tooltip = d3.select(tag_id).append("div")
+			.attr("id",        config_tooltip.name + this.id)
+			.style("position", config_tooltip.position)
+			.style("width",    config_tooltip.width)
+			.style("height",   config_tooltip.height)
+			.style("padding",  config_tooltip.padding)
+			.style("background-color", config_tooltip.background_color)
+			.style("border",   config_tooltip.border)
+			.style("display",  config_tooltip.display)
+			.style("opacity",  config_tooltip.opacity);
+
         d3.json("data/funel.json", function (error, data) {
 
         	var funnel = d3.funnel()
@@ -46,10 +58,27 @@ function Funel(width, height) {
                     return d.y;
                 });
 
+            var cache_color;
             var g = svg.selectAll(".funnel-group")
                 .data(funnel(data))
                 .enter().append("g")
-                .attr("class", "funnel-group");
+                .attr("class", "funnel-group")
+				.on("mouseover", function (d) {
+					cache_color = d3.select(this).style("fill");
+					var colour = d3.rgb(cache_color);
+					d3.select(this)
+						.style("fill", "rgba(" + colour.r + ", " + colour.g + ", " + colour.b + ", 0.8)");
+					tooltip
+						.style("top", d3.event.layerY + "px")
+						.style("left", d3.event.layerX + "px")
+						.style("display", "block")
+						.html("<p>" + d.process +": "+d.value+ "</p>");
+				})
+				.on("mouseout", function (d) {
+					d3.select(this).style("fill", cache_color);
+					tooltip
+						.style("display", "none");
+				});
 
             g.append("path")
                 .attr("d", function (d) {
