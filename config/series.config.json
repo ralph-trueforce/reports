@@ -1,0 +1,12 @@
+{
+	"margins": {
+		"top": 20,
+		"right": 80,
+		"bottom": 30,
+		"left": 50
+	},
+
+	"width": "400px",
+	"height": "400px",
+	"background_color": "white"
+}

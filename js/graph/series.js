@@ -1,15 +1,25 @@
-
+/**
+ * Class Series
+ *
+ * @param width
+ * @param height
+ * @constructor
+ */
 function Series(width, height) {
-	this.base = Graphic;
+	this.base = Cartesian;
 	this.base(width, height); //call super constructor.
-	//Graphic.call(width, height);
+	this.name = arguments.callee.name.toLowerCase();
 
+	/**
+	 *
+	 * @param tag_id
+	 */
+    this.process = function (tag_id) {
+        var _this = this;
 
-    this.draw = function (tag_id) {
-
-        var margin = { top: 20, right: 80, bottom: 30, left: 50 },
-            width = this.width - margin.left - margin.right,
-            height = this.height - margin.top - margin.bottom;
+        var /*margin = { top: 20, right: 80, bottom: 30, left: 50 },*/
+            width = this.width - this.margin.left - this.margin.right,
+            height = this.height - this.margin.top - this.margin.bottom;
 
 
         var parseDate = d3.time.format("%Y%m%d").parse;
@@ -20,7 +30,7 @@ function Series(width, height) {
         var y = d3.scale.linear()
             .range([height, 0]);
 
-        var color = d3.scale.category10();
+       // var color = d3.scale.category10();
 
         var xAxis = d3.svg.axis()
             .scale(x)
@@ -33,20 +43,22 @@ function Series(width, height) {
         var line = d3.svg.line()
             .interpolate("basis")
             .x(function (d) { return x(d.date); })
-            .y(function (d) { //console.log(d);
+            .y(function (d) {
                 return y(d.temp);
             });
 
         var svg = d3.select(tag_id).append("svg")
-            .attr("width", width + margin.left + margin.right)
-            .attr("height", height + margin.top + margin.bottom)
+            .attr("width", width + this.margin.left + this.margin.right)
+            .attr("height", height + this.margin.top + this.margin.bottom)
             .append("g")
-            .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+            .attr("transform", "translate(" + this.margin.left + "," + this.margin.top + ")");
+
+		d3.select(tag_id).style("background-color", this.config.background_color);
 
         d3.json("data/series.json", function (error, data) {
 			if (error) throw error;
 
-            color.domain(d3.keys(data[0]).filter(function (key) { return key == "city"; }));
+            _this.color.domain(d3.keys(data[0]).filter(function (key) { return key == "city"; }));
 
             // first we need to corerce the data into the right formats
 
@@ -58,8 +70,7 @@ function Series(width, height) {
                  };
              });
 
-            // then we need to nest the data on city since we want to only draw one
-            // line per city
+            // then we need to nest the data on city since we want to only draw one line per city
             data = d3.nest().key(function (d) { return d.city; }).entries(data);
 
 
@@ -85,7 +96,7 @@ function Series(width, height) {
             cities.append("path")
                 .attr("class", "line")
                 .attr("d", function (d) { return line(d.values); })
-                .style("stroke", function (d) { return color(d.key); });
+                .style("stroke", function (d) { return _this.color(d.key); });
 
         });
     };
@@ -95,5 +106,4 @@ function Series(width, height) {
     }
 }
 
-
-Series.prototype = Object.create(Graphic.prototype);
+Series.prototype = Object.create(Cartesian.prototype);
