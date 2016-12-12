@@ -15,6 +15,30 @@ var CONFIG_DASHBOARD = {
 			id: 'e2fbbae93b05e97b3b821237a47b590194420cb1',
 			type: 'Donut'
 		}, {
+			col: 0,
+			row: 5,
+			sizeY: 2,
+			sizeX: 2,
+			name: "Widget_Horiz",
+			id: 'd6475ff9ec83dd6c399c6c5a9c68ae2b9677359a',
+			type: 'Horiztool'
+		}, {
+			col: 2,
+			row: 5,
+			sizeY: 2,
+			sizeX: 2,
+			name: "Widget_Donutt",
+			id: 'd6475ff3ec83dd6c399a6c5a9c68de2b9677359a',
+			type: 'Donutt'
+		}, {
+			col: 1,
+			row: 6,
+			sizeY: 2,
+			sizeX: 4,
+			name: "Widget_Linest",
+			id: 'd5475ff3ec83dd6c399a6c5a9c68de2c9677358a',
+			type: 'Linest'
+		}, {
 			col: 1,
 			row: 1,
 			sizeY: 1,
