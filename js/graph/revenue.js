@@ -10,43 +10,33 @@
  * @constructor
  */
 function Revenue(width, height) {
-	this.base = Graphic;
+	this.base = Cartesian;
 	this.base(width, height); //call super constructor.
-	//Graphic.call(width, height);
+	this.name = arguments.callee.name.toLowerCase();
 
     /**
-     * Draw function member
+     * process function member
      * @param tag_id
      */
-    this.draw = function(tag_id) {
+    this.process = function(tag_id) {
+    	var _this = this;
         // Set the dimensions of the canvas / graph
-        var margin = {top: 30, right: 20, bottom: 30, left: 50},
-            w = this.width - margin.left - margin.right,
-            h = this.height - margin.top - margin.bottom;
+        var w = this.width - this.margin.left - this.margin.right,
+            h = this.height - this.margin.top - this.margin.bottom;
 
-        var padding = {top: 40, right: 40, bottom: 40, left: 40};
-        var dataset;
 		//Set up stack method
         var stack = d3.layout.stack();
+		d3.select(tag_id).style("background-color", this.config.background_color);
 
-        d3.json("data/revenue.json", function (json) {
-            dataset = json;
+        d3.json("data/revenue.json", function (dataset) {
 
             //Data, stacked
             stack(dataset);
 
-            var color_hash = {
-                0: ["Invite", "#1f77b4"],
-                1: ["Accept", "#2ca02c"],
-                2: ["Decline", "#ff7f0e"]
-
-            };
-
-
             //Set up scales
             var xScale = d3.time.scale()
                 .domain([new Date(dataset[0][0].time), d3.time.day.offset(new Date(dataset[0][dataset[0].length - 1].time), 8)])
-                .rangeRound([0, w - padding.left - padding.right]);
+                .rangeRound([0, w - _this.config.padding.left - _this.config.padding.right]);
 
             var yScale = d3.scale.linear()
                 .domain([0,
@@ -56,7 +46,7 @@ function Revenue(width, height) {
                         });
                     })
                 ])
-                .range([h - padding.bottom - padding.top, 0]);
+                .range([h - _this.config.padding.bottom - _this.config.padding.top, 0]);
 
             var xAxis = d3.svg.axis()
                 .scale(xScale)
@@ -68,9 +58,8 @@ function Revenue(width, height) {
                 .orient("left")
                 .ticks(10);
 
-
             //Easy colors accessible via a 10-step ordinal scale
-            var colors = d3.scale.category10();
+            //var colors = d3.scale.category10();
 
             //Create SVG element
             var svg = d3.select(tag_id)
@@ -84,9 +73,9 @@ function Revenue(width, height) {
                 .enter()
                 .append("g")
                 .attr("class", "rgroups")
-                .attr("transform", "translate(" + padding.left + "," + (h - padding.bottom) + ")")
+                .attr("transform", "translate(" + _this.config.padding.left + "," + (h - _this.config.padding.bottom) + ")")
                 .style("fill", function (d, i) {
-                    return color_hash[dataset.indexOf(d)][1];
+                    return _this.config.color_hash[dataset.indexOf(d)][1];
                 });
 
             // Add a rect for each data value
@@ -102,37 +91,36 @@ function Revenue(width, height) {
 
             rects.transition()
                 .duration(function (d, i) {
-                    return 500 * i;
+                    return _this.config.rects_transition_duration * i;
                 })
                 .ease("linear")
                 .attr("x", function (d) {
                     return xScale(new Date(d.time));
                 })
                 .attr("y", function (d) {
-                    return -(-yScale(d.y0) - yScale(d.y) + (h - padding.top - padding.bottom) * 2);
+                    return -(-yScale(d.y0) - yScale(d.y) + (h - _this.config.padding.top - _this.config.padding.bottom) * 2);
                 })
                 .attr("height", function (d) {
-                    return -yScale(d.y) + (h - padding.top - padding.bottom);
+                    return -yScale(d.y) + (h - _this.config.padding.top - _this.config.padding.bottom);
                 })
                 .attr("width", 15)
                 .style("fill-opacity", 1);
 
             svg.append("g")
                 .attr("class", "x axis")
-                .attr("transform", "translate(40," + (h - padding.bottom) + ")")
+                .attr("transform", "translate(40," + (h - _this.config.padding.bottom) + ")")
                 .call(xAxis);
-
 
             svg.append("g")
                 .attr("class", "y axis")
-                .attr("transform", "translate(" + padding.left + "," + padding.top + ")")
+                .attr("transform", "translate(" + _this.config.padding.left + "," + _this.config.padding.top + ")")
                 .call(yAxis);
 
             // adding legend
 
             var legend = svg.append("g")
                 .attr("class", "legend")
-                .attr("x", w - padding.right - 65)
+                .attr("x", w - _this.config.padding.right - 65)
                 .attr("y", 25)
                 .attr("height", 100)
                 .attr("width", 100);
@@ -143,19 +131,19 @@ function Revenue(width, height) {
                 .each(function (d, i) {
                     var g = d3.select(this);
                     g.append("rect")
-                        .attr("x", w - padding.right - 65)
+                        .attr("x", w - _this.config.padding.right - 65)
                         .attr("y", i * 25 + 10)
                         .attr("width", 10)
                         .attr("height", 10)
-                        .style("fill", color_hash[String(i)][1]);
+                        .style("fill", _this.config.color_hash[String(i)][1]);
 
                     g.append("text")
-                        .attr("x", w - padding.right - 50)
+                        .attr("x", w - _this.config.padding.right - 50)
                         .attr("y", i * 25 + 20)
                         .attr("height", 30)
                         .attr("width", 100)
-                        .style("fill", color_hash[String(i)][1])
-                        .text(color_hash[String(i)][0]);
+                        .style("fill", _this.config.color_hash[String(i)][1])
+                        .text(_this.config.color_hash[String(i)][0]);
                 });
 
             svg.append("text")
@@ -167,19 +155,10 @@ function Revenue(width, height) {
 
             svg.append("text")
                 .attr("class", "xtext")
-                .attr("x", w / 2 - padding.left)
+                .attr("x", w / 2 - _this.config.padding.left)
                 .attr("y", h - 5)
                 .attr("text-anchor", "middle")
                 .text("Days");
-
-            /*svg.append("text")
-                .attr("class", "title")
-                .attr("x", (w / 2))
-                .attr("y", 20)
-                .attr("text-anchor", "middle")
-                .style("font-size", "16px")
-                .style("text-decoration", "underline")
-                .text("Number of messages per day.");*/
 
             //On click, update with new data
             d3.selectAll(".mo").on("click", function () {
@@ -187,15 +166,12 @@ function Revenue(width, height) {
 				var date = this.getAttribute("value");
 				var str = "data/" + date + ".json";
 
-				d3.json(str, function (json) {
+				d3.json(str, function (dataset) {
 
-					dataset = json;
 					stack(dataset);
 
-					// console.log(dataset);
-
 					xScale.domain([new Date(0, 0, 0, dataset[0][0].time, 0, 0, 0), new Date(0, 0, 0, dataset[0][dataset[0].length - 1].time, 0, 0, 0)])
-						.rangeRound([0, w - padding.left - padding.right]);
+						.rangeRound([0, w - _this.config.padding.left - _this.config.padding.right]);
 
 					yScale.domain([0,
 						d3.max(dataset, function (d) {
@@ -204,7 +180,7 @@ function Revenue(width, height) {
 							});
 						})
 					])
-						.range([h - padding.bottom - padding.top, 0]);
+						.range([h - _this.config.padding.bottom - _this.config.padding.top, 0]);
 
 					xAxis.scale(xScale)
 						.ticks(d3.time.hour, 2)
@@ -219,11 +195,10 @@ function Revenue(width, height) {
 
 					groups.enter().append("g")
 						.attr("class", "rgroups")
-						.attr("transform", "translate(" + padding.left + "," + (h - padding.bottom) + ")")
+						.attr("transform", "translate(" + _this.config.padding.left + "," + (h - _this.config.padding.bottom) + ")")
 						.style("fill", function (d, i) {
 							return color(i);
 						});
-
 
 					rect = groups.selectAll("rect")
 						.data(function (d) {
@@ -237,30 +212,30 @@ function Revenue(width, height) {
 						.style("fill-opacity", 1e-6);
 
 					rect.transition()
-						.duration(1000)
+						.duration(_this.config.transition_duration)
 						.ease("linear")
 						.attr("x", function (d) {
 							return xScale(new Date(0, 0, 0, d.time, 0, 0, 0));
 						})
 						.attr("y", function (d) {
-							return -(-yScale(d.y0) - yScale(d.y) + (h - padding.top - padding.bottom) * 2);
+							return -(-yScale(d.y0) - yScale(d.y) + (h - _this.config.padding.top - _this.config.padding.bottom) * 2);
 						})
 						.attr("height", function (d) {
-							return -yScale(d.y) + (h - padding.top - padding.bottom);
+							return -yScale(d.y) + (h - _this.config.padding.top - _this.config.padding.bottom);
 						})
 						.attr("width", 15)
 						.style("fill-opacity", 1);
 
 					rect.exit()
 						.transition()
-						.duration(1000)
+						.duration(_this.config.transition_duration)
 						.ease("circle")
 						.attr("x", w)
 						.remove();
 
 					groups.exit()
 						.transition()
-						.duration(1000)
+						.duration(_this.config.transition_duration)
 						.ease("circle")
 						.attr("x", w)
 						.remove();
@@ -268,13 +243,13 @@ function Revenue(width, height) {
 
 					svg.select(".x.axis")
 						.transition()
-						.duration(1000)
+						.duration(_this.config.transition_duration)
 						.ease("circle")
 						.call(xAxis);
 
 					svg.select(".y.axis")
 						.transition()
-						.duration(1000)
+						.duration(_this.config.transition_duration)
 						.ease("circle")
 						.call(yAxis);
 
@@ -282,8 +257,7 @@ function Revenue(width, height) {
 						.text("Hours");
 
 					d3.select("widget-footer div.box-link div#revenue-text").html("Number of messages per hour on " + date + ".");
-					/*svg.select(".title")
-						.text("Number of messages per hour on " + date + ".");*/
+
 				});
 			});
         });
@@ -302,9 +276,7 @@ function Revenue(width, height) {
             "<li><a class='mo' value='2014-02-23' >2014-02-23</a></li>" +
 			"</ul>" +
 			"</div>";
-
     }
-
 }
 
-Revenue.prototype = Object.create(Graphic.prototype);
+Revenue.prototype = Object.create(Cartesian.prototype);

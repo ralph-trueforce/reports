@@ -1,0 +1,24 @@
+{
+	"color_hash" : {
+	"0": ["Invite",  "#1f77b4"],
+	"1": ["Accept",  "#2ca02c"],
+	"2": ["Decline", "#ff7f0e"]
+	},
+	"margins": {
+		"top": 30,
+		"right": 20,
+		"bottom": 30,
+		"left": 50
+	},
+	"padding": {
+		"top": 40,
+		"right": 40,
+		"bottom": 40,
+		"left": 40
+	},
+	"width": "400px",
+	"height": "400px",
+	"background_color": "white",
+	"rects_transition_duration": 500,
+	"transition_duration": 1000
+}
