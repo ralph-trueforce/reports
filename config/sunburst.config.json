@@ -1,6 +1,11 @@
 {
-	"width": "400px",
-	"height": "400px",
+	"margin": {
+		"top": 30,
+		"right": 20,
+		"bottom": 30,
+		"left": 50
+	},
 	"background_color": "white",
-	"transition": 750
+	"transition": 1500,
+	"stroke": "#fff"
 }

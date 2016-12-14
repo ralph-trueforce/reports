@@ -16,8 +16,6 @@
 		"bottom": 70,
 		"left": 40
 	},
-	"width": "400px",
-	"height": "400px",
 	"background_color": "SkyBlue",
 	"tooltip": {
 		"name": "tooltip",

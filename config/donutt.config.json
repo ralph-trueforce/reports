@@ -11,18 +11,16 @@
     "#EB593C"
   ],
 
-  "width": "960px",
-  "height": "500px",
   "fontSize": "12px",
   "background_color": "white",
   "fontType": "Helvetica",
   "barfillColor": "red",
 
   "margins": {
-    "top": 20,
+    "top": 10,
     "right": 20,
     "bottom": 70,
-    "left": 40
+    "left": 10
 
    }
 

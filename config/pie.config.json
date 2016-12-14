@@ -8,8 +8,6 @@
 		"#d0743c",
 		"#ff8c00"
 	],
-	"width": "400px",
-	"height": "400px",
 	"background_color": "antiquewhite",
 	"tooltip": {
 		"name": "tooltip",

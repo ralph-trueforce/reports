@@ -16,8 +16,6 @@
 		"bottom": 40,
 		"left": 40
 	},
-	"width": "400px",
-	"height": "400px",
 	"background_color": "white",
 	"rects_transition_duration": 500,
 	"transition_duration": 1000
