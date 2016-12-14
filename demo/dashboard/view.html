@@ -16,23 +16,32 @@
 	<ul>
 		<li gridster-item="widget" ng-repeat="widget in dashboard.widgets">
 			<div class="box" ng-controller="CustomWidgetCtrl">
+				<div ng-show="hasAlertMessage">
+					<alert type="danger" close="closeAlert()">{{alert_message}}</alert>
+				</div>
 				<div class="box-header">
 					<h3>{{ widget.name }}</h3>
 					<div class="box-header-btns pull-right">
-						<a title="settings" ng-click="update(widget)"><i class="glyphicon glyphicon-refresh" title="Update"></i>
-						<a title="settings" ng-click="changeSource(widget)"><i class="glyphicon glyphicon-file" title="Source"></i>
-						<a title="settings" ng-click="showMenu()"><i class="glyphicon glyphicon-list" title="Convert to"></i>
+						<a title="Update" ng-click="update(widget)"><i class="glyphicon glyphicon-refresh"></i></a>
+						<a title="Change Source" ng-click="showSourceList(widget)"><i class="glyphicon glyphicon-file"></i>
+							<ul class="sub-nav" ng-show="isShowingSource()" style="position: absolute; background-color: #e8f8f5; padding: 5px; border: 1px solid #CCC;">
+								<li ng-repeat="element in sources">
+									<a ng-click="changeSource(widget, element.path)" style="text-decoration: none;">{{element.name}}</a>
+								</li>
+							</ul>
+						</a>
+						<a title="Convert to" ng-click="showMenu()"><i class="glyphicon glyphicon-list"></i>
 							<ul class="sub-nav" ng-show="isShowing()" style="position: absolute; background-color: white; padding: 5px; border: 1px solid #CCC;">
 								<li ng-repeat="element in modules">
 									<a ng-click="changeGraphTo(widget, element)" style="text-decoration: none;">{{element}}</a>
 								</li>
 							</ul>
 						</a>
-						<a title="settings" ng-click="openSettings(widget)"><i class="glyphicon glyphicon-cog" title="Settings"></i></a>
-						<a title="Remove widget" ng-click="remove(widget)"><i class="glyphicon glyphicon-trash" title="Delete"></i></a>
+						<a title="settings" ng-click="openSettings(widget)"><i class="glyphicon glyphicon-cog"></i></a>
+						<a title="Remove widget" ng-click="remove(widget)"><i class="glyphicon glyphicon-trash"></i></a>
 					</div>
 				</div>
-				<div class="box-content" id="{{ widget.id }}" title="{{ widget.type }}" draw-graph style="border:1px solid beige;">
+				<div class="box-content" id="{{ widget.id }}" title="{{ widget.type }}" draw-graph>
 					<span ng-if="widget.type == 'Html'" >
 	    			    <widget-html text="{{widget.text}}"/>
 					</span>
@@ -41,4 +50,5 @@
 			</div>
 		</li>
 	</ul>
+
 </div>

@@ -24,17 +24,6 @@ angular.module('app')
 			 * Update the graph, by getting the div ID, then clearing the target Div and render inside it.
 			 */
 			function updateGraph() {
-				// element.css('height', (element[0].parentElement.clientHeight - 10) + 'px');
-				// var ID = element[0].id;
-				// if (isNaN(ID) && !isAngularModelVar(ID)) {
-				// 	var _Class = element[0].title;
-				// 	if (_Class == 'Html') {
-				// 		return;
-				// 	}
-				// 	angular.element(document.querySelector("#" + ID)).empty();
-				// 	eval("var graph = new " + _Class + "(" + element[0].clientWidth + ", " + (element[0].clientHeight) + ");");
-				// 	graph.draw("#" + ID);
-				// }
 				element.css('height', (element[0].parentElement.clientHeight - 100) + 'px');
 				var ID = element[0].id;
 				if (isNaN(ID) && !isAngularModelVar(ID)) {
@@ -80,6 +69,7 @@ angular.module('app')
 
 	// these are non-standard, so they require mapping options
 	$scope.customItems = CUSTOM_ITEMS;
+	$scope.customItems2 = CUSTOM_ITEMS_2;
 
 	// map the gridsterItem to the custom item structure
 	$scope.customItemMap = {

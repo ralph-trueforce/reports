@@ -307,3 +307,94 @@ var CUSTOM_ITEMS = [{
 	id: 'Donut__3',
 	type: 'Donut'
 }];
+
+
+var CUSTOM_ITEMS_2 = [{
+	size: {
+		x: 2,
+		y: 1
+	},
+	position: [1, 0],
+	id: 'Revenue__18',
+	type: 'Revenue'
+}, {
+	size: {
+		x: 2,
+		y: 2
+	},
+	position: [1, 2],
+	id: 'Stacked__12',
+	type: 'Stacked'
+}, {
+	size: {
+		x: 1,
+		y: 1
+	},
+	position: [2, 4],
+	id: 'Funel__14',
+	type: 'Funel'
+}, {
+	size: {
+		x: 1,
+		y: 2
+	},
+	position: [2, 5],
+	id: 'Bar__14',
+	type: 'Bar'
+}, {
+	size: {
+		x: 1,
+		y: 1
+	},
+	position: [3, 0],
+	id: 'Lines__14',
+	type: 'Lines'
+}, {
+	size: {
+		x: 2,
+		y: 1
+	},
+	position: [3, 1],
+	id: 'Bar__16',
+	type: 'Bar'
+}, {
+	size: {
+		x: 1,
+		y: 1
+	},
+	position: [3, 3],
+	id: 'Pie__15',
+	type: 'Pie'
+}, {
+	size: {
+		x: 1,
+		y: 1
+	},
+	position: [1, 4],
+	id: 'Donut__15',
+	type: 'Donut'
+}, {
+	size: {
+		x: 1,
+		y: 1
+	},
+	position: [1, 5],
+	id: 'Pie__14',
+	type: 'Pie'
+}, {
+	size: {
+		x: 2,
+		y: 1
+	},
+	position: [1, 0],
+	id: 'Lines__15',
+	type: 'Lines'
+}, {
+	size: {
+		x: 1,
+		y: 1
+	},
+	position: [3, 4],
+	id: 'Donut__13',
+	type: 'Donut'
+}];
