@@ -28,11 +28,10 @@ angular.module('app')
 			function updateGraph(object) {
 				//console.log(object.targetScope.gridsterItem);
 				//console.log(element[0]);
-				//console.log(attrs);
 				element.css('height', (element[0].parentElement.clientHeight - 100) + 'px');
 				var ID = element[0].id;
 				if (isNaN(ID) && !isAngularModelVar(ID)) {
-					var _Class = element[0].title;
+					var _Class = attrs.alt;
 					if (_Class == 'Html') {
 						return;
 					}
@@ -460,7 +459,7 @@ angular.module('app')
 
 			var ID = widget.id;
 			var _Class = $scope.form.type;
-			document.getElementById(ID).title = _Class;
+			document.getElementById(ID).alt = _Class;
 
 			$modalInstance.close(widget);
 

@@ -38,7 +38,7 @@
 						<a title="Remove widget" ng-click="remove(widget)"><i class="glyphicon glyphicon-trash"></i></a>
 					</div>
 				</div>
-				<div class="box-content" id="{{ widget.id }}" title="{{ widget.type }}" name="{{ widget.name }}" draw-graph>
+				<div class="box-content" id="{{ widget.id }}" alt="{{ widget.type }}" name="{{ widget.name }}" draw-graph>
 					<span ng-if="widget.type == 'Html'" >
 	    			    <widget-html text="{{widget.text}}"/>
 					</span>
