@@ -18,7 +18,7 @@
 				<div class="tab-content">
 					<div class="tab-pane fade active in" id="tab1default" ng-show="isSet(1)">
 						<div class="modal-body">
-							<div class="form-group" ng-class="{error: _form.name.$error && _form.submitted}">
+							<div class="form-group" ng-class="{error: _form.id.$error && _form.submitted}">
 								<label class="control-label col-lg-3 col-md-3">Id</label>
 								<div class="col-lg-9 col-md-9">
 									<input name="id" type="text" readonly ng-model="form.id" class="form-control" />
@@ -68,10 +68,10 @@
 							</div>
 							<div class="row">
 								<div class="col-lg-6 col-md-6">
-									<div class="form-group" ng-class="{error: _form.ctype.$error && _form.submitted}">
+									<div class="form-group" ng-class="{error: _form.type.$error && _form.submitted}">
 										<label class="control-label col-lg-6 col-md-6">Convert to</label>
 										<div class="col-lg-6 col-md-6">
-											<select name="type" ng-model="form.type" class="form-control">
+											<select name="type" ng-model="form.type" class="form-control" ng-change="updateSource()">
 												<option ng-repeat="typeg in typeGraph" value="{{typeg}}" ng-selected="{{typeg == form.type}}" >{{typeg}}</option>
 											</select>
 										</div>
@@ -81,14 +81,14 @@
 							<div class="row">
 								<label class="control-label col-lg-3 col-md-3">Source Template</label>
 								<div class="col-lg-9 col-md-9">
-									<input name="source" ng-model="form.source" class="form-control" />
+									<input name="source" ng-model="form.source" class="form-control" readonly />
 								</div>
 							</div>
 						</div>
 					</div>
 					<div class="tab-pane fade active in" id="tab2default" ng-show="isSet(2)">
 						<div class="modal-body">
-							<div class="form-group" ng-class="{error: _form.name.$error && _form.submitted}">
+							<div class="form-group" ng-class="{error: _form.config.$error && _form.submitted}">
 								<label class="control-label col-lg-2 col-md-2">Config</label>
 								<div class="col-lg-10 col-md-10">
 									<div><textarea id="cmconfig" name="cmconfig" rows="16" ng-model="form.config" class="form-control"></textarea></div>
@@ -99,7 +99,7 @@
 					</div>
 					<div class="tab-pane fade active in" id="tab3default" ng-show="isSet(3)">
 						<div class="modal-body">
-							<div class="form-group" ng-class="{error: _form.name.$error && _form.submitted}">
+							<div class="form-group" ng-class="{error: _form.data.$error && _form.submitted}">
 								<label class="control-label col-lg-2 col-md-2">Data</label>
 								<div class="col-lg-10 col-md-10">
 									<div><textarea id="cmdata" name="cmdata" rows="16" ng-model="form.data" class="form-control" ></textarea></div>

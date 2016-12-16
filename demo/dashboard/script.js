@@ -1,3 +1,5 @@
+var editorConfig;
+var editorData;
 angular.module('app')
 
 .directive('drawGraph', function() {
@@ -58,7 +60,7 @@ angular.module('app')
 			 * Called when the settings form is loaded
 			 */
 			element.ready(function() {
-				var editorConfig = CodeMirror.fromTextArea(document.getElementById("cmconfig"), {
+			    editorConfig = CodeMirror.fromTextArea(document.getElementById("cmconfig"), {
 					lineNumbers: true,
 					indentUnit: 4,
 					matchBrackets: true,
@@ -69,9 +71,9 @@ angular.module('app')
 				setTimeout(function() {
 					console.log('refresh');
 					editorConfig.refresh();
-				}, 1000);
+				}, 1);
 
-				var editorData = CodeMirror.fromTextArea(document.getElementById("cmdata"), {
+				editorData = CodeMirror.fromTextArea(document.getElementById("cmdata"), {
 					lineNumbers: true,
 					indentUnit: 4,
 					matchBrackets: true,
@@ -80,9 +82,8 @@ angular.module('app')
 					lineWrapping: true
 				});
 				setTimeout(function() {
-					console.log('refresh 2');
 					editorData.refresh();
-				}, 1000);
+				}, 1);
 			});
 		}
 	};
@@ -303,6 +304,9 @@ angular.module('app')
 			eval("var graph = new " + to + "(" + width + ", " + height + ");");
 			graph.draw("#" + widget.id);
 
+			index = $scope.dashboard.widgets.indexOf(widget);
+			$scope.dashboard.widgets[index].type = to;
+
 			$scope.display = false;
 		};
 
@@ -454,21 +458,26 @@ angular.module('app')
 		$scope.submit = function() {
 			angular.extend(widget, $scope.form);
 
+			var ID = widget.id;
+			var _Class = $scope.form.type;
+			document.getElementById(ID).title = _Class;
+
 			$modalInstance.close(widget);
 
 			$scope.saveIntoDB($scope.form);
 
-			//$scope.$parent.$$listeners.gridster-item-initialized[0].updateGraph();
-			var _Class = $scope.form.type;
 			if (_Class == 'Html') {
 			 	return;
 			}
-			var ID = widget.id;
 			angular.element(document.querySelector("#" + ID)).empty();
 			var width = WidgetCache.getWidth(widget);
 			var height = WidgetCache.getHeight(widget);
 			eval("var graph = new " + _Class + "(" + width + ", " + height + ");");
+			graph.setSource($scope.source);
 			graph.draw("#" + ID);
+
+			index = $scope.dashboard.widgets.indexOf(widget);
+			$scope.dashboard.widgets[index].type = $scope.form.type;
 
 		};
 
@@ -483,6 +492,17 @@ angular.module('app')
 		$scope.isSet = function(tabNum) {
 			return $scope.tab === tabNum;
 		};
+
+		$scope.updateSource = function() {
+			var name = $scope.form.type.toLowerCase();
+			$scope.form.source = 'data/' + name + '.json';
+			obj = JSON.parse(localStorage[name + '.config']);
+			$scope.form.config = JSON.stringify(obj, null, 4);
+			editorConfig.setValue($scope.form.config);
+			setTimeout(function() {
+				editorConfig.refresh();
+			}, 1);
+		}
 	}
 ])
 
