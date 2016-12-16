@@ -7,8 +7,9 @@
  */
 function Bar(width, height) {
 	this.base = Cartesian;
-	this.base(width, height); //call super constructor.
-	this.name = arguments.callee.name.toLowerCase();
+	this.base(width, height, arguments); //call super constructor.
+	// this.name = arguments.callee.name.toLowerCase();
+	// this.source = 'data/bar.json';
 
 	//TODO: Should be a private function
 	this.process = function(tag_id) {
@@ -37,9 +38,9 @@ function Bar(width, height) {
 			.append("g")
 			.attr("transform","translate(" + this.margin.left + "," + this.margin.top + ")");
 
-		d3.select(tag_id).style("background-color", this.config.background_color);
+		d3.select(tag_id).style("background-color", this.background_color);
 
-		var config_tooltip = this.config.tooltip;
+		var config_tooltip = this.tooltip;
 		var tooltip = d3.select(tag_id).append("div")
 			.attr("id",        config_tooltip.name + this.id)
 			.style("position", config_tooltip.position)
@@ -51,15 +52,20 @@ function Bar(width, height) {
 			.style("display",  config_tooltip.display)
 			.style("opacity",  config_tooltip.opacity);
 
-		d3.json("data/bar.json", function (error, data) {
+		d3.json(this.source, function (error, data) {
+			if (error) {
+				throw error;
+			}
+
+			localStorage[_this.source] = JSON.stringify(data);
 
 			data.forEach(function (d) {
 				//d.date = parseDate(d.date);
-				d.population = +d.population;
+				d.value = +d.value;
 			});
 
-			x.domain(data.map(function (d) { return d.age; }));
-			y.domain([0, d3.max(data, function (d) { return d.population; })]);
+			x.domain(data.map(function (d) { return d.process; }));
+			y.domain([0, d3.max(data, function (d) { return d.value; })]);
 
 			svg.append("g")
 				.attr("class", "x axis")
@@ -84,11 +90,11 @@ function Bar(width, height) {
 				.data(data)
 				.enter()
 				.append("rect")
-				.style("fill", function(d) { return _this.color(d.age); })
-				.attr("x", function (d) { return x(d.age) + 5; })
-				.attr("y", function (d) { return y(d.population); })
+				.style("fill", function(d) { return _this.color(d.process); })
+				.attr("x", function (d) { return x(d.process) + 5; })
+				.attr("y", function (d) { return y(d.value); })
 				.attr("width", x.rangeBand() - 10)
-				.attr("height", function (d) { return height - y(d.population); });
+				.attr("height", function (d) { return height - y(d.value); });
 
 			var cache_color;
 			svg.selectAll("rect")
@@ -103,10 +109,10 @@ function Bar(width, height) {
 						.style("fill", "rgb(" + colour.r + ", " + colour.g + ", " + colour.b + ")")
 						.style("border","1px solid black");
 					tooltip
-						.style("top", y(d.population) + 40 + "px")
-						.style("left", x(d.age) + 40 + (cache_width/2) + "px")
+						.style("top", y(d.value) + 40 + "px")
+						.style("left", x(d.process) + 40 + (cache_width / 2) + "px")
 						.style("display", "block")
-						.html("<p>" + d.population + "</p>");
+						.html("<p>" + d.value + "</p>");
 				})
 				.on("mouseout", function (d) {
 					d3.select(this).style("fill", cache_color).style("border","none");

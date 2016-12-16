@@ -7,12 +7,15 @@
  *
  * @param width
  * @param height
+ * @param arguments
  * @constructor
  */
-function Graphic(width, height) {
-	this.name = '';
+function Graphic(width, height, arguments) {
     this.width = width;
     this.height = height;
+	this.name = arguments.callee.name.toLowerCase();
+	this.source = 'data/' + this.name + '.json';
+	this.config_filename = this.name + '.config';
 }
 
 /**
@@ -39,7 +42,16 @@ Graphic.prototype.configure_base = function(data, error) {
 		this.color = d3.scale.ordinal().range(data.colors);
 	}
 
-	this.config = data;
+	for (var key in data) {
+		if (typeof key === 'undefined') {
+			continue;
+		}
+		this[key] = data[key];
+	}
+
+	if (!data.source) {
+		data.source = this.source;
+	}
 
 	localStorage[this.config_filename] = JSON.stringify(data);
 };
@@ -63,8 +75,7 @@ Graphic.prototype.process = function(tag_id) {};
  */
 Graphic.prototype.draw = function(tag_id) {
 	var _this = this;
-	this.config_filename = this.name + '.config';
-	this.id = tag_id.replace("#", "");
+	this.id = tag_id.replace('#', '');
 
 	if (localStorage[this.config_filename] === undefined) {
 		//Asynchronous json reading
@@ -76,6 +87,11 @@ Graphic.prototype.draw = function(tag_id) {
 		this.configure(JSON.parse(localStorage[this.config_filename]), null);
 		this.process(tag_id);
 	}
+};
+
+Graphic.prototype.drawing = function (error, data) {
+	this.configure(data, error);
+	this.process(this.id);
 };
 
 /**
@@ -94,5 +110,28 @@ Graphic.prototype.update = function(tag_id) {
  * @returns {string}
  */
 Graphic.prototype.getFooter = function() {
-	return '';
+	return '<span><a href="ts.autobox.com">ts.autobox.com</a></span>';
+};
+
+/**
+ * Update the Data source {network or filepath}
+ * @param path
+ */
+Graphic.prototype.setSource = function(path) {
+	data = JSON.parse(localStorage[this.config_filename]);
+	data.source = path;
+	localStorage[this.config_filename] = JSON.stringify(data);
+};
+
+/**
+ * Fetch to localStorage the current data from file.
+ */
+Graphic.prototype.fetchData = function() {
+	var _this = this;
+	if (!this.source) {
+		this.source = 'data/' + this.name + '.json';
+	}
+	d3.json(this.source, function (error, data) {
+		localStorage[_this.source] = JSON.stringify(data);
+	});
 };

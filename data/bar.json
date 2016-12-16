@@ -1,42 +1,42 @@
 [
 	{
-		"age":"primer",
-		"population":270
+		"process":"primer",
+		"value":270
 	},
 	{
-		"age":"segundo",
-		"population":449
+		"process":"segundo",
+		"value":449
 	},
 	{
-		"age":"tercero",
-		"population":215
+		"process":"tercero",
+		"value":215
 	},
 	{
-		"age":"cuarto",
-		"population":385
+		"process":"cuarto",
+		"value":385
 	},
 	{
-		"age":"quinto",
-		"population":1410
+		"process":"quinto",
+		"value":1410
 	},
 	{
-		"age":"sexto",
-		"population":981
+		"process":"sexto",
+		"value":981
 	},
 	{
-		"age":"septimo",
-		"population":450
+		"process":"septimo",
+		"value":450
 	},
 	{
-		"age":"octavo",
-		"population":819
+		"process":"octavo",
+		"value":819
 	},
 	{
-		"age":"noveno",
-		"population":502
+		"process":"noveno",
+		"value":502
 	},
 	{
-		"age":"decimo",
-		"population":400
+		"process":"decimo",
+		"value":400
 	}
 ]

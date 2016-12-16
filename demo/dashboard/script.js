@@ -1,6 +1,6 @@
 angular.module('app')
 
-.directive( 'drawGraph', function() {
+.directive('drawGraph', function() {
 	return {
 		link: function( scope, element, attrs ) {
 
@@ -23,7 +23,10 @@ angular.module('app')
 			/**
 			 * Update the graph, by getting the div ID, then clearing the target Div and render inside it.
 			 */
-			function updateGraph() {
+			function updateGraph(object) {
+				//console.log(object.targetScope.gridsterItem);
+				//console.log(element[0]);
+				//console.log(attrs);
 				element.css('height', (element[0].parentElement.clientHeight - 100) + 'px');
 				var ID = element[0].id;
 				if (isNaN(ID) && !isAngularModelVar(ID)) {
@@ -44,6 +47,43 @@ angular.module('app')
 			scope.$on('gridster-resized',             updateGraph);
 			scope.$on('gridster-resizable-changed',   updateGraph);
 			scope.$on('gridster-item-initialized',    updateGraph);
+		}
+	};
+})
+
+.directive('codemirrorShow', function() {
+	return {
+		link: function( scope, element, attrs ) {
+			/**
+			 * Called when the settings form is loaded
+			 */
+			element.ready(function() {
+				var editorConfig = CodeMirror.fromTextArea(document.getElementById("cmconfig"), {
+					lineNumbers: true,
+					indentUnit: 4,
+					matchBrackets: true,
+					autoCloseBrackets: true,
+					mode: "application/ld+json",
+					lineWrapping: true
+				});
+				setTimeout(function() {
+					console.log('refresh');
+					editorConfig.refresh();
+				}, 1000);
+
+				var editorData = CodeMirror.fromTextArea(document.getElementById("cmdata"), {
+					lineNumbers: true,
+					indentUnit: 4,
+					matchBrackets: true,
+					autoCloseBrackets: true,
+					mode: "application/ld+json",
+					lineWrapping: true
+				});
+				setTimeout(function() {
+					console.log('refresh 2');
+					editorData.refresh();
+				}, 1000);
+			});
 		}
 	};
 })
@@ -83,8 +123,8 @@ angular.module('app')
 	}
 }])
 
-.controller('DashboardCtrl', ['$scope', '$timeout', '$sce',
-	function($scope, $timeout, $sce) {
+.controller('DashboardCtrl', ['$scope', '$timeout', '$sce', '$http', '$window',
+	function($scope, $timeout, $sce, $http, $window) {
 
 		$scope.getRandom = function(min, max) {
 			return Math.random() * (max - min) + min;
@@ -94,17 +134,47 @@ angular.module('app')
 
 		$scope.gridsterOptions = {
 			margins: [20, 20],
-			columns: 4,
+			columns: 6,
 			draggable: {
 				handle: 'h3'
 			}
 		};
 
-		$scope.dashboards = CONFIG_DASHBOARD;
+		$scope.loadDashboard = function() {
+			//Get data from DB
+			var request = {
+				method: "POST",
+				url: "http://localhost:3000/dashboard",
+				dataType: 'json',
+				data: {
+					method: 'fetch'
+				},
+				headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+			};
+
+			$http(request).then(
+				function(response, status, headers, config)	{
+					CONFIG_DASHBOARD[1].widgets = response.data;
+					$scope.loadDashboard = CONFIG_DASHBOARD;
+				}
+				,function(response, status, headers, config) {
+					if (typeof localStorage['CONFIG_DASHBOARD'] !== 'undefined') {
+						console.log(localStorage['CONFIG_DASHBOARD']);
+						//CONFIG_DASHBOARD = localStorage['CONFIG_DASHBOARD'];
+						//$scope.loadDashboard = CONFIG_DASHBOARD;
+					}
+				}
+			);
+
+			return CONFIG_DASHBOARD;
+		};
+
+		$scope.dashboards = $scope.loadDashboard();
 
 		$scope.clear = function() {
 			$scope.dashboard.widgets = [];
 		};
+
 
 		$scope.addWidget = function(type) {
 			var hasher1 = new jsSHA('SHA-1', 'BYTES');
@@ -121,7 +191,7 @@ angular.module('app')
 				name: "New Widget",
 				sizeX: 1,
 				sizeY: 1,
-				id: /*type + '_' +*/ widgetIndex,
+				id: widgetIndex,
 				text: html_text,
 				type: type
 			});
@@ -138,14 +208,49 @@ angular.module('app')
 		// init dashboard
 		$scope.selectedDashboardId = '1';
 
+		$scope.onExit = function() {
+			//return ('"Do you really want to close?";');
+		};
+
+		$window.onbeforeunload =  $scope.onExit;
+
 	}
 ])
 
-.controller('CustomWidgetCtrl', ['$scope', '$modal',
-	function($scope, $modal) {
+.controller('CustomWidgetCtrl', ['$scope', '$modal', '$http',
+	function($scope, $modal, $http) {
 		$scope.display = false;
+		$scope.displaySource = false;
+		$scope.belong_group = 0;
 
 		$scope.remove = function(widget) {
+
+			var request = {
+				method: "POST",
+				url: "http://localhost:3000/widget",
+				dataType: 'json',
+				data: {
+					param: widget,
+					method: 'remove'
+				},
+				headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+			};
+
+			$http(request)
+				.then(function(response, status, headers, config)
+					{
+						$timeout(function() {
+							window.alert(response.data.Result);
+						});
+					}
+					,function(response, status, headers, config)
+					{
+						$timeout(function() {
+							window.alert(response.data);
+						});
+					}
+				);
+
 			$scope.dashboard.widgets.splice($scope.dashboard.widgets.indexOf(widget), 1);
 		};
 
@@ -166,6 +271,15 @@ angular.module('app')
 			$scope.display =!$scope.display;
 		};
 
+		$scope.showSourceList = function(widget) {
+			$scope.belong_group = (new GraphHandler()).doesBelongToSourceGroup(widget.type);
+			if ($scope.belong_group === false) {
+				return;
+			}
+			$scope.sources = (new GraphHandler()).getSourceNames($scope.belong_group);
+			$scope.displaySource =!$scope.displaySource;
+		};
+
 		$scope.update = function(widget) {
 			angular.element(document.querySelector("#" + widget.id)).empty();
 			var width = WidgetCache.getWidth(widget);
@@ -174,12 +288,12 @@ angular.module('app')
 			graph.update("#" + widget.id);
 		};
 
-		$scope.changeSource = function(widget) {
-			alert("Under construction.");
-		};
-
 		$scope.isShowing = function() {
 			return $scope.display;
+		};
+
+		$scope.isShowingSource = function() {
+			return $scope.displaySource;
 		};
 
 		$scope.changeGraphTo = function(widget, to) {
@@ -192,25 +306,55 @@ angular.module('app')
 			$scope.display = false;
 		};
 
+		$scope.changeSource = function(widget, new_source) {
+			angular.element(document.querySelector("#" + widget.id)).empty();
+			var width = WidgetCache.getWidth(widget);
+			var height = WidgetCache.getHeight(widget);
+			//var graph = factory.graphics(widget);
+			eval("var graph = new " + widget.type + "(" + width + ", " + height + ");");
+			graph.setSource(new_source);
+			graph.draw("#" + widget.id);
+		};
+
 		$scope.modules = (new GraphHandler()).getClassesNames();
+
+		$scope.sources = (new GraphHandler()).getSourceNames($scope.belong_group);
 
 	}
 ])
 
-.controller('WidgetSettingsCtrl', ['$scope', '$timeout', '$rootScope', '$modalInstance', 'widget',
-	function($scope, $timeout, $rootScope, $modalInstance, widget) {
+.controller('WidgetSettingsCtrl', ['$scope', '$timeout', '$rootScope', '$modalInstance', 'widget', '$http', '$httpParamSerializerJQLike',
+	function($scope, $timeout, $rootScope, $modalInstance, widget, $http, $httpParamSerializerJQLike) {
 		$scope.widget = widget;
 
+		$scope.getSource = function() {
+			eval("var graphic = new " + widget.type + "(0,0);");
+			return graphic.source;
+		};
+
+		$scope.getConfiguration = function() {
+			eval("var graphic = new " + widget.type + "(0,0);");
+            obj = JSON.parse(localStorage[graphic.config_filename]);
+			return JSON.stringify(obj, null, 4);
+		};
+
+		$scope.getData = function() {
+			eval("var graphic = new " + widget.type + "(0,0);");
+			obj = JSON.parse(localStorage[graphic.source]);
+			return JSON.stringify(obj, null, 4);
+		};
+
 		$scope.form = {
-			id: widget.id,
-			name: widget.name,
+			id:    widget.id,
+			name:  widget.name,
 			sizeX: widget.sizeX,
 			sizeY: widget.sizeY,
-			col: widget.col,
-			row: widget.row,
-			type: widget.type,
-			source: 'File',
-			old_type: widget.type
+			col:   widget.col,
+			row:   widget.row,
+			type:  widget.type,
+			source: $scope.getSource(),
+			config: $scope.getConfiguration(),
+			data:   $scope.getData()
 		};
 
 		$scope.sizeOptions = [{
@@ -232,14 +376,87 @@ angular.module('app')
 		};
 
 		$scope.remove = function() {
+
 			$scope.dashboard.widgets.splice($scope.dashboard.widgets.indexOf(widget), 1);
+
+			var request = {
+				method: "POST",
+				url: "http://localhost:3000/widget",
+				dataType: 'json',
+				data: {
+					param: widget,
+					method: 'remove'
+				},
+				headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+			};
+
+			$http(request)
+				.then(function(response, status, headers, config)
+					{
+						$timeout(function() {
+							window.alert(response.data.Result);
+						});
+					}
+					,function(response, status, headers, config)
+					{
+						$timeout(function() {
+							window.alert(response.data);
+						});
+					}
+				);
 			$modalInstance.close();
+		};
+
+		$scope.saveIntoDB = function(widget_form) {
+
+			var widget_config = {
+				content: JSON.parse(widget_form.config)
+			};
+			localStorage[widget.type.toLowerCase() + '.config'] = JSON.stringify(widget_config.content);
+
+			var widget_data = {
+				content: JSON.parse(widget_form.data)
+			};
+			localStorage[widget_form.id + 'data'] = JSON.stringify(widget_data.content);
+
+			delete widget_form.config;
+			delete widget_form.data;
+
+			var request = {
+				method: "POST",
+				url: "http://localhost:3000/widget",
+				dataType: 'json',
+				data: {
+					param:  widget_form,
+					config: widget_config,
+					data:   widget_data,
+					method: 'save'
+				},
+				headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+			};
+
+			$http(request)
+				.then(function(response, status, headers, config)
+					{
+						$timeout(function(){
+							window.alert(response.data.Result);
+						});
+					}
+					,function(response, status, headers, config)
+					{
+						$timeout(function(){
+							window.alert(response.data);
+						});
+					}
+				);
 		};
 
 		$scope.submit = function() {
 			angular.extend(widget, $scope.form);
 
 			$modalInstance.close(widget);
+
+			$scope.saveIntoDB($scope.form);
 
 			//$scope.$parent.$$listeners.gridster-item-initialized[0].updateGraph();
 			var _Class = $scope.form.type;
@@ -257,8 +474,15 @@ angular.module('app')
 
 		$scope.typeGraph = (new GraphHandler()).getClassesNames();
 
-		$scope.dataSources = ['Network', 'File'];
+		$scope.tab = 1;
 
+		$scope.setTab = function(newTab) {
+			$scope.tab = newTab;
+		};
+
+		$scope.isSet = function(tabNum) {
+			return $scope.tab === tabNum;
+		};
 	}
 ])
 

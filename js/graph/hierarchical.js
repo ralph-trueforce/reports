@@ -10,8 +10,8 @@
  */
 function Hierarchical(width, height) {
 	this.base = Cartesian;
-	this.base(width, height); //call super constructor.
-	this.name = arguments.callee.name.toLowerCase();
+	this.base(width, height, arguments); //call super constructor.
+	//this.name = arguments.callee.name.toLowerCase();
 
     /**
      * Draw function member
@@ -41,7 +41,7 @@ function Hierarchical(width, height) {
             .append("g")
             .attr("transform", "translate(" + this.margin.left + "," + this.margin.top + ")");
 
-		d3.select(tag_id).style("background-color", this.config.background_color);
+		d3.select(tag_id).style("background-color", this.background_color);
 
         svg.append("rect")
             .attr("class", "background")
@@ -58,7 +58,11 @@ function Hierarchical(width, height) {
             .attr("y1", "100%");
 
         d3.json("data/hierarchical.json", function (error, root) {
-            if (error) throw error;
+			if (error) {
+				throw error;
+			}
+
+			localStorage[_this.source] = JSON.stringify(root);
 
             partition.nodes(root);
             x.domain([0, root.value]).nice();
@@ -67,7 +71,7 @@ function Hierarchical(width, height) {
 
         function down(d, i) {
             if (!d.children || this.__transition__) return;
-            var end = _this.config.duration + d.children.length * _this.config.delay;
+            var end = _this.duration + d.children.length * _this.delay;
 
             // Mark any currently-displayed bars as exiting.
             var exit = svg.selectAll(".enter")
@@ -97,17 +101,17 @@ function Hierarchical(width, height) {
 
             // Update the x-axis.
             svg.selectAll(".x.axis").transition()
-                .duration(_this.config.duration)
+                .duration(_this.duration)
                 .call(xAxis);
 
             // Transition entering bars to their new position.
             var enterTransition = enter.transition()
-                .duration(_this.config.duration)
+                .duration(_this.duration)
                 .delay(function (d, i) {
-                    return i * _this.config.delay;
+                    return i * _this.delay;
                 })
                 .attr("transform", function (d, i) {
-                    return "translate(0," + _this.config.barHeight * i * 1.2 + ")";
+                    return "translate(0," + _this.barHeight * i * 1.2 + ")";
                 });
 
             // Transition entering text.
@@ -125,7 +129,7 @@ function Hierarchical(width, height) {
 
             // Transition exiting bars to fade out.
             var exitTransition = exit.transition()
-                .duration(_this.config.duration)
+                .duration(_this.duration)
                 .style("opacity", 1e-6)
                 .remove();
 
@@ -146,7 +150,7 @@ function Hierarchical(width, height) {
 
         function up(d) {
             if (!d.parent || this.__transition__) return;
-            var end = _this.config.duration + d.children.length * _this.config.delay;
+            var end = _this.duration + d.children.length * _this.delay;
 
             // Mark any currently-displayed bars as exiting.
             var exit = svg.selectAll(".enter")
@@ -155,7 +159,7 @@ function Hierarchical(width, height) {
             // Enter the new bars for the clicked-on data's parent.
             var enter = bar(d.parent)
                 .attr("transform", function (d, i) {
-                    return "translate(0," + _this.config.barHeight * i * 1.2 + ")";
+                    return "translate(0," + _this.barHeight * i * 1.2 + ")";
                 })
                 .style("opacity", 1e-6);
 
@@ -177,7 +181,7 @@ function Hierarchical(width, height) {
 
             // Update the x-axis.
             svg.selectAll(".x.axis").transition()
-                .duration(_this.config.duration)
+                .duration(_this.duration)
                 .call(xAxis);
 
             // Transition entering bars to fade in over the full duration.
@@ -197,9 +201,9 @@ function Hierarchical(width, height) {
 
             // Transition exiting bars to the parent's position.
             var exitTransition = exit.selectAll("g").transition()
-                .duration(_this.config.duration)
+                .duration(_this.duration)
                 .delay(function (d, i) {
-                    return i * _this.config.delay;
+                    return i * _this.delay;
                 })
                 .attr("transform", stack(d.index));
 
@@ -241,7 +245,7 @@ function Hierarchical(width, height) {
 
             bar.append("text")
                 .attr("x", -6)
-                .attr("y", _this.config.barHeight / 2)
+                .attr("y", _this.barHeight / 2)
                 .attr("dy", ".35em")
                 .style("text-anchor", "end")
                 .text(function (d) {
@@ -252,7 +256,7 @@ function Hierarchical(width, height) {
                 .attr("width", function (d) {
                     return x(d.value);
                 })
-                .attr("height", _this.config.barHeight);
+                .attr("height", _this.barHeight);
 
             return bar;
         }
@@ -261,7 +265,7 @@ function Hierarchical(width, height) {
         function stack(i) {
             var x0 = 0;
             return function (d) {
-                var tx = "translate(" + x0 + "," + _this.config.barHeight * i * 1.2 + ")";
+                var tx = "translate(" + x0 + "," + _this.barHeight * i * 1.2 + ")";
                 x0 += x(d.value);
                 return tx;
             };

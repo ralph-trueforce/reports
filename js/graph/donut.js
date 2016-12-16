@@ -11,8 +11,9 @@
  */
 function Donut(width, height) {
 	this.base = Round;
-	this.base(width, height); //call super constructor.
-	this.name = arguments.callee.name.toLowerCase();
+	this.base(width, height, arguments); //call super constructor.
+	//this.name = arguments.callee.name.toLowerCase();
+	//this.source = 'data/donut.json';
 
     /**
      * Process member function
@@ -25,17 +26,17 @@ function Donut(width, height) {
 
         var pie = d3.layout.pie()
 			.value(function(d) {
-				return d.count;
+				return d.value;
 			})
 			.sort(null);
 
         var arc = d3.svg.arc()
-			.innerRadius(this.radius - this.config.inner_radius)
-			.outerRadius(this.radius - this.config.outer_radius);
+			.innerRadius(this.radius - this.inner_radius)
+			.outerRadius(this.radius - this.outer_radius);
 
 		var arcOver = d3.svg.arc()
-			.innerRadius(this.radius - this.config.inner_radius+10)
-			.outerRadius(this.radius - this.config.outer_radius+10);
+			.innerRadius(this.radius - this.inner_radius + 10)
+			.outerRadius(this.radius - this.outer_radius + 10);
 
         //Creates svg canvas
         var svg = d3.select(tag_id).append("svg")
@@ -44,9 +45,9 @@ function Donut(width, height) {
             .append("g")
             .attr("transform", "translate(" + this.width / 2 + "," + this.height / 2 + ")");
 
-		d3.select(tag_id).style("background-color", this.config.background_color);
+		d3.select(tag_id).style("background-color", this.background_color);
 
-		var tooltip_config = this.config.tooltip;
+		var tooltip_config = this.tooltip;
 		var tooltip = d3.select(tag_id).append("div")
 			.attr("id",        tooltip_config.name + this.id)
 			.style("position", tooltip_config.position)
@@ -71,15 +72,19 @@ function Donut(width, height) {
 			.attr("id", span_config.id)
 			.style("color", span_config.color);
 
-		d3.json("data/donut.json", function(error, dataset) {
-			if (error) throw error;
+		d3.json(this.source, function(error, dataset) {
+			if (error) {
+				throw error;
+			}
+
+			localStorage[_this.source] = JSON.stringify(dataset);
 
 			var path = svg.selectAll("path")
 				.data(pie(dataset))
 				.enter()
 				.append("path")
 				.attr("fill", function (d, i) {
-                    return _this.color(d.data.label);
+                    return _this.color(d.data.process);
 				})
 				.attr("d", arc);
 
@@ -92,7 +97,7 @@ function Donut(width, height) {
 					return d.value / 10;
 				});
 
-			var config_slice = _this.config.slice;
+			var config_slice = _this.slice;
 			path.on("mouseover", function (d) {
 					d3.select(this).transition()
 						.duration(config_slice.mouseover.duration)
@@ -102,7 +107,7 @@ function Donut(width, height) {
 						.style("top",  d3.event.layerY + "px")
 						.style("display", config_slice.mouseover.elements[0].style.display)
 						.select(config_slice.mouseover.elements[1].id)
-						.html("<p>Asset: " + d.data.label + "<br/> Count: " + d.data.count + "</p>");//TODO: needs you know what
+						.html("<p>Asset: " + d.data.process + "<br/> Count: " + d.data.value + "</p>");//TODO: needs you know what
 				})
 				.on("mouseout", function (d) {
 					d3.select(this).transition()
@@ -119,22 +124,22 @@ function Donut(width, height) {
 				.append('g')
 				.attr('class', 'legend')
 				.attr('transform', function(d, i) {
-					var height = _this.config.legendRectSize + _this.config.legendSpacing;
+					var height = _this.legendRectSize + _this.legendSpacing;
 					var offset =  height * _this.color.domain().length / 2;
-					var horz = -2 * _this.config.legendRectSize;
+					var horz = -2 * _this.legendRectSize;
 					var vert = i * height - offset;
 					return 'translate(' + horz + ',' + vert + ')';
 				});
 
 			legend.append('rect')
-				.attr('width', _this.config.legendRectSize)
-				.attr('height', _this.config.legendRectSize)
+				.attr('width', _this.legendRectSize)
+				.attr('height', _this.legendRectSize)
 				.style('fill', _this.color)
 				.style('stroke', _this.color);
 
 			legend.append('text')
-				.attr('x', _this.config.legendRectSize + _this.config.legendSpacing)
-				.attr('y', _this.config.legendRectSize - _this.config.legendSpacing)
+				.attr('x', _this.legendRectSize + _this.legendSpacing)
+				.attr('y', _this.legendRectSize - _this.legendSpacing)
 				.text(function(d) { return d; });
 		});
     };

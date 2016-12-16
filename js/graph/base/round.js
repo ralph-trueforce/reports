@@ -7,12 +7,13 @@
  *
  * @param width
  * @param height
+ * @param arguments
  * @constructor
  */
-function Round(width, height) {
+function Round(width, height, arguments) {
 	this.base = Graphic;
-	this.base(width, height); //call super constructor.
-	this.name = arguments.callee.name.toLowerCase();
+	this.base(width, height, arguments); //call super constructor.
+	//this.name = arguments.callee.name.toLowerCase();
 
     this.radius = Math.min(width, height) / 2;
 

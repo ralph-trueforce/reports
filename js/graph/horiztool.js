@@ -9,8 +9,8 @@
 function Horiztool(width, height) {
 
     this.base = Cartesian;
-    this.base(width, height); //call super constructor.
-    this.name = arguments.callee.name.toLowerCase();
+    this.base(width, height, arguments); //call super constructor.
+    //this.name = arguments.callee.name.toLowerCase();
 
     //TODO: Should be a private function
     this.process = function (tag_id) {
@@ -44,9 +44,15 @@ function Horiztool(width, height) {
             .append("g")
             .attr("transform", "translate(" + this.margin.left + "," + this.margin.top + ")");
 
-        d3.select(tag_id).style("background-color", this.config.background_color);
+        d3.select(tag_id).style("background-color", this.background_color);
 
         d3.json("data/datax.json", function (error, data) {
+			if (error) {
+				throw error;
+			}
+
+			localStorage[_this.source] = JSON.stringify(data);
+
             x.domain([0, d3.max(data, function (d) {
                 return d.frequency;
             })]);
@@ -57,21 +63,21 @@ function Horiztool(width, height) {
             svg.append("g")
                 .attr("class", "x axis")
                 .attr("transform", "translate(0," + height + ")")
-                .attr("font-size", _this.config.fontSize)
-                .attr("font-family", _this.config.fontType)
+                .attr("font-size", _this.fontSize)
+                .attr("font-family", _this.fontType)
                 .call(xAxis)
                 .append("text")
                 .attr("transform", "rotate(0)")
                 .attr("y", 6)
                 .attr("dy", "1.91em")
                 .style("text-anchor", "start")
-                .style("font-size", _this.config.fontSize)
+                .style("font-size", _this.fontSize)
                 .text("Frequency");
 
             svg.append("g")
                 .attr("class", "y axis")
-                .attr("font-size", _this.config.fontSize)
-                .attr("font-family", _this.config.fontType)
+                .attr("font-size", _this.fontSize)
+                .attr("font-family", _this.fontType)
                 .call(yAxis);
 
             svg.select(".y.axis path")
@@ -106,7 +112,7 @@ function Horiztool(width, height) {
                 })
                 .on("mouseover", function () {
                     d3.select(this)
-                        .attr("fill", _this.config.barfillColor);
+                        .attr("fill", _this.barfillColor);
                 })
                 .on("mouseout", function (d, i) {
                     d3.select(this).attr("fill", function () {

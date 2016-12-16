@@ -8,8 +8,8 @@
 
 function Linest(width, height) {
     this.base = Cartesian;
-    this.base(width, height); //call super constructor.
-    this.name = arguments.callee.name.toLowerCase();
+    this.base(width, height, arguments); //call super constructor.
+    //this.name = arguments.callee.name.toLowerCase();
 
     //TODO: Should be a private function
     this.process = function (tag_id) {
@@ -64,14 +64,19 @@ function Linest(width, height) {
             .append("svg")
             .attr("width", width + this.margin.left + this.margin.right)
             .attr("height", height + this.margin.top + this.margin.bottom)
-            .attr("font-size", _this.config.fontSize)
-            .attr("font-family", _this.config.fontType)
+            .attr("font-size", _this.fontSize)
+            .attr("font-family", _this.fontType)
             .append("g")
             .attr("transform",
                 "translate(" + this.margin.left + "," + this.margin.top + ")");
 
         // Get the data
         d3.json("data/datum.json", function (error, data) {
+			if (error) {
+				throw error;
+			}
+
+			localStorage[_this.source] = JSON.stringify(data);
 
             data.forEach(function (d) {
                 d.date = parseDate(d.date);
@@ -89,7 +94,7 @@ function Linest(width, height) {
             // Add the valueline path.
             svg.append("path")
                 .attr("class", "line")
-                .attr("stroke", _this.config.lineColor)
+                .attr("stroke", _this.lineColor)
                 .attr("fill", "none")
                 .attr("stroke-width", 2)
                 .attr("d", valueline(data));
@@ -124,7 +129,7 @@ function Linest(width, height) {
                 .attr("class", "x axis")
                 .attr("transform", "translate(0," + height + ")")
                 // .style("fill", "none")
-                .style("stroke", _this.config.fontColor)
+                .style("stroke", _this.fontColor)
                 .style("stroke-width", 1)
                 .style("shape-rendering", "crispEdges")
                 .call(xAxis);
@@ -133,7 +138,7 @@ function Linest(width, height) {
             svg.append("g")
                 .attr("class", "y axis")
                 // .style("fill", "none")
-                .style("stroke", _this.config.fontColor)
+                .style("stroke", _this.fontColor)
                 .style("stroke-width", 1)
                 .style("shape-rendering", "crispEdges")
                 .call(yAxis);

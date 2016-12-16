@@ -7,8 +7,9 @@
  */
 function Pie(width, height) {
 	this.base = Round;
-	this.base(width, height); //call super constructor.
-	this.name = arguments.callee.name.toLowerCase();
+	this.base(width, height, arguments); //call super constructor.
+	//this.name = arguments.callee.name.toLowerCase();
+	//this.source = 'data/pie.json';
 
 	//TODO: Should be a private function
 	this.process = function(tag_id) {
@@ -30,7 +31,7 @@ function Pie(width, height) {
 		var pie = d3.layout.pie()
 			.sort(null)
 			.value(function (d) {
-				return d.population;
+				return d.value;
 			});
 
 		var svg = d3.select(tag_id).append("svg")
@@ -39,10 +40,10 @@ function Pie(width, height) {
 			.append("g")
 			.attr("transform", "translate(" + this.width / 2 + "," + this.height / 2 + ")");
 
-		d3.select(tag_id).style("background-color", this.config.background_color);
+		d3.select(tag_id).style("background-color", this.background_color);
 
 		//Tooltip needs to be refactor, must be as a lib for all the graphs
-		var tooltip_config = this.config.tooltip;
+		var tooltip_config = this.tooltip;
 		var tooltip = d3.select(tag_id).append("div")
 			.attr("id",        tooltip_config.name + this.id)
 			.style("position", tooltip_config.position)
@@ -68,10 +69,14 @@ function Pie(width, height) {
 			.style("color", span_config.color);
 
 		//Json data input
-		d3.json("data/pie.json", function (error, data) {
-			if (error) throw error;
+		d3.json(this.source, function (error, data) {
+			if (error) {
+				throw error;
+			}
 
-			var config_slice = _this.config.slice;
+			localStorage[_this.source] = JSON.stringify(data);
+
+			var config_slice = _this.slice;
 			var g = svg.selectAll(".arc")
 				.data(pie(data))
 				.enter()
@@ -87,7 +92,7 @@ function Pie(width, height) {
 						.style("top",  d3.event.layerY + "px")
 						.style("display", config_slice.mouseover.elements[0].style.display)
 						.select(config_slice.mouseover.elements[1].id)
-						.html("<p>Age: " + d.data.age + "<br/> Population: " + d.data.population + "</p>");//TODO: needs you know what
+						.html("<p>Age: " + d.data.process + "<br/> Population: " + d.data.value + "</p>");//TODO: needs you know what
 				})
 				.on("mouseout", function (d) {
 					d3.select(this).select("path").transition()
@@ -101,7 +106,7 @@ function Pie(width, height) {
 			g.append("path")
 				.attr("d", arc)
 				.style("fill", function (d) {
-					return _this.color(d.data.age);
+					return _this.color(d.data.process);
 				});
 
 			g.append("text")
@@ -113,7 +118,7 @@ function Pie(width, height) {
 				.style("font-size",   config_slice.text.font_size)
 				.style("fill",        config_slice.text.font_color)
 				.text(function (d) {
-					return d.data.age;
+					return d.data.process;
 				});
 		});
 	};

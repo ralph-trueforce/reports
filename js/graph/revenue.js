@@ -11,8 +11,8 @@
  */
 function Revenue(width, height) {
 	this.base = Cartesian;
-	this.base(width, height); //call super constructor.
-	this.name = arguments.callee.name.toLowerCase();
+	this.base(width, height, arguments); //call super constructor.
+	// this.name = arguments.callee.name.toLowerCase();
 
     /**
      * process function member
@@ -26,9 +26,11 @@ function Revenue(width, height) {
 
 		//Set up stack method
         var stack = d3.layout.stack();
-		d3.select(tag_id).style("background-color", this.config.background_color);
+		d3.select(tag_id).style("background-color", this.background_color);
 
         d3.json("data/revenue.json", function (dataset) {
+
+			localStorage[_this.source] = JSON.stringify(dataset);
 
             //Data, stacked
             stack(dataset);
@@ -36,7 +38,7 @@ function Revenue(width, height) {
             //Set up scales
             var xScale = d3.time.scale()
                 .domain([new Date(dataset[0][0].time), d3.time.day.offset(new Date(dataset[0][dataset[0].length - 1].time), 8)])
-                .rangeRound([0, w - _this.config.padding.left - _this.config.padding.right]);
+                .rangeRound([0, w - _this.padding.left - _this.padding.right]);
 
             var yScale = d3.scale.linear()
                 .domain([0,
@@ -46,7 +48,7 @@ function Revenue(width, height) {
                         });
                     })
                 ])
-                .range([h - _this.config.padding.bottom - _this.config.padding.top, 0]);
+                .range([h - _this.padding.bottom - _this.padding.top, 0]);
 
             var xAxis = d3.svg.axis()
                 .scale(xScale)
@@ -73,9 +75,9 @@ function Revenue(width, height) {
                 .enter()
                 .append("g")
                 .attr("class", "rgroups")
-                .attr("transform", "translate(" + _this.config.padding.left + "," + (h - _this.config.padding.bottom) + ")")
+                .attr("transform", "translate(" + _this.padding.left + "," + (h - _this.padding.bottom) + ")")
                 .style("fill", function (d, i) {
-                    return _this.config.color_hash[dataset.indexOf(d)][1];
+                    return _this.color_hash[dataset.indexOf(d)][1];
                 });
 
             // Add a rect for each data value
@@ -91,36 +93,36 @@ function Revenue(width, height) {
 
             rects.transition()
                 .duration(function (d, i) {
-                    return _this.config.rects_transition_duration * i;
+                    return _this.rects_transition_duration * i;
                 })
                 .ease("linear")
                 .attr("x", function (d) {
                     return xScale(new Date(d.time));
                 })
                 .attr("y", function (d) {
-                    return -(-yScale(d.y0) - yScale(d.y) + (h - _this.config.padding.top - _this.config.padding.bottom) * 2);
+                    return -(-yScale(d.y0) - yScale(d.y) + (h - _this.padding.top - _this.padding.bottom) * 2);
                 })
                 .attr("height", function (d) {
-                    return -yScale(d.y) + (h - _this.config.padding.top - _this.config.padding.bottom);
+                    return -yScale(d.y) + (h - _this.padding.top - _this.padding.bottom);
                 })
                 .attr("width", 15)
                 .style("fill-opacity", 1);
 
             svg.append("g")
                 .attr("class", "x axis")
-                .attr("transform", "translate(40," + (h - _this.config.padding.bottom) + ")")
+                .attr("transform", "translate(40," + (h - _this.padding.bottom) + ")")
                 .call(xAxis);
 
             svg.append("g")
                 .attr("class", "y axis")
-                .attr("transform", "translate(" + _this.config.padding.left + "," + _this.config.padding.top + ")")
+                .attr("transform", "translate(" + _this.padding.left + "," + _this.padding.top + ")")
                 .call(yAxis);
 
             // adding legend
 
             var legend = svg.append("g")
                 .attr("class", "legend")
-                .attr("x", w - _this.config.padding.right - 65)
+                .attr("x", w - _this.padding.right - 65)
                 .attr("y", 25)
                 .attr("height", 100)
                 .attr("width", 100);
@@ -131,19 +133,19 @@ function Revenue(width, height) {
                 .each(function (d, i) {
                     var g = d3.select(this);
                     g.append("rect")
-                        .attr("x", w - _this.config.padding.right - 65)
+                        .attr("x", w - _this.padding.right - 65)
                         .attr("y", i * 25 + 10)
                         .attr("width", 10)
                         .attr("height", 10)
-                        .style("fill", _this.config.color_hash[String(i)][1]);
+                        .style("fill", _this.color_hash[String(i)][1]);
 
                     g.append("text")
-                        .attr("x", w - _this.config.padding.right - 50)
+                        .attr("x", w - _this.padding.right - 50)
                         .attr("y", i * 25 + 20)
                         .attr("height", 30)
                         .attr("width", 100)
-                        .style("fill", _this.config.color_hash[String(i)][1])
-                        .text(_this.config.color_hash[String(i)][0]);
+                        .style("fill", _this.color_hash[String(i)][1])
+                        .text(_this.color_hash[String(i)][0]);
                 });
 
             svg.append("text")
@@ -155,7 +157,7 @@ function Revenue(width, height) {
 
             svg.append("text")
                 .attr("class", "xtext")
-                .attr("x", w / 2 - _this.config.padding.left)
+                .attr("x", w / 2 - _this.padding.left)
                 .attr("y", h - 5)
                 .attr("text-anchor", "middle")
                 .text("Days");
@@ -171,7 +173,7 @@ function Revenue(width, height) {
 					stack(dataset);
 
 					xScale.domain([new Date(0, 0, 0, dataset[0][0].time, 0, 0, 0), new Date(0, 0, 0, dataset[0][dataset[0].length - 1].time, 0, 0, 0)])
-						.rangeRound([0, w - _this.config.padding.left - _this.config.padding.right]);
+						.rangeRound([0, w - _this.padding.left - _this.padding.right]);
 
 					yScale.domain([0,
 						d3.max(dataset, function (d) {
@@ -180,7 +182,7 @@ function Revenue(width, height) {
 							});
 						})
 					])
-						.range([h - _this.config.padding.bottom - _this.config.padding.top, 0]);
+						.range([h - _this.padding.bottom - _this.padding.top, 0]);
 
 					xAxis.scale(xScale)
 						.ticks(d3.time.hour, 2)
@@ -195,7 +197,7 @@ function Revenue(width, height) {
 
 					groups.enter().append("g")
 						.attr("class", "rgroups")
-						.attr("transform", "translate(" + _this.config.padding.left + "," + (h - _this.config.padding.bottom) + ")")
+						.attr("transform", "translate(" + _this.padding.left + "," + (h - _this.padding.bottom) + ")")
 						.style("fill", function (d, i) {
 							return color(i);
 						});
@@ -212,30 +214,30 @@ function Revenue(width, height) {
 						.style("fill-opacity", 1e-6);
 
 					rect.transition()
-						.duration(_this.config.transition_duration)
+						.duration(_this.transition_duration)
 						.ease("linear")
 						.attr("x", function (d) {
 							return xScale(new Date(0, 0, 0, d.time, 0, 0, 0));
 						})
 						.attr("y", function (d) {
-							return -(-yScale(d.y0) - yScale(d.y) + (h - _this.config.padding.top - _this.config.padding.bottom) * 2);
+							return -(-yScale(d.y0) - yScale(d.y) + (h - _this.padding.top - _this.padding.bottom) * 2);
 						})
 						.attr("height", function (d) {
-							return -yScale(d.y) + (h - _this.config.padding.top - _this.config.padding.bottom);
+							return -yScale(d.y) + (h - _this.padding.top - _this.padding.bottom);
 						})
 						.attr("width", 15)
 						.style("fill-opacity", 1);
 
 					rect.exit()
 						.transition()
-						.duration(_this.config.transition_duration)
+						.duration(_this.transition_duration)
 						.ease("circle")
 						.attr("x", w)
 						.remove();
 
 					groups.exit()
 						.transition()
-						.duration(_this.config.transition_duration)
+						.duration(_this.transition_duration)
 						.ease("circle")
 						.attr("x", w)
 						.remove();
@@ -243,13 +245,13 @@ function Revenue(width, height) {
 
 					svg.select(".x.axis")
 						.transition()
-						.duration(_this.config.transition_duration)
+						.duration(_this.transition_duration)
 						.ease("circle")
 						.call(xAxis);
 
 					svg.select(".y.axis")
 						.transition()
-						.duration(_this.config.transition_duration)
+						.duration(_this.transition_duration)
 						.ease("circle")
 						.call(yAxis);
 

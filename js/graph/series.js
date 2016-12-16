@@ -7,8 +7,8 @@
  */
 function Series(width, height) {
 	this.base = Cartesian;
-	this.base(width, height); //call super constructor.
-	this.name = arguments.callee.name.toLowerCase();
+	this.base(width, height, arguments); //call super constructor.
+	//this.name = arguments.callee.name.toLowerCase();
 
 	/**
 	 *
@@ -53,10 +53,14 @@ function Series(width, height) {
             .append("g")
             .attr("transform", "translate(" + this.margin.left + "," + this.margin.top + ")");
 
-		d3.select(tag_id).style("background-color", this.config.background_color);
+		d3.select(tag_id).style("background-color", this.background_color);
 
         d3.json("data/series.json", function (error, data) {
-			if (error) throw error;
+			if (error) {
+				throw error;
+			}
+
+			localStorage[_this.source] = JSON.stringify(data);
 
             _this.color.domain(d3.keys(data[0]).filter(function (key) { return key == "city"; }));
 

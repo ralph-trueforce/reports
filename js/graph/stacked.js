@@ -4,8 +4,8 @@
 
 function Stacked(width, height) {
 	this.base = Cartesian;
-	this.base(width, height); //call super constructor.
-	this.name = arguments.callee.name.toLowerCase();
+	this.base(width, height, arguments); //call super constructor.
+	//this.name = arguments.callee.name.toLowerCase();
 
 
     this.process = function (tag_id) {
@@ -61,10 +61,14 @@ function Stacked(width, height) {
             .append("g")
             .attr("transform", "translate(" + this.margin.left + "," + this.margin.top + ")");
 
-		d3.select(tag_id).style("background-color", this.config.background_color);
+		d3.select(tag_id).style("background-color", this.background_color);
 
         d3.json("data/stacked.json", function (error, data) {
-            if (error) throw error;
+			if (error) {
+				throw error;
+			}
+
+			localStorage[_this.source] = JSON.stringify(data);
 
             data.forEach(function (d) {
                 d.date = parseDate(d.date);
@@ -133,7 +137,7 @@ function Stacked(width, height) {
 
             var timeout = setTimeout(function () {
                 d3.select("input[value=\"stacked\"]").property("checked", true).each(change);
-            }, _this.config.timeout);
+            }, _this.timeout);
 
             function change() {
                 clearTimeout(timeout);
@@ -145,7 +149,7 @@ function Stacked(width, height) {
             }
 
             function transitionMultiples() {
-                var t = svg.transition().duration(_this.config.transition),
+                var t = svg.transition().duration(_this.transition),
                     g = t.selectAll(".group").attr("transform", function (d) {
                         return "translate(0," + y0(d.key) + ")";
                     });
@@ -158,7 +162,7 @@ function Stacked(width, height) {
             }
 
             function transitionStacked() {
-                var t = svg.transition().duration(_this.config.transition),
+                var t = svg.transition().duration(_this.transition),
                     g = t.selectAll(".group").attr("transform", "translate(0," + y0(y0.domain()[0]) + ")");
                 g.selectAll("rect").attr("y", function (d) {
                     return y1(d.value + d.valueOffset);

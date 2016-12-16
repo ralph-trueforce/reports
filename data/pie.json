@@ -1,30 +1,30 @@
 [
 	{
-		"age":"1999",
-		"population":194
+		"process":"1999",
+		"value":194
 	},
 	{
-		"age":"2000",
-		"population":567
+		"process":"2000",
+		"value":567
 	},
 	{
-		"age":"2001",
-		"population":1314
+		"process":"2001",
+		"value":1314
 	},
 	{
-		"age":"2002",
-		"population":793
+		"process":"2002",
+		"value":793
 	},
 	{
-		"age":"2003",
-		"population":1929
+		"process":"2003",
+		"value":1929
 	},
 	{
-		"age":"2004",
-		"population":1383
+		"process":"2004",
+		"value":1383
 	},
 	{
-		"age":"2005",
-		"population":1783
+		"process":"2005",
+		"value":1783
 	}
 ]

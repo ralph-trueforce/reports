@@ -18,5 +18,13 @@ var WidgetCache = {
 
 	setHeight: function(ID, height) {
 		localStorage[ID + "widget.height"] = height;
+	},
+
+	getSource: function(ID) {
+		return ((localStorage[widget.id + "widget.source"] !== undefined)?localStorage[widget.id + "widget.source"] : null);
+	},
+
+	setSource: function(ID, source) {
+		localStorage[ID + "widget.source"] = width;
 	}
 };

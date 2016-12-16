@@ -11,8 +11,10 @@
  */
 function Funel(width, height) {
 	this.base = Round;
-	this.base(width, height); //call super constructor.
-	this.name = arguments.callee.name.toLowerCase();
+	this.base(width, height, arguments); //call super constructor.
+	// this.name = arguments.callee.name.toLowerCase();
+	// this.source = 'data/funel.json';
+	// this.config_filename = this.name + '.config';
 
     this.process = function (tag_id) {
 
@@ -26,9 +28,9 @@ function Funel(width, height) {
             .attr("height", height)
             .append("g");
 
-		d3.select(tag_id).style("background-color", this.config.background_color);
+		d3.select(tag_id).style("background-color", this.background_color);
 
-		var config_tooltip = this.config.tooltip;
+		var config_tooltip = this.tooltip;
 		var tooltip = d3.select(tag_id).append("div")
 			.attr("id",        config_tooltip.name + this.id)
 			.style("position", config_tooltip.position)
@@ -40,7 +42,12 @@ function Funel(width, height) {
 			.style("display",  config_tooltip.display)
 			.style("opacity",  config_tooltip.opacity);
 
-        d3.json("data/funel.json", function (error, data) {
+        d3.json(this.source, function (error, data) {
+			if (error) {
+				throw error;
+			}
+
+			localStorage[_this.source] = JSON.stringify(data);
 
         	var funnel = d3.funnel()
                 .size([width, height])

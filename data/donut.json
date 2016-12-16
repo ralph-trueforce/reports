@@ -1,30 +1,30 @@
 [
 	{
-		"label": "Prospecting",
-		"count": 3
+		"process": "Prospecting",
+		"value": 3
 	},
 	{
-		"label": "Quallification",
-		"count":26
+		"process": "Quallification",
+		"value":26
 	},
 	{
-		"label": "Needs Analisys",
-		"count":8
+		"process": "Needs Analisys",
+		"value":8
 	},
 	{
-		"label": "Value Proposition",
-		"count":2
+		"process": "Value Proposition",
+		"value":2
 	},
 	{
-		"label": "Vista",
-		"count":9
+		"process": "Vista",
+		"value":9
 	},
 	{
-		"label": "Dismiss",
-		"count":9
+		"process": "Dismiss",
+		"value":9
 	},
 	{
-		"label": "management",
-		"count":14
+		"process": "management",
+		"value":14
 	}
 ]

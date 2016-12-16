@@ -11,23 +11,26 @@
  */
 function Sunburst(width, height) {
 	this.base = Round;
-	this.base(width, height); //call super constructor.
-	this.name = arguments.callee.name.toLowerCase();
+	this.base(width, height, arguments); //call super constructor.
 
     this.process = function (tag_id) {
     	var _this = this;
 
+		var width = this.width - this.margin.left - this.margin.right,
+			height = this.height - this.margin.top - this.margin.bottom;
+
 		this.color = d3.scale.category20c();
+		this.radius = Math.min(width, height) / 2;
 
         var svg = d3.select(tag_id).append("svg")
-            .attr("width", this.width)
-            .attr("height", this.height)
+            .attr("width", width)
+            .attr("height", height)
             .append("g")
-            .attr("transform", "translate(" + this.width / 2 + "," + this.height / 2 + ")");
+            .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
 
         var partition = d3.layout.partition()
             .sort(null)
-            .size([2 * Math.PI, radius * radius])
+            .size([2 * Math.PI, this.radius * this.radius])
             .value(function (d) {
                 return 1;
             });
@@ -47,7 +50,11 @@ function Sunburst(width, height) {
             });
 
         d3.json("data/sunburst.json", function (error, root) {
-            if (error) throw error;
+			if (error) {
+				throw error;
+			}
+
+			localStorage[_this.source] = JSON.stringify(root);
 
             var path = svg.datum(root).selectAll("path")
                 .data(partition.nodes)
@@ -56,7 +63,7 @@ function Sunburst(width, height) {
                     return d.depth ? null : "none";
                 }) // hide inner ring
                 .attr("d", arc)
-                .style("stroke", "#fff")
+                .style("stroke", this.stroke)
                 .style("fill", function (d) {
                     return _this.color((d.children ? d : d.parent).name);
                 })
@@ -72,11 +79,10 @@ function Sunburst(width, height) {
 						: function (d) {
 						return d.size;
 					};
-
 					path
 						.data(partition.value(value).nodes)
 						.transition()
-						.duration(_this.config.transition)
+						.duration(_this.transition)
 						.attrTween("d", arcTween);
 				});
         });
@@ -97,7 +103,7 @@ function Sunburst(width, height) {
                 return arc(b);
             };
         }
-        d3.select(self.frameElement).style("height", this.height + "px");
+        d3.select(self.frameElement).style("height", height + "px");
     };
 
     this.getFooter = function() {

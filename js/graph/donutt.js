@@ -9,8 +9,8 @@
 function Donutt(width, height) {
 
     this.base = Cartesian;
-    this.base(width, height); //call super constructor.
-    this.name = arguments.callee.name.toLowerCase();
+    this.base(width, height, arguments); //call super constructor.
+    //this.name = arguments.callee.name.toLowerCase();
 
     //TODO: Should be a private function
     this.process = function (tag_id) {
@@ -23,7 +23,7 @@ function Donutt(width, height) {
         var svg = d3.select(tag_id).append("svg")
             .attr("width", this.width - this.margin.left - this.margin.right)
             .attr("height", this.height - this.margin.top - this.margin.bottom)
-            .attr("font-family", _this.config.fontType)
+            .attr("font-family", _this.fontType)
             .attr("position", "relative");
 
         svg.append("g")
@@ -33,7 +33,7 @@ function Donutt(width, height) {
             .attr("class", "labelName");
         svg.append("g")
             .attr("class", "labelValue")
-            .attr("font-size", _this.config.fontSize)
+            .attr("font-size", _this.fontSize)
             .attr("opacity", .5);
         svg.append("g")
             .attr("class", "lines")
@@ -83,9 +83,9 @@ function Donutt(width, height) {
             .range(colorRange.range());
 
         var data = d3.json("data/datasetTotal.json", function (data) {
+			localStorage[_this.source] = JSON.stringify(data);
             change(data);
         });
-
 
         d3.selectAll("input")
             .on("change", selectDataset);
@@ -112,7 +112,7 @@ function Donutt(width, height) {
         function change(data) {
 
             /* ------- PIE SLICES -------*/
-            var slice = svg.select(".slices").selectAll("path.slice")
+            var slice = svg./*select(".slices").*/selectAll("path.slice")
                 .data(pie(data), function (d) {
                     return d.data.label
                 });
@@ -133,7 +133,7 @@ function Donutt(width, height) {
                     return function (t) {
                         return arc(interpolate(t));
                     };
-                })
+                });
             slice
                 .on("mousemove", function (d) {
                     div.style("left", d3.event.layerX + 10 + "px");
@@ -171,8 +171,8 @@ function Donutt(width, height) {
             legend.append('text')
                 .attr('x', legendRectSize + legendSpacing)
                 .attr('y', legendRectSize - legendSpacing)
-                .attr("font-family", _this.config.fontType)
-                .attr("font-size", _this.config.fontSize)
+                .attr("font-family", _this.fontType)
+                .attr("font-size", _this.fontSize)
                 .text(function (d) {
                     return d;
                 });
@@ -180,8 +180,8 @@ function Donutt(width, height) {
             /* ------- TEXT LABELS -------*/
 
             var text = svg.select(".labelName").selectAll("text")
-                .attr("font-family", _this.config.fontType)
-                .attr("font-size", _this.config.fontSize)
+                .attr("font-family", _this.fontType)
+                .attr("font-size", _this.fontSize)
                 .data(pie(data), function (d) {
                     return d.data.label
                 });

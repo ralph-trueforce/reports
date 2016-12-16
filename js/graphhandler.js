@@ -8,7 +8,11 @@ function GraphHandler () {
 	var config_graph = {
 		"Options": {
 		},
-		"classes": []
+		"classes": [],
+		"sources": [/*TODO: complete lists automatically, take a while, like parsing all the json*/
+			[{'name':'Bar','path': 'data/bar.json'}, {'name':'Donut', 'path':'data/donut.json'}, {'name':'Funel', 'path':'data/funel.json'}, {'name':'Pie', 'path':'data/pie.json'}],
+			[]
+		]
 	};
 
 	$("script.graph").each(function() {
@@ -62,5 +66,21 @@ function GraphHandler () {
 
 	this.getClassesNames = function() {
 		return config_graph.classes;
+	};
+
+	this.getSourceNames = function(type) {
+		return config_graph.sources[type];
+	};
+
+	this.doesBelongToSourceGroup = function(type) {
+		for (var group = 0; group < config_graph.sources.length; group++){
+			for (var item = 0; item < config_graph.sources[group].length; item++) {
+				if (config_graph.sources[group][item].name == type) {
+					return group;
+				}
+			}
+		}
+
+		return false;
 	}
 }

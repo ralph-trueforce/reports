@@ -11,14 +11,15 @@
  */
 function Lines(width, height) {
 	this.base = Cartesian;
-	this.base(width, height); //call super constructor.
-	this.name = arguments.callee.name.toLowerCase();
+	this.base(width, height, arguments); //call super constructor.
+	// this.name = arguments.callee.name.toLowerCase();
 
     /**
      * Process function member
      * @param tag_id
      */
     this.process = function(tag_id) {
+    	var _this = this;
         // Set the dimensions of the canvas / graph
         var width = this.width - this.margin.left - this.margin.right,
             height = this.height - this.margin.top - this.margin.bottom;
@@ -32,10 +33,10 @@ function Lines(width, height) {
 
         // Define the axes
         var xAxis = d3.svg.axis().scale(x)
-            .orient("bottom").ticks(this.config.x_axis.ticks);
+            .orient("bottom").ticks(this.x_axis.ticks);
 
         var yAxis = d3.svg.axis().scale(y)
-            .orient("left").ticks(this.config.y_axis.ticks);
+            .orient("left").ticks(this.y_axis.ticks);
 
         // Define the line
         var valueline = d3.svg.line()
@@ -50,10 +51,16 @@ function Lines(width, height) {
             .append("g")
             .attr("transform", "translate(" + this.margin.left + "," + this.margin.top + ")");
 
-		d3.select(tag_id).style("background-color", this.config.background_color);
+		d3.select(tag_id).style("background-color", this.background_color);
 
         // Get the data
         d3.json("data/lines.json", function(error, data) {
+
+			if (error) {
+				throw error;
+			}
+
+			localStorage[_this.source] = JSON.stringify(data);
 
             data.forEach(function(d) {
                 d.date = parseDate(d.date);

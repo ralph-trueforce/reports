@@ -9,10 +9,10 @@
  * @param height
  * @constructor
  */
-function Cartesian(width, height) {
+function Cartesian(width, height, arguments) {
 	this.base = Graphic;
-	this.base(width, height); //call super constructor.
-	this.name = arguments.callee.name.toLowerCase();
+	this.base(width, height, arguments); //call super constructor.
+	//this.name = arguments.callee.name.toLowerCase();
 
 	/**
 	 * Configure the data for cartesians graphics

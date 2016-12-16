@@ -1,92 +1,116 @@
 <div>
-    <form name="_form" class="form-horizontal" ng-submit="submit(_form)">
+	<style type="text/css">.CodeMirror {border-top: 1px solid #DDD; border-bottom: 1px solid #DDD;}</style>
+    <form name="_form" class="form-horizontal" ng-submit="submit(_form)" codemirror-show>
         <div class="modal-header">
             <button type="button" class="close" ng-click="dismiss()" aria-hidden="true">&times;</button>
             <h3>Widget Settings</h3>
         </div>
 
-        <div class="modal-body">
-			<div class="form-group" ng-class="{error: _form.name.$error && _form.submitted}">
-				<label class="control-label col-lg-3 col-md-3">Id</label>
-				<div class="col-lg-9 col-md-9">
-					<input name="id" type="text" readonly ng-model="form.id" class="form-control" />
+		<div class="panel with-nav-tabs panel-default">
+			<div class="panel-heading">
+				<ul class="nav nav-tabs">
+					<li class="active"><a href ng-click="setTab(1)" data-toggle="tab">Widget</a></li>
+					<li class=""><a href ng-click="setTab(2)" data-toggle="tab">Configuration</a></li>
+					<li class=""><a href ng-click="setTab(3)" data-toggle="tab">Data</a></li>
+				</ul>
+			</div>
+			<div class="panel-body">
+				<div class="tab-content">
+					<div class="tab-pane fade active in" id="tab1default" ng-show="isSet(1)">
+						<div class="modal-body">
+							<div class="form-group" ng-class="{error: _form.name.$error && _form.submitted}">
+								<label class="control-label col-lg-3 col-md-3">Id</label>
+								<div class="col-lg-9 col-md-9">
+									<input name="id" type="text" readonly ng-model="form.id" class="form-control" />
+								</div>
+							</div>
+							<div class="form-group" ng-class="{error: _form.name.$error && _form.submitted}">
+								<label class="control-label col-lg-3 col-md-3">Name</label>
+								<div class="col-lg-9 col-md-9">
+									<input name="name" type="text" ng-model="form.name" class="form-control" />
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-lg-6 col-md-6">
+									<div class="form-group" ng-class="{error: _form.sizeX.$error && _form.submitted}">
+										<label class="control-label col-lg-6 col-md-6">Width</label>
+										<div class="col-lg-6 col-md-6">
+											<input name="sizeX" ng-model="form.sizeX" class="form-control" />
+										</div>
+									</div>
+								</div>
+								<div class="col-lg-6 col-md-6">
+									<div class="form-group">
+										<label class="control-label col-lg-6 col-md-6">Height</label>
+										<div class="col-lg-6 col-md-6">
+											<input name="sizeY" ng-model="form.sizeY" class="form-control" />
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-lg-6 col-md-6">
+									<div class="form-group" ng-class="{error: _form.sizeX.$error && _form.submitted}">
+										<label class="control-label col-lg-6 col-md-6">Column</label>
+										<div class="col-lg-6 col-md-6">
+											<input name="col" ng-model="form.col" class="form-control" />
+										</div>
+									</div>
+								</div>
+								<div class="col-lg-6 col-md-6">
+									<div class="form-group">
+										<label class="control-label col-lg-6 col-md-6">Row</label>
+										<div class="col-lg-6 col-md-6">
+											<input name="row" ng-model="form.row" class="form-control" />
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-lg-6 col-md-6">
+									<div class="form-group" ng-class="{error: _form.ctype.$error && _form.submitted}">
+										<label class="control-label col-lg-6 col-md-6">Convert to</label>
+										<div class="col-lg-6 col-md-6">
+											<select name="type" ng-model="form.type" class="form-control">
+												<option ng-repeat="typeg in typeGraph" value="{{typeg}}" ng-selected="{{typeg == form.type}}" >{{typeg}}</option>
+											</select>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<label class="control-label col-lg-3 col-md-3">Source Template</label>
+								<div class="col-lg-9 col-md-9">
+									<input name="source" ng-model="form.source" class="form-control" />
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="tab-pane fade active in" id="tab2default" ng-show="isSet(2)">
+						<div class="modal-body">
+							<div class="form-group" ng-class="{error: _form.name.$error && _form.submitted}">
+								<label class="control-label col-lg-2 col-md-2">Config</label>
+								<div class="col-lg-10 col-md-10">
+									<div><textarea id="cmconfig" name="cmconfig" rows="16" ng-model="form.config" class="form-control"></textarea></div>
+									<!--<pre name="config" style="height:250px;" ng-model="form.config" class="form-control">{{form.config}}</pre>-->
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="tab-pane fade active in" id="tab3default" ng-show="isSet(3)">
+						<div class="modal-body">
+							<div class="form-group" ng-class="{error: _form.name.$error && _form.submitted}">
+								<label class="control-label col-lg-2 col-md-2">Data</label>
+								<div class="col-lg-10 col-md-10">
+									<div><textarea id="cmdata" name="cmdata" rows="16" ng-model="form.data" class="form-control" ></textarea></div>
+									<!--<pre name="data" style="height:250px;" ng-model="form.data" class="form-control">{{form.data}}</pre>-->
+								</div>
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
-            <div class="form-group" ng-class="{error: _form.name.$error && _form.submitted}">
-                <label class="control-label col-lg-3 col-md-3">Name</label>
-                <div class="col-lg-9 col-md-9">
-                    <input name="name" type="text" ng-model="form.name" class="form-control" />
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-6 col-md-6">
-                    <div class="form-group" ng-class="{error: _form.sizeX.$error && _form.submitted}">
-                        <label class="control-label col-lg-6 col-md-6">Width</label>
-                        <div class="col-lg-6 col-md-6">
-                            <input name="sizeX" ng-model="form.sizeX" class="form-control" />
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6 col-md-6">
-                    <div class="form-group">
-                        <label class="control-label col-lg-6 col-md-6">Height</label>
-                        <div class="col-lg-6 col-md-6">
-                            <input name="sizeY" ng-model="form.sizeY" class="form-control" />
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-6 col-md-6">
-                    <div class="form-group" ng-class="{error: _form.sizeX.$error && _form.submitted}">
-                        <label class="control-label col-lg-6 col-md-6">Column</label>
-                        <div class="col-lg-6 col-md-6">
-                            <input name="col" ng-model="form.col" class="form-control" />
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6 col-md-6">
-                    <div class="form-group">
-                        <label class="control-label col-lg-6 col-md-6">Row</label>
-                        <div class="col-lg-6 col-md-6">
-                            <input name="row" ng-model="form.row" class="form-control" />
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-6 col-md-6">
-                    <div class="form-group" ng-class="{error: _form.ctype.$error && _form.submitted}">
-                        <label class="control-label col-lg-6 col-md-6">Convert to: </label>
-                        <div class="col-lg-6 col-md-6">
-                            <select name="type" ng-model="form.type" class="form-control">
-                                <option ng-repeat="typeg in typeGraph" value="{{typeg}}" ng-selected="{{typeg == form.type}}" >{{typeg}}</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-6 col-md-6">
-                    <div class="form-group" ng-class="{error: _form.sizeX.$error && _form.submitted}">
-                        <label class="control-label col-lg-6 col-md-6">Source: </label>
-                        <div class="col-lg-6 col-md-6">
-                            <select name="type" ng-model="form.source" class="form-control">
-                                <option ng-repeat="source in dataSources" value="{{source}}" ng-selected="{{source == form.source}}" >{{source}}</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6 col-md-6">
-                    <div class="form-group">
-                        <label class="control-label col-lg-6 col-md-6">Path</label>
-                        <div class="col-lg-6 col-md-6">
-                            <input id="path" name="path" ng-model="form.path" class="form-control" />
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+		</div>
 
         <div class="modal-footer">
             <a ng-click="remove()" class="btn btn-danger pull-left" tabindex="-1"><i class="glyphicon glyphicon-trash"></i>Delete</a>
