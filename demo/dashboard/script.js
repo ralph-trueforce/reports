@@ -59,30 +59,7 @@ angular.module('app')
 			 * Called when the settings form is loaded
 			 */
 			element.ready(function() {
-			    editorConfig = CodeMirror.fromTextArea(document.getElementById("cmconfig"), {
-					lineNumbers: true,
-					indentUnit: 4,
-					matchBrackets: true,
-					autoCloseBrackets: true,
-					mode: "application/ld+json",
-					lineWrapping: true
-				});
-				setTimeout(function() {
-					console.log('refresh');
-					editorConfig.refresh();
-				}, 1);
 
-				editorData = CodeMirror.fromTextArea(document.getElementById("cmdata"), {
-					lineNumbers: true,
-					indentUnit: 4,
-					matchBrackets: true,
-					autoCloseBrackets: true,
-					mode: "application/ld+json",
-					lineWrapping: true
-				});
-				setTimeout(function() {
-					editorData.refresh();
-				}, 1);
 			});
 		}
 	};
@@ -486,6 +463,40 @@ angular.module('app')
 
 		$scope.setTab = function(newTab) {
 			$scope.tab = newTab;
+			if (newTab == 2) {
+				if (!editorConfig) {
+					editorConfig = CodeMirror.fromTextArea(document.getElementById("cmconfig"), {
+						lineNumbers: true,
+						indentUnit: 4,
+						matchBrackets: true,
+						autoCloseBrackets: true,
+						mode: "application/ld+json",
+						lineWrapping: true
+					});
+				}
+				setTimeout(function() {
+					console.log('refresh');
+					editorConfig.focus();
+					editorConfig.refresh();
+					editorConfig.focus();
+				}, 1);
+			} else if (newTab == 3) {
+				if (!editorData) {
+					editorData = CodeMirror.fromTextArea(document.getElementById("cmdata"), {
+						lineNumbers: true,
+						indentUnit: 4,
+						matchBrackets: true,
+						autoCloseBrackets: true,
+						mode: "application/ld+json",
+						lineWrapping: true
+					});
+				}
+				setTimeout(function() {
+					editorData.focus();
+					editorData.refresh();
+					editorData.focus();
+				}, 1);
+			}
 		};
 
 		$scope.isSet = function(tabNum) {
