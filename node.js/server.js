@@ -38,7 +38,7 @@ function getWidgets(con, response) {
 			throw err;
 		}
 
-		console.log('Data received from Db:\n');
+		console.log('Data retrieved from DB:\n');
 		console.log(rows);
 		var widgets = [];
 		for (var i = 0; i < rows.length; i++) {
@@ -46,6 +46,31 @@ function getWidgets(con, response) {
 			widgets.push(_object);
 		}
 		json = JSON.stringify(widgets);
+		deliver(json, response);
+		return rows;
+	});
+	return null;
+}
+
+function fetchConfig(con, id, response) {
+	console.log(id);
+	con.query('SELECT content FROM widget_config WHERE id = ?', id, function(err, rows) {
+		if (err) {
+			console.log(err);
+			json = JSON.stringify({
+				Result: err.code
+			});
+			deliver_error(json, response);
+			throw err;
+		}
+
+		console.log('Data retrieved from DB:\n');
+		console.log(rows);
+		var _object = {};
+		for (var index = 0; index < rows.length; index++) {
+			_object = JSON.parse(rows[index].content);
+		}
+		json = JSON.stringify(_object);
 		deliver(json, response);
 		return rows;
 	});
@@ -296,18 +321,23 @@ function handler(message, response) {
 		saveWidgetConfig(conn, message.param.id, message.config, response);
 		saveWidgetData(conn, message.param.id, message.data, response);
 		close(conn);
-	}
-	if (message.method == "fetch") {
+	} else if (message.method == "fetch") {
 		console.log("Loading");
 		conn = connect();
 		widgets = getWidgets(conn, response);
 		close(conn);
-	}
-	if (message.method == "remove") {
+	} else if (message.method == "remove") {
 		console.log("Deleting");
 		conn = connect();
 		removeWidget(conn, message.param, response);
 		close(conn);
+	} else if (message.method == "fetch_config") {
+		console.log("fetch config alone");
+		conn = connect();
+		fetchConfig(conn, message.param, response);
+		close(conn);
+	} else {
+		console.log("Unknown method name " + message.method);
 	}
 }
 

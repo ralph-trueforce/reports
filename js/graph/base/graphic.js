@@ -100,11 +100,37 @@ Graphic.prototype.drawing = function (error, data) {
  * Update the graphic reading again from config file.
  * @param tag_id
  */
-Graphic.prototype.update = function(tag_id) {
-	this.config_filename = this.name + '.config';
-	localStorage.removeItem(this.config_filename);
+Graphic.prototype.update = function(tag_id, $http) {
+	//TODO: need to inject http to Graph parent class
+	var request = {
+		method: "POST",
+		url: "http://localhost:3000/widget",
+		dataType: 'json',
+		data: {
+			param: tag_id.replace('#',''),
+			method: 'fetch_config'
+		},
+		headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+	};
 
-	this.draw(tag_id);
+	var _this = this;
+
+	$http(request).then(
+		function(response, status, headers, config)	{
+			try {
+				localStorage[_this.config_filename] = JSON.stringify(response.data);
+			} catch(e) {
+				console.log(e);
+				return;
+			}
+			_this.draw(tag_id);
+		}
+		,function(response, status, headers, config) {
+			if (typeof localStorage['CONFIG_DASHBOARD'] !== 'undefined') {
+				console.log('Error: could not retrieve config from server.');
+			}
+		}
+	);
 };
 
 /**
