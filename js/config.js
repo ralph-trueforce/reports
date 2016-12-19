@@ -103,6 +103,14 @@ var CONFIG_DASHBOARD = {
 			id: 'e8ce9b633ffda2a83be486b4e06abc0c59729a88',
 			type: 'Sunburst'
 		}, {
+			col: 0,
+			row: 5,
+			sizeY: 2,
+			sizeX: 3,
+			name: "Widget_Map",
+			id: 'e8ce9b633ffda1a83fe486b4e06abc0c54729a88',
+			type: 'Map'
+		}, {
 			col: 1,
 			row: 2,
 			sizeY: 1,
