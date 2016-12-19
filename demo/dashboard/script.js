@@ -1,5 +1,6 @@
 var editorConfig;
 var editorData;
+//TODO move the Factory method for graphs into a class
 angular.module('app')
 
 .directive('drawGraph', function() {
@@ -119,6 +120,7 @@ angular.module('app')
 
 		$scope.loadDashboard = function() {
 			//Get data from DB
+			//TODO: move the requests to a class to handle then more easier
 			var request = {
 				method: "POST",
 				url: "http://localhost:3000/dashboard",
@@ -262,7 +264,7 @@ angular.module('app')
 			var width = WidgetCache.getWidth(widget);
 			var height = WidgetCache.getHeight(widget);
 			eval("var graph = new " + widget.type + "(" + width + ", " + height + ");");
-			graph.update("#" + widget.id);
+			graph.update("#" + widget.id, $http);
 		};
 
 		$scope.isShowing = function() {
@@ -340,7 +342,7 @@ angular.module('app')
 			data:   $scope.getData()
 		};
 
-		$scope.sizeOptions = [{
+		/*$scope.sizeOptions = [{
 			id: '1',
 			name: '1'
 		}, {
@@ -352,7 +354,7 @@ angular.module('app')
 		}, {
 			id: '4',
 			name: '4'
-		}];
+		}];*/
 
 		$scope.dismiss = function() {
 			$modalInstance.dismiss();
@@ -407,6 +409,7 @@ angular.module('app')
 			};
 			localStorage[widget_form.id + 'data'] = JSON.stringify(widget_data.content);
 
+			//before sent to the server, clean the widget.
 			delete widget_form.config;
 			delete widget_form.data;
 
