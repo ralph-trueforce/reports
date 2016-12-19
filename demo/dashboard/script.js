@@ -353,6 +353,9 @@ angular.module('app')
 
 		$scope.dismiss = function() {
 			$modalInstance.dismiss();
+			//todo: workaround, set as a atributes to apply delete.
+			editorConfig = null;
+			editorData = null;
 		};
 
 		$scope.remove = function() {
@@ -388,14 +391,16 @@ angular.module('app')
 		};
 
 		$scope.saveIntoDB = function(widget_form) {
+			var configJson = (editorConfig)?editorConfig.getValue():widget_form.config;
+			var dataJson = (editorData)?editorData.getValue():widget_form.data;
 
 			var widget_config = {
-				content: JSON.parse(widget_form.config)
+				content: JSON.parse(configJson)
 			};
 			localStorage[widget.type.toLowerCase() + '.config'] = JSON.stringify(widget_config.content);
 
 			var widget_data = {
-				content: JSON.parse(widget_form.data)
+				content: JSON.parse(dataJson)
 			};
 			localStorage[widget_form.id + 'data'] = JSON.stringify(widget_data.content);
 
@@ -455,6 +460,9 @@ angular.module('app')
 			index = $scope.dashboard.widgets.indexOf(widget);
 			$scope.dashboard.widgets[index].type = $scope.form.type;
 
+			//todo: workaround, set as a atributes to apply delete.
+			editorConfig = null;
+			editorData = null;
 		};
 
 		$scope.typeGraph = (new GraphHandler()).getClassesNames();
@@ -475,7 +483,6 @@ angular.module('app')
 					});
 				}
 				setTimeout(function() {
-					console.log('refresh');
 					editorConfig.focus();
 					editorConfig.refresh();
 					editorConfig.focus();

@@ -53,7 +53,9 @@ Graphic.prototype.configure_base = function(data, error) {
 		data.source = this.source;
 	}
 
-	localStorage[this.config_filename] = JSON.stringify(data);
+	if (typeof localStorage[this.config_filename] === 'undefined') {
+		localStorage[this.config_filename] = JSON.stringify(data);
+	}
 };
 
 /**
