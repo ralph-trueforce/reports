@@ -337,12 +337,19 @@ server = http.createServer( function(request, response) {
 			var body = '';
 			request.on('data', function (data) {
 				body += data;
+				console.log("incoming content size: " + body.length);
 				console.log("Partial body: " + body);
-				message = JSON.parse(body);
+				try {
+					message = JSON.parse(body);
+				} catch(e) {
+					console.log(e);
+					return;
+				}
 				handler(message, response);
 			});
-			// req.on('end', function () {
-			//     console.log("Body: " + body);
+			// request.on('end', function () {
+ 			// 	 console.log("END....");
+			//      console.log("Body: " + body);
 			// });
 			//response.setHeader('Content-Type', 'application/json');
 			//res.end('post received');
