@@ -48,6 +48,8 @@ function Map(width, height) {
             .attr("width", width)
             .attr("height", height);
 
+		d3.select(tag_id).style("background-color", this.background_color);
+
 // Append Div for tooltip to SVG
         var div = d3.select(tag_id)
             .append("div")

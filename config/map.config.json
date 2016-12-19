@@ -12,7 +12,7 @@
     "bottom": 20,
     "left": 40
   },
-  "background_color": "SkyBlue",
+  "background_color": "#FFFFFA",
   "tooltip": {
     "name": "tooltip",
     "position": "absolute",
