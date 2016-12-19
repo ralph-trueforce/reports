@@ -70,11 +70,7 @@ function Pie(width, height) {
 
 		//Json data input
 		d3.json(this.source, function (error, data) {
-			if (error) {
-				throw error;
-			}
-
-			localStorage[_this.source] = JSON.stringify(data);
+			data = _this.preData(error, data);
 
 			var config_slice = _this.slice;
 			var g = svg.selectAll(".arc")

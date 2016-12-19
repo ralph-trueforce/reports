@@ -64,11 +64,7 @@ function Stacked(width, height) {
 		d3.select(tag_id).style("background-color", this.background_color);
 
         d3.json("data/stacked.json", function (error, data) {
-			if (error) {
-				throw error;
-			}
-
-			localStorage[_this.source] = JSON.stringify(data);
+			data = _this.preData(error, data);
 
             data.forEach(function (d) {
                 d.date = parseDate(d.date);

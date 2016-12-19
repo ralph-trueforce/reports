@@ -83,7 +83,7 @@ function Donutt(width, height) {
             .range(colorRange.range());
 
         var data = d3.json("data/datasetTotal.json", function (data) {
-			localStorage[_this.source] = JSON.stringify(data);
+            data = _this.preData(null, data);
             change(data);
         });
 

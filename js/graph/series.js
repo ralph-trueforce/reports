@@ -56,11 +56,7 @@ function Series(width, height) {
 		d3.select(tag_id).style("background-color", this.background_color);
 
         d3.json("data/series.json", function (error, data) {
-			if (error) {
-				throw error;
-			}
-
-			localStorage[_this.source] = JSON.stringify(data);
+			data = _this.preData(error, data);
 
             _this.color.domain(d3.keys(data[0]).filter(function (key) { return key == "city"; }));
 

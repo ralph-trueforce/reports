@@ -58,11 +58,7 @@ function Hierarchical(width, height) {
             .attr("y1", "100%");
 
         d3.json("data/hierarchical.json", function (error, root) {
-			if (error) {
-				throw error;
-			}
-
-			localStorage[_this.source] = JSON.stringify(root);
+			root = _this.preData(error, root);
 
             partition.nodes(root);
             x.domain([0, root.value]).nice();

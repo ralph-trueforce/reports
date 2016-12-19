@@ -137,3 +137,23 @@ Graphic.prototype.fetchData = function() {
 		localStorage[_this.source] = JSON.stringify(data);
 	});
 };
+
+/**
+ * Set the correct data before draw.
+ *
+ * @param error
+ * @param data
+ * @returns {*}
+ */
+Graphic.prototype.preData = function(error, data) {
+	if (error) {
+		throw error;
+	}
+	localStorage[this.source] = JSON.stringify(data);
+
+	if (typeof localStorage[this.id + 'data'] !== 'undefined') {
+		data = JSON.parse(localStorage[this.id + 'data']);
+	}
+
+	return data;
+};

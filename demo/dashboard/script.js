@@ -320,7 +320,7 @@ angular.module('app')
 
 		$scope.getData = function() {
 			eval("var graphic = new " + widget.type + "(0,0);");
-			obj = JSON.parse(localStorage[graphic.source]);
+			obj = JSON.parse((localStorage[widget.id + 'data'])?localStorage[widget.id + 'data']:localStorage[graphic.source]);
 			return JSON.stringify(obj, null, 4);
 		};
 

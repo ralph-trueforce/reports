@@ -29,8 +29,7 @@ function Revenue(width, height) {
 		d3.select(tag_id).style("background-color", this.background_color);
 
         d3.json("data/revenue.json", function (dataset) {
-
-			localStorage[_this.source] = JSON.stringify(dataset);
+			dataset = _this.preData(null, dataset);
 
             //Data, stacked
             stack(dataset);

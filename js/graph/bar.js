@@ -53,11 +53,7 @@ function Bar(width, height) {
 			.style("opacity",  config_tooltip.opacity);
 
 		d3.json(this.source, function (error, data) {
-			if (error) {
-				throw error;
-			}
-
-			localStorage[_this.source] = JSON.stringify(data);
+			data = _this.preData(error, data);
 
 			data.forEach(function (d) {
 				//d.date = parseDate(d.date);

@@ -73,11 +73,7 @@ function Donut(width, height) {
 			.style("color", span_config.color);
 
 		d3.json(this.source, function(error, dataset) {
-			if (error) {
-				throw error;
-			}
-
-			localStorage[_this.source] = JSON.stringify(dataset);
+			dataset = _this.preData(error, dataset);
 
 			var path = svg.selectAll("path")
 				.data(pie(dataset))

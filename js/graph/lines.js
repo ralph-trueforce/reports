@@ -55,12 +55,7 @@ function Lines(width, height) {
 
         // Get the data
         d3.json("data/lines.json", function(error, data) {
-
-			if (error) {
-				throw error;
-			}
-
-			localStorage[_this.source] = JSON.stringify(data);
+			data = _this.preData(error, data);
 
             data.forEach(function(d) {
                 d.date = parseDate(d.date);

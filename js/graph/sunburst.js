@@ -50,11 +50,7 @@ function Sunburst(width, height) {
             });
 
         d3.json("data/sunburst.json", function (error, root) {
-			if (error) {
-				throw error;
-			}
-
-			localStorage[_this.source] = JSON.stringify(root);
+			root = _this.preData(error, root);
 
             var path = svg.datum(root).selectAll("path")
                 .data(partition.nodes)
