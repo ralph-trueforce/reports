@@ -87,7 +87,9 @@ function Donutt(width, height) {
             change(data);
         });
 
-        d3.selectAll("input")
+		d3.selectAll("#donutoption").attr("id", "donutoption" + this.id);
+
+        d3.selectAll("#donutoption" + this.id)
             .on("change", selectDataset);
 
         function selectDataset() {
@@ -255,59 +257,13 @@ function Donutt(width, height) {
                 .remove();
         }
     };
+
     this.getFooter = function() {
-        return "<label><input type='radio' name='dataset' id='dataset' value='total' checked> Total</label>"+
-        "<label><input type='radio' name='dataset' id='dataset'' value='option1'> Option 1</label>"+
-        "<label><input type='radio' name='dataset' id='dataset' value='option2'> Option 2</label>";
+        return (
+			"<label><input type='radio' name='donutoption' id='donutoption' value='total' checked> Total</label>"+
+			"<label><input type='radio' name='donutoption' id='donutoption' value='option1'> Option 1</label>"+
+			"<label><input type='radio' name='donutoption' id='donutoption' value='option2'> Option 2</label>"
+		);
     }
 }
 Donutt.prototype = Object.create(Cartesian.prototype);
-
-/*
-
-</script>
-</body>
-
-<script>
-
-var config ={
-    "width" : 960,
-    "height" : 500,
-    "margin": {
-        "top": 30,
-        "right": 120,
-        "bottom": 0,
-        "left": 120
-    },
-    "fontSize" : "10px",
-    "fontType": "Sans Serif"
-};
-
-datasetTotal = [
-    {label: "Category 1", value: 19},
-    {label: "Category 2", value: 5},
-    {label: "Category 3", value: 13},
-    {label: "Category 4", value: 17},
-    {label: "Category 5", value: 19},
-    {label: "Category 6", value: 27}
-];
-
-datasetOption1 = [
-    {label: "Category 1", value: 22},
-    {label: "Category 2", value: 33},
-    {label: "Category 3", value: 4},
-    {label: "Category 4", value: 15},
-    {label: "Category 5", value: 36},
-    {label: "Category 6", value: 0}
-];
-
-datasetOption2 = [
-    {label: "Category 1", value: 10},
-    {label: "Category 2", value: 20},
-    {label: "Category 3", value: 30},
-    {label: "Category 4", value: 5},
-    {label: "Category 5", value: 12},
-    {label: "Category 6", value: 23}
-];
-
-*/
