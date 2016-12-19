@@ -1,0 +1,44 @@
+{
+  "colors": [
+    "#F0C27B",
+    "#E4DBBF",
+    "#DC5B21",
+    "#70AB8F",
+    "#FFE361",
+    "#00ACE9",
+    "#D43F3F",
+    "#6A9A1F",
+    "#EB593C"
+  ],
+  "margins": {
+    "top": 20,
+    "right": 20,
+    "bottom": 20,
+    "left": 40
+  },
+  "background_color": "SkyBlue",
+  "tooltip": {
+    "name": "tooltip",
+    "position": "absolute",
+    "width": "auto",
+    "textAlign":"center",
+    "height": "30px",
+    "padding": "2px",
+    "background_color": "white",
+    "fontFamily": "sans-serif",
+    "fontSize": "12px",
+    "border": "0px",
+    "background": "white",
+    "borderRadius": "8px",
+    "pointerEvents":"none",
+    "opacity": 0.8
+  },
+  "bar": {
+    "mouseover": {
+      "html":""
+    },
+    "mouseout": {
+
+    }
+  }
+}
