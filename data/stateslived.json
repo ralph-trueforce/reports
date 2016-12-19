@@ -1,0 +1,202 @@
+[
+  {
+    "state": "Alabama",
+    "visited": 2
+  },
+  {
+    "state": "Alaska",
+    "visited": 1
+  },
+  {
+    "state": "Arkansas",
+    "visited": 2
+  },
+  {
+    "state": "Arizona",
+    "visited": 2
+  },
+  {
+    "state": "California",
+    "visited": 2
+  },
+  {
+    "state": "Colorado",
+    "visited": 3
+  },
+  {
+    "state": "Connecticut",
+    "visited": 1
+  },
+  {
+    "state": "Delaware",
+    "visited": 3
+  },
+  {
+    "state": "Florida",
+    "visited": "0"
+  },
+  {
+    "state": "Georgia",
+    "visited": 4
+  },
+  {
+    "state": "Hawaii",
+    "visited": 4
+  },
+  {
+    "state": "Iowa",
+    "visited": 4
+  },
+  {
+    "state": "Idaho",
+    "visited": 3
+  },
+  {
+    "state": "Illinois",
+    "visited": 1
+  },
+  {
+    "state": "Indiana",
+    "visited": 1
+  },
+  {
+    "state": "Kansas",
+    "visited": 3
+  },
+  {
+    "state": "Kentucky",
+    "visited": 1
+  },
+  {
+    "state": "Louisiana",
+    "visited": 2
+  },
+  {
+    "state": "Maine",
+    "visited": 3
+  },
+  {
+    "state": "Maryland",
+    "visited": 3
+  },
+  {
+    "state": "Massachusetts",
+    "visited": 1
+  },
+  {
+    "state": "Michigan",
+    "visited": 1
+  },
+  {
+    "state": "Minnesota",
+    "visited": 1
+  },
+  {
+    "state": "Missouri",
+    "visited": 2
+  },
+  {
+    "state": "Mississippi",
+    "visited": 1
+  },
+  {
+    "state": "Montana",
+    "visited": 4
+  },
+  {
+    "state": "North Carolina",
+    "visited": 1
+  },
+  {
+    "state": "North Dakota",
+    "visited": 1
+  },
+  {
+    "state": "Nebraska",
+    "visited": 2
+  },
+  {
+    "state": "New Hampshire",
+    "visited": 4
+  },
+  {
+    "state": "New Jersey",
+    "visited": 2
+  },
+  {
+    "state": "New Mexico",
+    "visited": 4
+  },
+  {
+    "state": "Nevada",
+    "visited": 3
+  },
+  {
+    "state": "New York",
+    "visited": 2
+  },
+  {
+    "state": "Ohio",
+    "visited": "0"
+  },
+  {
+    "state": "Oklahoma",
+    "visited": 2
+  },
+  {
+    "state": "Oregon",
+    "visited": 3
+  },
+  {
+    "state": "Pennsylvania",
+    "visited": 3
+  },
+  {
+    "state": "Rhode Island",
+    "visited": "0"
+  },
+  {
+    "state": "South Carolina",
+    "visited": 2
+  },
+  {
+    "state": "South Dakota",
+    "visited": 4
+  },
+  {
+    "state": "Tennessee",
+    "visited": 2
+  },
+  {
+    "state": "Texas",
+    "visited": 3
+  },
+  {
+    "state": "Utah",
+    "visited": 1
+  },
+  {
+    "state": "Virginia",
+    "visited": 3
+  },
+  {
+    "state": "Vermont",
+    "visited": 2
+  },
+  {
+    "state": "Washington",
+    "visited": "0"
+  },
+  {
+    "state": "Wisconsin",
+    "visited": 4
+  },
+  {
+    "state": "West Virginia",
+    "visited": 3
+  },
+  {
+    "state": "Wyoming",
+    "visited": "0"
+  }
+]
