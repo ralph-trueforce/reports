@@ -38,7 +38,7 @@ function Map(width, height) {
 
 // Define linear scale for output
         var color = d3.scale.linear()
-            .range(["#BFEFFF", "#42C0FB", "#33A1DE", "#007FFF", "#1B3F8B"]);
+            .range(this.colors);
 
         var legendText = ["500+", "400+", "300+", "100-299", "0-99"];
 

@@ -1,14 +1,10 @@
 {
   "colors": [
-    "#F0C27B",
-    "#E4DBBF",
-    "#DC5B21",
-    "#70AB8F",
-    "#FFE361",
-    "#00ACE9",
-    "#D43F3F",
-    "#6A9A1F",
-    "#EB593C"
+	  "#BFEFFF",
+	  "#42C0FB",
+	  "#33A1DE",
+	  "#007FFF",
+	  "#1B3F8B"
   ],
   "margins": {
     "top": 20,
