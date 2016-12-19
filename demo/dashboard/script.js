@@ -274,6 +274,9 @@ angular.module('app')
 		};
 
 		$scope.changeGraphTo = function(widget, to) {
+			//Will retrieve data from the data template
+			localStorage.removeItem(widget.id + 'data');
+
 			angular.element(document.querySelector("#" + widget.id)).empty();
 			var width = WidgetCache.getWidth(widget);
 			var height = WidgetCache.getHeight(widget);
@@ -353,7 +356,7 @@ angular.module('app')
 
 		$scope.dismiss = function() {
 			$modalInstance.dismiss();
-			//todo: workaround, set as a atributes to apply delete.
+			//todo: workaround, set as a attributes to apply delete.
 			editorConfig = null;
 			editorData = null;
 		};
@@ -460,7 +463,7 @@ angular.module('app')
 			index = $scope.dashboard.widgets.indexOf(widget);
 			$scope.dashboard.widgets[index].type = $scope.form.type;
 
-			//todo: workaround, set as a atributes to apply delete.
+			//todo: workaround, set as a attributes to apply delete.
 			editorConfig = null;
 			editorData = null;
 		};
@@ -513,12 +516,27 @@ angular.module('app')
 		$scope.updateSource = function() {
 			var name = $scope.form.type.toLowerCase();
 			$scope.form.source = 'data/' + name + '.json';
+
+			//NOTE: when the source changes it will replace with template data.
+			//takes data from the template
 			obj = JSON.parse(localStorage[name + '.config']);
 			$scope.form.config = JSON.stringify(obj, null, 4);
-			editorConfig.setValue($scope.form.config);
-			setTimeout(function() {
-				editorConfig.refresh();
-			}, 1);
+			//takes from the template
+			obj = JSON.parse(localStorage[$scope.form.source]);
+			$scope.form.data = JSON.stringify(obj, null, 4);
+
+			if (editorConfig) {
+				editorConfig.setValue($scope.form.config);
+				setTimeout(function () {
+					editorConfig.refresh();
+				}, 1);
+			}
+			if (editorData) {
+				editorData.setValue($scope.form.data);
+				setTimeout(function () {
+					editorData.refresh();
+				}, 1);
+			}
 		}
 	}
 ])
