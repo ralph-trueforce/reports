@@ -443,37 +443,98 @@ angular.module('app')
 		};
 
 		$scope.submit = function() {
-			angular.extend(widget, $scope.form);
 
-			var ID = widget.id;
-			var _Class = $scope.form.type;
-			document.getElementById(ID).alt = _Class;
+			if ($scope.errorWidgetsConfig.length <= 0 && $scope.errorWidgetsData.length <= 0) {
 
-			$modalInstance.close(widget);
+				angular.extend(widget, $scope.form);
 
-			$scope.saveIntoDB($scope.form);
+				var ID = widget.id;
+				var _Class = $scope.form.type;
+				document.getElementById(ID).alt = _Class;
 
-			if (_Class == 'Html') {
-			 	return;
+				$modalInstance.close(widget);
+
+				$scope.saveIntoDB($scope.form);
+
+				if (_Class == 'Html') {
+					return;
+				}
+				angular.element(document.querySelector("#" + ID)).empty();
+				var width = WidgetCache.getWidth(widget);
+				var height = WidgetCache.getHeight(widget);
+				eval("var graph = new " + _Class + "(" + width + ", " + height + ");");
+				graph.setSource($scope.source);
+				graph.draw("#" + ID);
+
+				index = $scope.dashboard.widgets.indexOf(widget);
+				$scope.dashboard.widgets[index].type = $scope.form.type;
+
+				//todo: workaround, set as a attributes to apply delete.
+				editorConfig = null;
+				editorData = null;
+			} else {
+				$timeout(function() {
+					window.alert("Cannot save with errors in editor");
+				});
 			}
-			angular.element(document.querySelector("#" + ID)).empty();
-			var width = WidgetCache.getWidth(widget);
-			var height = WidgetCache.getHeight(widget);
-			eval("var graph = new " + _Class + "(" + width + ", " + height + ");");
-			graph.setSource($scope.source);
-			graph.draw("#" + ID);
-
-			index = $scope.dashboard.widgets.indexOf(widget);
-			$scope.dashboard.widgets[index].type = $scope.form.type;
-
-			//todo: workaround, set as a attributes to apply delete.
-			editorConfig = null;
-			editorData = null;
 		};
 
 		$scope.typeGraph = (new GraphHandler()).getClassesNames();
 
 		$scope.tab = 1;
+
+		$scope.errorWidgetsConfig = [];
+		$scope.errorWidgetsData = [];
+
+		$scope.updateHintsConfig = function () {
+			editorConfig.operation(function() {
+				for (var i = 0; i < $scope.errorWidgetsConfig.length; ++i)
+					editorConfig.removeLineWidget($scope.errorWidgetsConfig[i]);
+				$scope.errorWidgetsConfig.length = 0;
+
+				JSHINT(editorConfig.getValue());
+				for (i = 0; i < JSHINT.errors.length; ++i) {
+					var err = JSHINT.errors[i];
+					if (!err) continue;
+					var msg = document.createElement("div");
+					var icon = msg.appendChild(document.createElement("span"));
+					icon.innerHTML = "!!";
+					icon.className = "lint-error-icon";
+					msg.appendChild(document.createTextNode(err.reason));
+					msg.className = "lint-error";
+					$scope.errorWidgetsConfig.push(editorConfig.addLineWidget(err.line - 1, msg, {coverGutter: false, noHScroll: true}));
+				}
+			});
+			var info = editorConfig.getScrollInfo();
+			var after = editorConfig.charCoords({line: editorConfig.getCursor().line + 1, ch: 0}, "local").top;
+			if (info.top + info.clientHeight < after)
+				editorConfig.scrollTo(null, after - info.clientHeight + 3);
+		};
+
+		$scope.updateHintsData = function () {
+			editorData.operation(function() {
+				for (var i = 0; i < $scope.errorWidgetsData.length; ++i)
+					editorData.removeLineWidget($scope.errorWidgetsData[i]);
+				$scope.errorWidgetsData.length = 0;
+
+				JSHINT(editorData.getValue());
+				for (i = 0; i < JSHINT.errors.length; ++i) {
+					var err = JSHINT.errors[i];
+					if (!err) continue;
+					var msg = document.createElement("div");
+					var icon = msg.appendChild(document.createElement("span"));
+					icon.innerHTML = "!!";
+					icon.className = "lint-error-icon";
+					msg.appendChild(document.createTextNode(err.reason));
+					msg.className = "lint-error";
+					$scope.errorWidgetsData.push(editorData.addLineWidget(err.line - 1, msg, {coverGutter: false, noHScroll: true}));
+				}
+			});
+			var info = editorData.getScrollInfo();
+			var after = editorData.charCoords({line: editorData.getCursor().line + 1, ch: 0}, "local").top;
+			if (info.top + info.clientHeight < after)
+				editorData.scrollTo(null, after - info.clientHeight + 3);
+		};
 
 		$scope.setTab = function(newTab) {
 			$scope.tab = newTab;
@@ -487,6 +548,12 @@ angular.module('app')
 						mode: "application/ld+json",
 						lineWrapping: true
 					});
+					var waitingConfig;
+					editorConfig.on("change", function() {
+						clearTimeout(waitingConfig);
+						waitingConfig = setTimeout($scope.updateHintsConfig, 500);
+					});
+					setTimeout($scope.updateHintsConfig, 100);
 				}
 				setTimeout(function() {
 					editorConfig.focus();
@@ -503,6 +570,12 @@ angular.module('app')
 						mode: "application/ld+json",
 						lineWrapping: true
 					});
+					var waitingData;
+					editorData.on("change", function() {
+						clearTimeout(waitingData);
+						waitingData = setTimeout($scope.updateHintsData, 500);
+					});
+					setTimeout($scope.updateHintsData, 100);
 				}
 				setTimeout(function() {
 					editorData.focus();
