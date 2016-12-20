@@ -36,7 +36,10 @@ angular.module('app')
 				element.css('height', (element[0].parentElement.clientHeight - 100) + 'px');
 				var ID = element[0].id;
 				if (isNaN(ID) && !isAngularModelVar(ID)) {
-					var _Class = document.getElementById(ID).getAttribute('alt');//attrs.alt;
+					var _Class = document.getElementById(ID).getAttribute('alt');
+					if (_Class == null || !_Class) {
+						_Class = attrs.alt;
+					}
 					if (_Class == 'Html') {
 						return;
 					}
@@ -75,19 +78,24 @@ angular.module('app')
 		},
 		link: function (scope, element, attr) {
 
-			//TODO: workaround remove the html alone
-			if (attr.type == 'Html') {
-				return;
-			}
-
-			eval("var graph = new " + attr.type + "(0,0);");
-			htmlText = graph.getFooter();
-			var html_contents = "<div class=\"box-link\">" + $sce.trustAsHtml(htmlText) + "</div>";
-
-			scope.$watch('widgetFooter', function () {
-					element.append(html_contents);
+			function appendFooter() {
+				//TODO: workaround remove the html alone
+				if (attr.type == 'Html') {
+					return;
 				}
-			)
+
+				eval("var graph = new " + attr.type + "(0,0);");
+				htmlText = graph.getFooter();
+				var html_contents = "<div class=\"box-link\">" + $sce.trustAsHtml(htmlText) + "</div>";
+
+				scope.$watch('widgetFooter', function () {
+						element.append(html_contents);
+					}
+				);
+			}
+			appendFooter();
+
+			//scope.$on('gridster-resized', appendFooter);
 		}
 	}
 }])
@@ -409,13 +417,15 @@ angular.module('app')
 			$http(request)
 				.then(function(response, status, headers, config)
 					{
-						$timeout(function(){
+						$timeout(function() {
+							settingsUp = false;
 							window.alert(response.data.Result);
 						});
 					}
 					,function(response, status, headers, config)
 					{
-						$timeout(function(){
+						$timeout(function() {
+							settingsUp = false;
 							window.alert(response.data);
 						});
 					}
@@ -452,7 +462,6 @@ angular.module('app')
 				//todo: workaround, set as a attributes to apply delete.
 				editorConfig = null;
 				editorData = null;
-				settingsUp = false;
 			} else {
 				$timeout(function() {
 					window.alert("Cannot save with errors in editor");
