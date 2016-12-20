@@ -1,6 +1,6 @@
-http = require('http');
-fs = require('fs');
-url = require('url');
+http  = require('http');
+fs    = require('fs');
+url   = require('url');
 mysql = require('mysql');
 
 
@@ -53,7 +53,6 @@ function getWidgets(con, response) {
 }
 
 function fetchConfig(con, id, response) {
-	console.log(id);
 	con.query('SELECT content FROM widget_config WHERE id = ?', id, function(err, rows) {
 		if (err) {
 			console.log(err);

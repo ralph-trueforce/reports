@@ -53,19 +53,6 @@ angular.module('app')
 	};
 })
 
-.directive('codemirrorShow', function() {
-	return {
-		link: function( scope, element, attrs ) {
-			/**
-			 * Called when the settings form is loaded
-			 */
-			element.ready(function() {
-
-			});
-		}
-	};
-})
-
 .directive('widgetHtml', function() {
 	return {
 		restrict: 'E',
@@ -308,8 +295,8 @@ angular.module('app')
 	}
 ])
 
-.controller('WidgetSettingsCtrl', ['$scope', '$timeout', '$rootScope', '$modalInstance', 'widget', '$http', '$httpParamSerializerJQLike',
-	function($scope, $timeout, $rootScope, $modalInstance, widget, $http, $httpParamSerializerJQLike) {
+.controller('WidgetSettingsCtrl', ['$scope', '$timeout', '$rootScope', '$modalInstance', 'widget', '$http',
+	function($scope, $timeout, $rootScope, $modalInstance, widget, $http) {
 		$scope.widget = widget;
 
 		$scope.getSource = function() {
@@ -341,20 +328,6 @@ angular.module('app')
 			config: $scope.getConfiguration(),
 			data:   $scope.getData()
 		};
-
-		/*$scope.sizeOptions = [{
-			id: '1',
-			name: '1'
-		}, {
-			id: '2',
-			name: '2'
-		}, {
-			id: '3',
-			name: '3'
-		}, {
-			id: '4',
-			name: '4'
-		}];*/
 
 		$scope.dismiss = function() {
 			$modalInstance.dismiss();
