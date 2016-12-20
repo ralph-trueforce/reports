@@ -1,5 +1,6 @@
 var editorConfig;
 var editorData;
+var settingsUp = false;
 //TODO move the Factory method for graphs into a class
 angular.module('app')
 
@@ -27,12 +28,15 @@ angular.module('app')
 			 * Update the graph, by getting the div ID, then clearing the target Div and render inside it.
 			 */
 			function updateGraph(object) {
+				if (settingsUp == true) {
+					return;
+				}
 				//console.log(object.targetScope.gridsterItem);
 				//console.log(element[0]);
 				element.css('height', (element[0].parentElement.clientHeight - 100) + 'px');
 				var ID = element[0].id;
 				if (isNaN(ID) && !isAngularModelVar(ID)) {
-					var _Class = attrs.alt;
+					var _Class = document.getElementById(ID).getAttribute('alt');//attrs.alt;
 					if (_Class == 'Html') {
 						return;
 					}
@@ -221,6 +225,7 @@ angular.module('app')
 		};
 
 		$scope.openSettings = function(widget) {
+			settingsUp = true;
 			$modal.open({
 				scope: $scope,
 				templateUrl: 'demo/dashboard/widget_settings.html',
@@ -334,6 +339,7 @@ angular.module('app')
 			//todo: workaround, set as a attributes to apply delete.
 			editorConfig = null;
 			editorData = null;
+			settingsUp = false;
 		};
 
 		$scope.remove = function() {
@@ -366,6 +372,7 @@ angular.module('app')
 					}
 				);
 			$modalInstance.close();
+			settingsUp = false;
 		};
 
 		$scope.saveIntoDB = function(widget_form) {
@@ -423,7 +430,7 @@ angular.module('app')
 
 				var ID = widget.id;
 				var _Class = $scope.form.type;
-				document.getElementById(ID).alt = _Class;
+				document.getElementById(ID).setAttribute('alt', _Class);
 
 				$modalInstance.close(widget);
 
@@ -436,7 +443,7 @@ angular.module('app')
 				var width = WidgetCache.getWidth(widget);
 				var height = WidgetCache.getHeight(widget);
 				eval("var graph = new " + _Class + "(" + width + ", " + height + ");");
-				graph.setSource($scope.source);
+				graph.setSource($scope.form.source);
 				graph.draw("#" + ID);
 
 				index = $scope.dashboard.widgets.indexOf(widget);
@@ -445,6 +452,7 @@ angular.module('app')
 				//todo: workaround, set as a attributes to apply delete.
 				editorConfig = null;
 				editorData = null;
+				settingsUp = false;
 			} else {
 				$timeout(function() {
 					window.alert("Cannot save with errors in editor");
