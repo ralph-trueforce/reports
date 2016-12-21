@@ -55,7 +55,7 @@ function Series(width, height) {
 
 		d3.select(tag_id).style("background-color", this.background_color);
 
-        d3.json("data/series.json", function (error, data) {
+        d3.json(this.source, function (error, data) {
 			data = _this.preData(error, data);
 
             _this.color.domain(d3.keys(data[0]).filter(function (key) { return key == "city"; }));
@@ -98,6 +98,14 @@ function Series(width, height) {
                 .attr("d", function (d) { return line(d.values); })
                 .style("stroke", function (d) { return _this.color(d.key); });
 
+            var text = svg.selectAll("text");
+            text.style("font-size", _this.text_fonsize);
+            text.style("font-family", _this.text_fontfamily);
+            text.style("fill", _this.text_color);
+            svg.selectAll(".x.axis").selectAll('path').style("fill",   _this.axis_backcolor);
+            svg.selectAll(".x.axis").selectAll('path').style("stroke", _this.axis_color);
+            svg.selectAll(".y.axis").selectAll('path').style("fill",   _this.axis_backcolor);
+            svg.selectAll(".y.axis").selectAll('path').style("stroke", _this.axis_color);
         });
     };
 

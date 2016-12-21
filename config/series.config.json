@@ -5,5 +5,10 @@
 		"bottom": 30,
 		"left": 50
 	},
-	"background_color": "white"
+	"background_color": "white",
+	"text_color": "black",
+	"text_fonsize": "10px",
+	"text_fontfamily": "sans-serif",
+	"axis_backcolor":"orange",
+	"axis_color":"blue"
 }
