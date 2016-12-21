@@ -36,9 +36,11 @@ angular.module('app')
 				element.css('height', (element[0].parentElement.clientHeight - 100) + 'px');
 				var ID = element[0].id;
 				if (isNaN(ID) && !isAngularModelVar(ID)) {
-					var _Class = document.getElementById(ID).getAttribute('alt');
+					var _Class = document.getElementById(ID);
 					if (_Class == null || !_Class) {
 						_Class = attrs.alt;
+					} else {
+						_Class = _Class.getAttribute('alt');
 					}
 					if (_Class == 'Html') {
 						return;
@@ -94,7 +96,7 @@ angular.module('app')
 				);
 			}
 			appendFooter();
-
+			//TODO: update footer if the graph type has changed.
 			//scope.$on('gridster-resized', appendFooter);
 		}
 	}
