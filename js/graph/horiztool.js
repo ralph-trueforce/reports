@@ -118,7 +118,7 @@ function Horiztool(width, height) {
 
             bars.append("title")
                 .text(function (d) {
-                    return d.letter + " frecuency :" + Math.round(d.frequency * 100) + "%";
+                    return "Frecuency for " + d.letter + " :" + Math.round(d.frequency * 100) + "%";
                 });
 
 			var text = svg.selectAll("text");
