@@ -140,7 +140,7 @@ function Sunburst(width, height) {
     };
 
     this.getFooter = function() {
-        return "<form><label><input type='radio' name='sun_mode' value='size'> Size</label>" +
+        return "<form>Sort by <label><input type='radio' name='sun_mode' value='size'> Size</label>" +
             "<label><input type='radio' name='sun_mode' value='count' checked> Count</label></form>";
     }
 }
