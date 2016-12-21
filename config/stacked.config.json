@@ -8,5 +8,11 @@
 
 	"background_color": "white",
 	"timeout": 2000,
-	"transition": 750
+	"transition": 750,
+	"text_color": "#005858",
+	"text_fonsize": "10px",
+	"text_fontfamily": "sans-serif",
+	"axis_backcolor": "#C35858",
+	"axis_color": "#C35858",
+	"group_color": "black"
 }

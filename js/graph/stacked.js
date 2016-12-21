@@ -5,8 +5,6 @@
 function Stacked(width, height) {
 	this.base = Cartesian;
 	this.base(width, height, arguments); //call super constructor.
-	//this.name = arguments.callee.name.toLowerCase();
-
 
     this.process = function (tag_id) {
     	var _this = this;
@@ -17,8 +15,7 @@ function Stacked(width, height) {
                 return "Q" + ((d.getMonth() / 3 | 0) + 1) + formatYear(d.getFullYear() % 100);
             };
 
-        var /*margin = {top: 30, right: 20, bottom: 30, left: 50},*/
-            width = this.width - this.margin.left - this.margin.right,
+        var width = this.width - this.margin.left - this.margin.right,
             height = this.height - this.margin.top - this.margin.bottom;
 
         var y0 = d3.scale.ordinal()
@@ -63,7 +60,7 @@ function Stacked(width, height) {
 
 		d3.select(tag_id).style("background-color", this.background_color);
 
-        d3.json("data/stacked.json", function (error, data) {
+        d3.json(this.source, function (error, data) {
 			data = _this.preData(error, data);
 
             data.forEach(function (d) {
@@ -134,6 +131,14 @@ function Stacked(width, height) {
             var timeout = setTimeout(function () {
                 d3.select("input[value=\"stacked\"]").property("checked", true).each(change);
             }, _this.timeout);
+
+			var text = svg.selectAll(".tick").selectAll("text");
+			text.style("font-size", _this.text_fonsize);
+			text.style("font-family", _this.text_fontfamily);
+			text.style("fill", _this.text_color);
+			svg.selectAll(".x.axis").selectAll('path').style("fill",   _this.axis_backcolor);
+			svg.selectAll(".x.axis").selectAll('path').style("stroke", _this.axis_color);
+			svg.selectAll('text.group-label').style("fill", _this.group_color);
 
             function change() {
                 clearTimeout(timeout);
