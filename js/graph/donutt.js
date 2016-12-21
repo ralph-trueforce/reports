@@ -7,18 +7,16 @@
  */
 
 function Donutt(width, height) {
-
     this.base = Cartesian;
     this.base(width, height, arguments); //call super constructor.
-    //this.name = arguments.callee.name.toLowerCase();
 
     //TODO: Should be a private function
     this.process = function (tag_id) {
 
         var _this = this;
 
-        var width = this.width - this.margin.left - this.margin.right,
-            height = this.height - this.margin.top - this.margin.bottom;
+        var width = this.width - this.margin.left - this.margin.right - 20,//WORKAROUND: leyends are not in all the div
+            height = this.height - this.margin.top - this.margin.bottom - 20;
 
         var svg = d3.select(tag_id).append("svg")
             .attr("width", this.width - this.margin.left - this.margin.right)
@@ -28,19 +26,19 @@ function Donutt(width, height) {
 
         svg.append("g")
             .attr("class", "slices")
-            .attr("stroke-width", 2);
+            .attr("stroke-width", this.slides_stroke_width);
         svg.append("g")
             .attr("class", "labelName");
         svg.append("g")
             .attr("class", "labelValue")
             .attr("font-size", _this.fontSize)
-            .attr("opacity", .5);
+            .attr("opacity", this.labels_opacity);
         svg.append("g")
             .attr("class", "lines")
-            .style("opacity", .3)
-            .style("stroke", "black")
-            .style("stroke-width", "2px")
-            .style("fill", "none");
+            .style("opacity", this.lines_opacity)
+            .style("stroke", this.lines_stroke)
+            .style("stroke-width", this.lines_stroke_width)
+            .style("fill", this.lines_fill);
 
         radius = Math.min(width, height) / 2;
 
@@ -61,23 +59,24 @@ function Donutt(width, height) {
         var legendRectSize = (radius * 0.05);
         var legendSpacing = radius * 0.02;
 
-        var div = d3.select(tag_id).append("div")
-            .attr("class", "toolTip")
-            .style("font-family", "Helvetica Neue")
-            .style("position", "absolute")
-            .style("display", "none")
-            .style("width", "auto")
-            .style("height", "auto")
-            .style("background", "none")
-            .style("border", "none")
-            .style("border-radius", "8px")
-            .style("box-shadow", "-3px 3px 15px #888888")
-            .style("color", "black")
-            .style("font-size", "12px")
-            .style("padding", "5px")
-            .style("text-align", "center");
+        var tooltip = this.tooltip;
+        var tooltip_div = d3.select(tag_id).append("div")
+            .attr("class",        tooltip.name + this.id)
+            .style("font-family", tooltip.font_family)
+            .style("position",    tooltip.position)
+            .style("display",     "none")
+            .style("width",       tooltip.width)
+            .style("height",      tooltip.height)
+            .style("background",  tooltip.background_color)
+            .style("border",      tooltip.border)
+            .style("border-radius", tooltip.border_radius)
+            .style("box-shadow",  tooltip.box_shadow)
+            .style("color",       tooltip.color)
+            .style("font-size",   tooltip.font_size)
+            .style("padding",     tooltip.padding)
+            .style("text-align",  tooltip.text_align);
 
-        svg.attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
+		svg.attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
         var colorRange = d3.scale.category20();
         var color = d3.scale.ordinal()
             .range(colorRange.range());
@@ -138,14 +137,14 @@ function Donutt(width, height) {
                 });
             slice
                 .on("mousemove", function (d) {
-                    div.style("left", d3.event.layerX + 10 + "px");
-                    div.style("top", d3.event.layerY - 25 + "px");
-                    div.style("display", "inline-block");
-                    div.html((d.data.label) + "<br>" + (d.data.value) + "%");
+					tooltip_div.style("left", d3.event.layerX + 10 + "px");
+					tooltip_div.style("top", d3.event.layerY - 25 + "px");
+					tooltip_div.style("display", "inline-block");
+					tooltip_div.html((d.data.label) + "<br>" + (d.data.value) + "%");
                 });
             slice
                 .on("mouseout", function (d) {
-                    div.style("display", "none");
+					tooltip_div.style("display", "none");
                 });
 
             slice.exit()
@@ -175,6 +174,7 @@ function Donutt(width, height) {
                 .attr('y', legendRectSize - legendSpacing)
                 .attr("font-family", _this.fontType)
                 .attr("font-size", _this.fontSize)
+				.style("fill", _this.fontcolor)
                 .text(function (d) {
                     return d;
                 });
@@ -182,8 +182,6 @@ function Donutt(width, height) {
             /* ------- TEXT LABELS -------*/
 
             var text = svg.select(".labelName").selectAll("text")
-                .attr("font-family", _this.fontType)
-                .attr("font-size", _this.fontSize)
                 .data(pie(data), function (d) {
                     return d.data.label
                 });
@@ -225,7 +223,6 @@ function Donutt(width, height) {
                     return (d.data.label + ": " + d.value + "%");
                 });
 
-
             text.exit()
                 .remove();
 
@@ -235,7 +232,6 @@ function Donutt(width, height) {
                 .data(pie(data), function (d) {
                     return d.data.label
                 });
-
 
             polyline.enter()
                 .append("polyline");
@@ -255,6 +251,10 @@ function Donutt(width, height) {
 
             polyline.exit()
                 .remove();
+
+			text.style("font-size", _this.text_fonsize);
+			text.style("font-family", _this.text_fontfamily);
+			text.style("fill", _this.text_color);
         }
     };
 
@@ -266,4 +266,5 @@ function Donutt(width, height) {
 		);
     }
 }
+
 Donutt.prototype = Object.create(Cartesian.prototype);
