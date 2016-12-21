@@ -7,5 +7,23 @@
 	},
 	"background_color": "white",
 	"transition": 1500,
-	"stroke": "#fff"
+	"stroke": "white",
+	"strokeWidth": 2,
+	"fill_role": "evenodd",
+	"tooltip": {
+		"name": "tooltip",
+		"position": "absolute",
+		"text_align": "center",
+		"width": "100px",
+		"height": "50px",
+		"padding": "5px",
+		"font_family": "sans-serif",
+		"font_size": "11px",
+		"background_color": "lightsteelblue",
+		"border": "0px",
+		"border_radius": "8px",
+		"pinter_events": "none",
+		"display": "none",
+		"opacity": 0.9
+	}
 }

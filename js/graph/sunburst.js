@@ -49,7 +49,22 @@ function Sunburst(width, height) {
                 return Math.sqrt(d.y + d.dy);
             });
 
-        d3.json("data/sunburst.json", function (error, root) {
+		var tooltip = this.tooltip;
+		var tooltip_div = d3.select(tag_id).append("div")
+			.attr("class",        tooltip.name + this.id)
+			.style("position",    tooltip.position)
+			.style("text-align",  tooltip.text_align)
+			.style("width",       tooltip.width)
+			.style("height",      tooltip.height)
+			.style("font-family", tooltip.font_family)
+			.style("font-size",   tooltip.font_size)
+			.style("background",  tooltip.background_color)
+			.style("border",      tooltip.border)
+			.style("border-radius",  tooltip.border_radius)
+			.style("pointer-events", tooltip.pointer_events)
+			.style("opacity", 0);
+
+        d3.json(this.source, function (error, root) {
 			root = _this.preData(error, root);
 
             var path = svg.datum(root).selectAll("path")
@@ -59,11 +74,12 @@ function Sunburst(width, height) {
                     return d.depth ? null : "none";
                 }) // hide inner ring
                 .attr("d", arc)
-                .style("stroke", this.stroke)
+                .style("stroke", _this.stroke)
+				.style("stroke-width", _this.strokeWidth)
                 .style("fill", function (d) {
                     return _this.color((d.children ? d : d.parent).name);
                 })
-                .style("fill-rule", "evenodd")
+                .style("fill-rule", _this.fill_role)
                 .each(stash);
 
             d3.selectAll("input[name=\"sun_mode\"]")
@@ -80,6 +96,27 @@ function Sunburst(width, height) {
 						.transition()
 						.duration(_this.transition)
 						.attrTween("d", arcTween);
+				});
+
+            path
+				.on("mouseover",function(data) {
+					var object = (data.children ? data : data.parent);
+					var html = "Name: " + object.name + "<br/>" + (data.size?('size: ' + data.size):('children: ' + data.value));
+
+					tooltip_div
+						.transition()
+						.duration(200)
+						.style("opacity", _this.tooltip.opacity);
+					tooltip_div
+						.html(html)
+						.style("left", (d3.event.layerX) + "px")
+						.style("top", (d3.event.layerY - 28) + "px");
+				})
+				.on("mouseout",function(data) {
+					tooltip_div
+						.transition()
+						.duration(500)
+						.style("opacity", 0);
 				});
         });
 
