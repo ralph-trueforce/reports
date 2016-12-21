@@ -129,9 +129,9 @@ form {
 
 /*Hierarchical*/
 
-text {
+/*text {
     font: 10px sans-serif;
-}
+}*/
 
 rect.background {
     fill: white;
@@ -157,10 +157,10 @@ rect.background {
     shape-rendering: crispEdges;
 }
 
-.axis text {
+/*.axis text {
     font-family: sans-serif;
     font-size: 11px;
-}
+}*/
 
 .dot {
     stroke: #000;

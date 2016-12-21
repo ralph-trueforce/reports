@@ -142,6 +142,11 @@ function Hierarchical(width, height) {
                 .duration(end);
 
             d.index = i;
+
+			var text = svg.selectAll(".tick").selectAll("text");
+			text.style("font-size", _this.text_fonsize);
+			text.style("font-family", _this.text_fontfamily);
+			text.style("fill", _this.text_color);
         }
 
         function up(d) {
@@ -224,6 +229,7 @@ function Hierarchical(width, height) {
                 .datum(d.parent)
                 .transition()
                 .duration(end);
+
         }
 
 // Creates a set of bars for the given data node, at the specified index.
@@ -244,6 +250,9 @@ function Hierarchical(width, height) {
                 .attr("y", _this.barHeight / 2)
                 .attr("dy", ".35em")
                 .style("text-anchor", "end")
+                .style("fill", _this.text_color)
+                .style("font-size", _this.text_fonsize)
+                .style("font-family", _this.text_fontfamily)
                 .text(function (d) {
                     return d.name;
                 });
