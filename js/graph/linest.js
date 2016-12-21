@@ -46,7 +46,7 @@ function Linest(width, height) {
         // Define the div for the tooltip
 		var tooltip = this.tooltip;
         var div = d3.select(tag_id).append("div")
-            .attr("class",        tooltip.name)
+            .attr("class",        tooltip.name + this.id)
             .style("position",    tooltip.position)
             .style("text-align",  tooltip.text_align)
             .style("width",       tooltip.width)
