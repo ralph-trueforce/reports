@@ -11,5 +11,10 @@
 	},
 	"y_axis":{
 		"ticks": 5
-	}
+	},
+	"text_color": "#C35858",
+	"text_fonsize": "10px",
+	"text_fontfamily": "sans-serif",
+	"axis_backcolor": "#EEF3E2",
+	"axis_color": "#C35858"
 }

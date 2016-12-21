@@ -54,7 +54,7 @@ function Lines(width, height) {
 		d3.select(tag_id).style("background-color", this.background_color);
 
         // Get the data
-        d3.json("data/lines.json", function(error, data) {
+        d3.json(this.source, function(error, data) {
 			data = _this.preData(error, data);
 
             data.forEach(function(d) {
@@ -82,6 +82,14 @@ function Lines(width, height) {
                 .attr("class", "y axis")
                 .call(yAxis);
 
+            var text = svg.selectAll("text");
+            text.style("font-size", _this.text_fonsize);
+            text.style("font-family", _this.text_fontfamily);
+            text.style("fill", _this.text_color);
+            svg.selectAll(".x.axis").selectAll('path').style("fill",   _this.axis_backcolor);
+            svg.selectAll(".x.axis").selectAll('path').style("stroke", _this.axis_color);
+            svg.selectAll(".y.axis").selectAll('path').style("fill",   _this.axis_backcolor);
+            svg.selectAll(".y.axis").selectAll('path').style("stroke", _this.axis_color);
         });
     };
 
