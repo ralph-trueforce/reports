@@ -1,25 +1,38 @@
 {
-  "colors": [
-    "#F0C27B",
-    "#E4DBBF",
-    "#DC5B21",
-    "#70AB8F",
-    "#FFE361",
-    "#00ACE9",
-    "#D43F3F",
-    "#6A9A1F",
-    "#EB593C"
-  ],
-  "fontSize": "12px",
-  "datum": "data/datum.json",
-  "background_color": "white",
-  "fontType": "Helvetica",
-  "barfillColor": "red",
-  "lineColor": "red",
-  "margins": {
-    "top": 20,
-    "right": 20,
-    "bottom": 70,
-    "left": 40
-  }
+    "fontSize": "12px",
+    "datum": "data/datum.json",
+    "background_color": "white",
+    "fontType": "Helvetica",
+    "lineColor": "red",
+    "linewidth": 2,
+    "lineFill": "none",
+    "shape_rendering": "crispEdges",
+    "axis_width": 1,
+    "text_color": "#C35858",
+    "text_fonsize": "10px",
+    "text_fontfamily": "sans-serif",
+    "axis_backcolor": "#EEF3E2",
+    "axis_color": "#C35858",
+    "margins": {
+        "top": 20,
+        "right": 20,
+        "bottom": 70,
+        "left": 40
+    },
+	"tooltip": {
+		"name": "tooltip",
+		"position": "absolute",
+		"text_align": "center",
+		"width": "60px",
+		"height": "38px",
+		"padding": "5px",
+		"font_family": "sans-serif",
+		"font_size": "12px",
+		"background_color": "lightsteelblue",
+		"border": "0px",
+		"border_radius": "8px",
+		"pinter_events": "none",
+		"display": "none",
+		"opacity": 0.9
+	}
 }

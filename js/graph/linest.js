@@ -44,18 +44,19 @@ function Linest(width, height) {
             });
 
         // Define the div for the tooltip
+		var tooltip = this.tooltip;
         var div = d3.select(tag_id).append("div")
-            .attr("class", "tooltip")
-            .style("position", "absolute")
-            .style("text-align", "center")
-            .style("width", "60px")
-            .style("height", "38px")
-            .style("font-family", "sans-serif")
-            .style("font-size", "12px")
-            .style("background", "lightsteelblue")
-            .style("border", "0px")
-            .style("border-radius", "8px")
-            .style("pointer-events", "none")
+            .attr("class",        tooltip.name)
+            .style("position",    tooltip.position)
+            .style("text-align",  tooltip.text_align)
+            .style("width",       tooltip.width)
+            .style("height",      tooltip.height)
+            .style("font-family", tooltip.font_family)
+            .style("font-size",   tooltip.font_size)
+            .style("background",  tooltip.background_color)
+            .style("border",      tooltip.border)
+            .style("border-radius",  tooltip.border_radius)
+            .style("pointer-events", tooltip.pointer_events)
             .style("opacity", 0);
 
 
@@ -71,7 +72,7 @@ function Linest(width, height) {
                 "translate(" + this.margin.left + "," + this.margin.top + ")");
 
         // Get the data
-        d3.json("data/datum.json", function (error, data) {
+        d3.json(this.source, function (error, data) {
 			data = _this.preData(error, data);
 
             data.forEach(function (d) {
@@ -91,8 +92,8 @@ function Linest(width, height) {
             svg.append("path")
                 .attr("class", "line")
                 .attr("stroke", _this.lineColor)
-                .attr("fill", "none")
-                .attr("stroke-width", 2)
+                .attr("fill", _this.lineFill)
+                .attr("stroke-width", _this.linewidth)
                 .attr("d", valueline(data));
 
             // Add the scatterplot
@@ -126,8 +127,8 @@ function Linest(width, height) {
                 .attr("transform", "translate(0," + height + ")")
                 // .style("fill", "none")
                 .style("stroke", _this.fontColor)
-                .style("stroke-width", 1)
-                .style("shape-rendering", "crispEdges")
+                .style("stroke-width", _this.axis_width)
+                .style("shape-rendering", _this.shape_rendering)
                 .call(xAxis);
 
             // Add the Y Axis
@@ -135,10 +136,18 @@ function Linest(width, height) {
                 .attr("class", "y axis")
                 // .style("fill", "none")
                 .style("stroke", _this.fontColor)
-                .style("stroke-width", 1)
-                .style("shape-rendering", "crispEdges")
+                .style("stroke-width", _this.axis_width)
+                .style("shape-rendering", _this.shape_rendering)
                 .call(yAxis);
 
+			var text = svg.selectAll("text");
+			text.style("font-size", _this.text_fonsize);
+			text.style("font-family", _this.text_fontfamily);
+			text.style("fill", _this.text_color);
+			svg.selectAll(".x.axis").selectAll('path').style("fill",   _this.axis_backcolor);
+			svg.selectAll(".x.axis").selectAll('path').style("stroke", _this.axis_color);
+			svg.selectAll(".y.axis").selectAll('path').style("fill",   _this.axis_backcolor);
+			svg.selectAll(".y.axis").selectAll('path').style("stroke", _this.axis_color);
         });
     }
 }
