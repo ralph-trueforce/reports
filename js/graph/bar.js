@@ -115,6 +115,15 @@ function Bar(width, height) {
 					tooltip
 						.style("display", "none");
 				}	);
+
+			var text = svg.selectAll("text");
+			text.style("font-size", _this.text_fonsize);
+			text.style("font-family", _this.text_fontfamily);
+			text.style("fill", _this.text_color);
+			svg.selectAll(".x.axis").selectAll('path').style("fill",   _this.axis_backcolor);
+			svg.selectAll(".x.axis").selectAll('path').style("stroke", _this.axis_color);
+			svg.selectAll(".y.axis").selectAll('path').style("fill",   _this.axis_backcolor);
+			svg.selectAll(".y.axis").selectAll('path').style("stroke", _this.axis_color);
 		});
     };
 

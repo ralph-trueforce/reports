@@ -17,6 +17,11 @@
 		"left": 40
 	},
 	"background_color": "SkyBlue",
+	"text_color": "black",
+	"text_fonsize": "10px",
+	"text_fontfamily": "sans-serif",
+	"axis_backcolor":"white",
+	"axis_color":"blue",
 	"tooltip": {
 		"name": "tooltip",
 		"position": "absolute",
