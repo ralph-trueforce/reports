@@ -12,7 +12,6 @@
 function Revenue(width, height) {
 	this.base = Cartesian;
 	this.base(width, height, arguments); //call super constructor.
-	// this.name = arguments.callee.name.toLowerCase();
 
     /**
      * process function member
@@ -28,7 +27,7 @@ function Revenue(width, height) {
         var stack = d3.layout.stack();
 		d3.select(tag_id).style("background-color", this.background_color);
 
-        d3.json("data/revenue.json", function (dataset) {
+        d3.json(this.source, function (dataset) {
 			dataset = _this.preData(null, dataset);
 
             //Data, stacked
@@ -261,6 +260,15 @@ function Revenue(width, height) {
 
 				});
 			});
+
+			var text = svg.selectAll("text");
+			text.style("font-size", _this.text_fonsize);
+			text.style("font-family", _this.text_fontfamily);
+			text.style("fill", _this.text_color);
+			svg.selectAll(".x.axis").selectAll('path').style("fill",   _this.axis_backcolor);
+			svg.selectAll(".x.axis").selectAll('path').style("stroke", _this.axis_color);
+			svg.selectAll(".y.axis").selectAll('path').style("fill",   _this.axis_backcolor);
+			svg.selectAll(".y.axis").selectAll('path').style("stroke", _this.axis_color);
         });
     };
 

@@ -18,5 +18,11 @@
 	},
 	"background_color": "white",
 	"rects_transition_duration": 500,
-	"transition_duration": 1000
+	"transition_duration": 1000,
+	"text_color": "#C35858",
+	"text_fonsize": "10px",
+	"text_fontfamily": "sans-serif",
+	"axis_backcolor": "#EEF3E2",
+	"axis_color": "#C35858"
+}
 }
