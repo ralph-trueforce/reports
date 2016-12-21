@@ -197,8 +197,8 @@ angular.module('app')
 	}
 ])
 
-.controller('CustomWidgetCtrl', ['$scope', '$modal', '$http',
-	function($scope, $modal, $http) {
+.controller('CustomWidgetCtrl', ['$scope', '$modal', '$http', '$timeout',
+	function($scope, $modal, $http, $timeout) {
 		$scope.display = false;
 		$scope.displaySource = false;
 		$scope.belong_group = 0;
