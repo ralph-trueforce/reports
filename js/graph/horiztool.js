@@ -118,9 +118,17 @@ function Horiztool(width, height) {
 
             bars.append("title")
                 .text(function (d) {
-                    return d.letter + ":" + Math.round(d.frequency * 100) + "%";
+                    return d.letter + " frecuency :" + Math.round(d.frequency * 100) + "%";
                 });
 
+			var text = svg.selectAll("text");
+			text.style("font-size", _this.text_fonsize);
+			text.style("font-family", _this.text_fontfamily);
+			text.style("fill", _this.text_color);
+			svg.selectAll(".x.axis").selectAll('path').style("fill",   _this.axis_backcolor);
+			svg.selectAll(".x.axis").selectAll('path').style("stroke", _this.axis_color);
+			svg.selectAll(".y.axis").selectAll('path').style("fill",   _this.axis_backcolor);
+			svg.selectAll(".y.axis").selectAll('path').style("stroke", _this.axis_color);
         });
 
         function type(d) {

@@ -19,5 +19,10 @@
     "right": 20,
     "bottom": 70,
     "left": 40
-  }
+  },
+  "text_color": "black",
+  "text_fonsize": "10px",
+  "text_fontfamily": "sans-serif",
+  "axis_backcolor":"white",
+  "axis_color":"blue"
 }
