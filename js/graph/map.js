@@ -19,8 +19,8 @@ function Map(width, height) {
 
         var _this = this;
 
-        var width = this.width,
-            height = this.height;
+        var width = this.width - this.margin.left - this.margin.right,
+            height = this.height - this.margin.top - this.margin.bottom;
 
 // D3 Projection
 
@@ -45,8 +45,8 @@ function Map(width, height) {
 //Create SVG element and append map to the SVG
         var svg = d3.select(tag_id)
             .append("svg")
-            .attr("width", width)
-            .attr("height", height);
+            .attr("width", this.width)
+            .attr("height", this.height);
 
 		d3.select(tag_id).style("background-color", this.background_color);
 
@@ -80,8 +80,7 @@ function Map(width, height) {
 
                     // Grab State Name
                     var dataState = data[i].state;
-
-                    // Grab data value
+// Grab data value
                     var dataValue = data[i].visited;
 
                     // Find the corresponding state inside the GeoJSON
@@ -149,45 +148,45 @@ function Map(width, height) {
 
 
 // Map the cities I have lived in!
-                d3.json("data/cities-lived.json", function (data) {
-
-                    var pro = projection;
-
-                    svg.selectAll("circle")
-                        .data(data)
-                        .enter()
-                        .append("circle")
-                        .attr("cx", function (d) {
-                            return projection([d.lon, d.lat])[0];
-                        })
-                        .attr("cy", function (d) {
-                            return projection([d.lon, d.lat])[1];
-                        })
-                        .attr("r", function (d) {
-                            return Math.sqrt(d.years) * 4;
-                        })
-                        .style("fill", "rgb(217,91,67)")
-                        .style("opacity", 0.85)
-
-                        // Modification of custom tooltip code provided by Malcolm Maclean, "D3 Tips and Tricks"
-                        // http://www.d3noob.org/2013/01/adding-tooltips-to-d3js-graph.html
-                        .on("mouseover", function (d) {
-                            div.transition()
-                                .duration(200)
-                                .style("opacity", .7);
-
-                            div.text(d.place)
-                                .style("left", (d3.event.layerX) + "px")
-                                .style("top", (d3.event.layerY - 28) + "px");
-                        })
-
-                        // fade out tooltip on mouse out
-                        .on("mouseout", function (d) {
-                            div.transition()
-                                .duration(500)
-                                .style("opacity", 0);
-                        });
-                });
+//                 d3.json("data/cities-lived.json", function (data) {
+//
+//                     var pro = projection;
+//
+//                     svg.selectAll("circle")
+//                         .data(data)
+//                         .enter()
+//                         .append("circle")
+//                         .attr("cx", function (d) {
+//                             return projection([d.lon, d.lat])[0];
+//                         })
+//                         .attr("cy", function (d) {
+//                             return projection([d.lon, d.lat])[1];
+//                         })
+//                         .attr("r", function (d) {
+//                             return Math.sqrt(d.years) * 4;
+//                         })
+//                         .style("fill", "rgb(217,91,67)")
+//                         .style("opacity", 0.85)
+//
+//                         // Modification of custom tooltip code provided by Malcolm Maclean, "D3 Tips and Tricks"
+//                         // http://www.d3noob.org/2013/01/adding-tooltips-to-d3js-graph.html
+//                         .on("mouseover", function (d) {
+//                             div.transition()
+//                                 .duration(200)
+//                                 .style("opacity", .7);
+//
+//                             div.text(d.place)
+//                                 .style("left", (d3.event.layerX) + "px")
+//                                 .style("top", (d3.event.layerY - 28) + "px");
+//                         })
+//
+//                         // fade out tooltip on mouse out
+//                         .on("mouseout", function (d) {
+//                             div.transition()
+//                                 .duration(500)
+//                                 .style("opacity", 0);
+//                         });
+//                 });
 
 // Modified Legend Code from Mike Bostock: http://bl.ocks.org/mbostock/3888852
                 var legend = d3.select(tag_id).append("svg")
@@ -222,13 +221,55 @@ function Map(width, height) {
                     .text(function (d) {
                         return d;
                     });
+                //Add it to fix the bug when Heigth and Width are almost the same
+                if (width == 235){
+
+                    legend.attr("transform",(function (d, i) {
+                        return "translate(65," + i * 20 + ")";
+                    }));
+                }
             });
         };
 
+
+
         var map = d3.json("data/stateslived.json", datum);
+
+        // A listener to resize the map
+        var xwidth;
+        var xheight;
+
+        if (xwidth != width || xheight != height) {
+            resize();
+            xwidth = width;
+            xheight = height;
+        }
+
+        //resize function to make the map responsive with a range of pixels
+        function resize() {
+
+            var mapratio= parseInt(d3.select(tag_id).style('width'));
+
+                if (width > 8*height) {
+                    mapratio = width /5;
+                } else if (width > 6*height) {
+                    mapratio = width /4;
+                       } else if(width>4*height){
+                            mapratio = width /3;
+                              } else if(width> 2*height){
+                                    mapratio = width/2;
+                                     } else if(width >= height){
+                                            mapratio = width;
+                                            }
+
+            projection.scale([mapratio]).translate([width/2,height/2]);
+        }
+
 
     }
 }
 
 Map.prototype = Object.create(Cartesian.prototype);
+
+
 
