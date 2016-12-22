@@ -1,5 +1,3 @@
-var editorConfig;
-var editorData;
 //TODO move the Factory method for graphs into a class
 angular.module('app')
 .factory('dashboardService', function() {
@@ -330,6 +328,8 @@ angular.module('app')
 .controller('WidgetSettingsCtrl', ['$scope', '$timeout', '$rootScope', '$modalInstance', 'widget', '$http', 'dashboardService',
 	function($scope, $timeout, $rootScope, $modalInstance, widget, $http, dashboardService) {
 		$scope.widget = widget;
+		$scope.editorConfig = null;
+		$scope.editorData  = null;
 
 		$scope.getSource = function() {
 			eval("var graphic = new " + widget.type + "();");
@@ -363,9 +363,8 @@ angular.module('app')
 
 		$scope.dismiss = function() {
 			$modalInstance.dismiss();
-			//todo: workaround, set as a attributes to apply delete.
-			editorConfig = null;
-			editorData = null;
+			delete $scope.editorConfig;
+			delete $scope.editorData;
 			$timeout(function() {
 				dashboardService.settings_up = false;
 			});
@@ -407,8 +406,8 @@ angular.module('app')
 		};
 
 		$scope.saveIntoDB = function(widget_form) {
-			var configJson = (editorConfig)?editorConfig.getValue():widget_form.config;
-			var dataJson = (editorData)?editorData.getValue():widget_form.data;
+			var configJson = ($scope.editorConfig)?$scope.editorConfig.getValue():widget_form.config;
+			var dataJson = ($scope.editorData)?$scope.editorData.getValue():widget_form.data;
 
 			var widget_config = {
 				content: JSON.parse(configJson)
@@ -484,9 +483,8 @@ angular.module('app')
 
 				$rootScope.$broadcast('updateFooter', {id : ID, type: _Class});
 
-				//todo: workaround, set as a attributes to apply delete.
-				editorConfig = null;
-				editorData = null;
+				delete $scope.editorConfig;
+				delete $scope.editorData;
 			} else {
 				$timeout(function() {
 					window.alert("Cannot save with errors in editor");
@@ -502,12 +500,12 @@ angular.module('app')
 		$scope.errorWidgetsData = [];
 
 		$scope.updateHintsConfig = function () {
-			editorConfig.operation(function() {
+			$scope.editorConfig.operation(function() {
 				for (var i = 0; i < $scope.errorWidgetsConfig.length; ++i)
-					editorConfig.removeLineWidget($scope.errorWidgetsConfig[i]);
+					$scope.editorConfig.removeLineWidget($scope.errorWidgetsConfig[i]);
 				$scope.errorWidgetsConfig.length = 0;
 
-				JSHINT(editorConfig.getValue());
+				JSHINT($scope.editorConfig.getValue());
 				for (i = 0; i < JSHINT.errors.length; ++i) {
 					var err = JSHINT.errors[i];
 					if (!err) continue;
@@ -517,22 +515,22 @@ angular.module('app')
 					icon.className = "lint-error-icon";
 					msg.appendChild(document.createTextNode(err.reason));
 					msg.className = "lint-error";
-					$scope.errorWidgetsConfig.push(editorConfig.addLineWidget(err.line - 1, msg, {coverGutter: false, noHScroll: true}));
+					$scope.errorWidgetsConfig.push($scope.editorConfig.addLineWidget(err.line - 1, msg, {coverGutter: false, noHScroll: true}));
 				}
 			});
-			var info = editorConfig.getScrollInfo();
-			var after = editorConfig.charCoords({line: editorConfig.getCursor().line + 1, ch: 0}, "local").top;
+			var info = $scope.editorConfig.getScrollInfo();
+			var after = $scope.editorConfig.charCoords({line: $scope.editorConfig.getCursor().line + 1, ch: 0}, "local").top;
 			if (info.top + info.clientHeight < after)
-				editorConfig.scrollTo(null, after - info.clientHeight + 3);
+				$scope.editorConfig.scrollTo(null, after - info.clientHeight + 3);
 		};
 
 		$scope.updateHintsData = function () {
-			editorData.operation(function() {
+			$scope.editorData.operation(function() {
 				for (var i = 0; i < $scope.errorWidgetsData.length; ++i)
-					editorData.removeLineWidget($scope.errorWidgetsData[i]);
+					$scope.editorData.removeLineWidget($scope.errorWidgetsData[i]);
 				$scope.errorWidgetsData.length = 0;
 
-				JSHINT(editorData.getValue());
+				JSHINT($scope.editorData.getValue());
 				for (i = 0; i < JSHINT.errors.length; ++i) {
 					var err = JSHINT.errors[i];
 					if (!err) continue;
@@ -542,20 +540,20 @@ angular.module('app')
 					icon.className = "lint-error-icon";
 					msg.appendChild(document.createTextNode(err.reason));
 					msg.className = "lint-error";
-					$scope.errorWidgetsData.push(editorData.addLineWidget(err.line - 1, msg, {coverGutter: false, noHScroll: true}));
+					$scope.errorWidgetsData.push($scope.editorData.addLineWidget(err.line - 1, msg, {coverGutter: false, noHScroll: true}));
 				}
 			});
-			var info = editorData.getScrollInfo();
-			var after = editorData.charCoords({line: editorData.getCursor().line + 1, ch: 0}, "local").top;
+			var info = $scope.editorData.getScrollInfo();
+			var after = $scope.editorData.charCoords({line: $scope.editorData.getCursor().line + 1, ch: 0}, "local").top;
 			if (info.top + info.clientHeight < after)
-				editorData.scrollTo(null, after - info.clientHeight + 3);
+				$scope.editorData.scrollTo(null, after - info.clientHeight + 3);
 		};
 
 		$scope.setTab = function(newTab) {
 			$scope.tab = newTab;
 			if (newTab == 2) {
-				if (!editorConfig) {
-					editorConfig = CodeMirror.fromTextArea(document.getElementById("cmconfig"), {
+				if (!$scope.editorConfig) {
+					$scope.editorConfig = CodeMirror.fromTextArea(document.getElementById("cmconfig"), {
 						lineNumbers: true,
 						indentUnit: 4,
 						matchBrackets: true,
@@ -564,20 +562,20 @@ angular.module('app')
 						lineWrapping: true
 					});
 					var waitingConfig;
-					editorConfig.on("change", function() {
+					$scope.editorConfig.on("change", function() {
 						clearTimeout(waitingConfig);
 						waitingConfig = setTimeout($scope.updateHintsConfig, 500);
 					});
 					setTimeout($scope.updateHintsConfig, 100);
 				}
 				setTimeout(function() {
-					editorConfig.focus();
-					editorConfig.refresh();
-					editorConfig.focus();
+					$scope.editorConfig.focus();
+					$scope.editorConfig.refresh();
+					$scope.editorConfig.focus();
 				}, 1);
 			} else if (newTab == 3) {
-				if (!editorData) {
-					editorData = CodeMirror.fromTextArea(document.getElementById("cmdata"), {
+				if (!$scope.editorData) {
+					$scope.editorData = CodeMirror.fromTextArea(document.getElementById("cmdata"), {
 						lineNumbers: true,
 						indentUnit: 4,
 						matchBrackets: true,
@@ -586,16 +584,16 @@ angular.module('app')
 						lineWrapping: true
 					});
 					var waitingData;
-					editorData.on("change", function() {
+					$scope.editorData.on("change", function() {
 						clearTimeout(waitingData);
 						waitingData = setTimeout($scope.updateHintsData, 500);
 					});
 					setTimeout($scope.updateHintsData, 100);
 				}
 				setTimeout(function() {
-					editorData.focus();
-					editorData.refresh();
-					editorData.focus();
+					$scope.editorData.focus();
+					$scope.editorData.refresh();
+					$scope.editorData.focus();
 				}, 1);
 			}
 		};
@@ -616,16 +614,16 @@ angular.module('app')
 			obj = JSON.parse(localStorage[$scope.form.source]);
 			$scope.form.data = JSON.stringify(obj, null, 4);
 
-			if (editorConfig) {
-				editorConfig.setValue($scope.form.config);
+			if ($scope.editorConfig) {
+				$scope.editorConfig.setValue($scope.form.config);
 				setTimeout(function () {
-					editorConfig.refresh();
+					$scope.editorConfig.refresh();
 				}, 1);
 			}
-			if (editorData) {
-				editorData.setValue($scope.form.data);
+			if ($scope.editorData) {
+				$scope.editorData.setValue($scope.form.data);
 				setTimeout(function () {
-					editorData.refresh();
+					$scope.editorData.refresh();
 				}, 1);
 			}
 		}
