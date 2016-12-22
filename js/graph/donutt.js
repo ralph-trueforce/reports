@@ -86,8 +86,7 @@ function Donutt(width, height) {
             change(data);
         });
 
-		d3.selectAll("#donutoption").attr("id", "donutoption" + this.id);
-
+		//d3.selectAll("#donutoption").attr("id", "donutoption" + this.id);
         d3.selectAll("#donutoption" + this.id)
             .on("change", selectDataset);
 
@@ -260,9 +259,9 @@ function Donutt(width, height) {
 
     this.getFooter = function() {
         return (
-			"<label><input type='radio' name='donutoption' id='donutoption' value='total' checked> Total</label>"+
-			"<label><input type='radio' name='donutoption' id='donutoption' value='option1'> Option 1</label>"+
-			"<label><input type='radio' name='donutoption' id='donutoption' value='option2'> Option 2</label>"
+			"<label><input type='radio' name='donutoption' id='donutoption" + this.id + "' value='total' checked> Total</label>"+
+			"<label><input type='radio' name='donutoption' id='donutoption" + this.id + "' value='option1'> Option 1</label>"+
+			"<label><input type='radio' name='donutoption' id='donutoption" + this.id + "' value='option2'> Option 2</label>"
 		);
     }
 }
