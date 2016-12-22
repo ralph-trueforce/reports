@@ -12,7 +12,8 @@ angular.module('app')
 			 * Called after a widget is loaded
 			 */
 			element.ready(function() {
-				updateGraph();
+				console.log('*Ready off');
+				//updateGraph();
 			});
 
 			/**
@@ -27,10 +28,11 @@ angular.module('app')
 			/**
 			 * Update the graph, by getting the div ID, then clearing the target Div and render inside it.
 			 */
-			function updateGraph(object) {
+			function updateGraph(event) {
 				if (settingsUp == true) {
 					return;
 				}
+				//if(event)console.log(event.name);
 				//console.log(object.targetScope.gridsterItem);
 				//console.log(element[0]);
 				element.css('height', (element[0].parentElement.clientHeight - 100) + 'px');
@@ -56,8 +58,9 @@ angular.module('app')
 			scope.$on('gridster-item-resized',        updateGraph);
 			scope.$on('gridster-item-transition-end', updateGraph);
 			scope.$on('gridster-resized',             updateGraph);
-			scope.$on('gridster-resizable-changed',   updateGraph);
-			scope.$on('gridster-item-initialized',    updateGraph);
+			//scope.$on('gridster-resizable-changed',   updateGraph);
+            //scope.$on('gridster-item-initialized',    updateGraph);
+
 		}
 	};
 })
@@ -80,24 +83,31 @@ angular.module('app')
 		},
 		link: function (scope, element, attr) {
 
-			function appendFooter() {
+			function appendFooter(type) {
 				//TODO: workaround remove the html alone
-				if (attr.type == 'Html') {
+				if (type == 'Html') {
 					return;
 				}
 
-				eval("var graph = new " + attr.type + "(0,0);");
+				eval("var graph = new " + type + "(0,0);");//Todo, need two constructors
 				htmlText = graph.getFooter();
 				var html_contents = "<div class=\"box-link\">" + $sce.trustAsHtml(htmlText) + "</div>";
 
 				scope.$watch('widgetFooter', function () {
-						element.append(html_contents);
-					}
-				);
+				    element.append(html_contents);
+				});
 			}
-			appendFooter();
-			//TODO: update footer if the graph type has changed.
-			//scope.$on('gridster-resized', appendFooter);
+
+			function updateFooter(event, object) {
+				if (object.id == attr.class) {
+					angular.element(document.querySelector('.' + attr.class)).empty();
+					appendFooter(object.type);
+				}
+			}
+
+			appendFooter(attr.type);
+
+			scope.$on('updateFooter', updateFooter);
 		}
 	}
 }])
@@ -197,8 +207,8 @@ angular.module('app')
 	}
 ])
 
-.controller('CustomWidgetCtrl', ['$scope', '$modal', '$http', '$timeout',
-	function($scope, $modal, $http, $timeout) {
+.controller('CustomWidgetCtrl', ['$scope', '$modal', '$http', '$timeout', '$rootScope',
+	function($scope, $modal, $http, $timeout, $rootScope) {
 		$scope.display = false;
 		$scope.displaySource = false;
 		$scope.belong_group = 0;
@@ -289,6 +299,8 @@ angular.module('app')
 
 			index = $scope.dashboard.widgets.indexOf(widget);
 			$scope.dashboard.widgets[index].type = to;
+
+			$rootScope.$broadcast('updateFooter', {id : widget.id, type: to});
 
 			$scope.display = false;
 		};
@@ -460,6 +472,8 @@ angular.module('app')
 
 				index = $scope.dashboard.widgets.indexOf(widget);
 				$scope.dashboard.widgets[index].type = $scope.form.type;
+
+				$rootScope.$broadcast('updateFooter', {id : ID, type: _Class});
 
 				//todo: workaround, set as a attributes to apply delete.
 				editorConfig = null;
