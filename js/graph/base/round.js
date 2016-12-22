@@ -15,7 +15,9 @@ function Round(width, height, arguments) {
 	this.base(width, height, arguments); //call super constructor.
 	//this.name = arguments.callee.name.toLowerCase();
 
-    this.radius = Math.min(width, height) / 2;
+	if (width && height) {
+		this.radius = Math.min(width, height) / 2;
+	}
 
 	/**
 	 * Configure data for Circular type graphics

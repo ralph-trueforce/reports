@@ -89,7 +89,7 @@ angular.module('app')
 					return;
 				}
 
-				eval("var graph = new " + type + "(0,0);");//Todo, need two constructors
+				eval("var graph = new " + type + "();");//Todo, need two constructors
 				htmlText = graph.getFooter();
 				var html_contents = "<div class=\"box-link\">" + $sce.trustAsHtml(htmlText) + "</div>";
 
@@ -327,18 +327,18 @@ angular.module('app')
 		$scope.widget = widget;
 
 		$scope.getSource = function() {
-			eval("var graphic = new " + widget.type + "(0,0);");
+			eval("var graphic = new " + widget.type + "();");
 			return graphic.source;
 		};
 
 		$scope.getConfiguration = function() {
-			eval("var graphic = new " + widget.type + "(0,0);");
+			eval("var graphic = new " + widget.type + "();");
             obj = JSON.parse(localStorage[graphic.config_filename]);
 			return JSON.stringify(obj, null, 4);
 		};
 
 		$scope.getData = function() {
-			eval("var graphic = new " + widget.type + "(0,0);");
+			eval("var graphic = new " + widget.type + "();");
 			obj = JSON.parse((localStorage[widget.id + 'data'])?localStorage[widget.id + 'data']:localStorage[graphic.source]);
 			return JSON.stringify(obj, null, 4);
 		};
