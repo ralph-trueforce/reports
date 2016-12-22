@@ -207,8 +207,8 @@ angular.module('app')
 	}
 ])
 
-.controller('CustomWidgetCtrl', ['$scope', '$modal', '$http', '$timeout', '$rootScope',
-	function($scope, $modal, $http, $timeout, $rootScope) {
+.controller('CustomWidgetCtrl', ['$scope', '$modal', '$http', '$timeout',
+	function($scope, $modal, $http, $timeout) {
 		$scope.display = false;
 		$scope.displaySource = false;
 		$scope.belong_group = 0;
@@ -300,7 +300,7 @@ angular.module('app')
 			index = $scope.dashboard.widgets.indexOf(widget);
 			$scope.dashboard.widgets[index].type = to;
 
-			$rootScope.$broadcast('updateFooter', {id : widget.id, type: to});
+			$scope.$broadcast('updateFooter', {id : widget.id, type: to});
 
 			$scope.display = false;
 		};
