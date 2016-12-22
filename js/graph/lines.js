@@ -90,6 +90,7 @@ function Lines(width, height) {
             svg.selectAll(".x.axis").selectAll('path').style("stroke", _this.axis_color);
             svg.selectAll(".y.axis").selectAll('path').style("fill",   _this.axis_backcolor);
             svg.selectAll(".y.axis").selectAll('path').style("stroke", _this.axis_color);
+            svg.selectAll(".line.pin").style("stroke",  _this.line_color);
         });
     };
 
