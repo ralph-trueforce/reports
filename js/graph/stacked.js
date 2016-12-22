@@ -126,10 +126,11 @@ function Stacked(width, height) {
                 .attr("transform", "translate(0," + y0.rangeBand() + ")")
                 .call(xAxis);
 
-            d3.selectAll("input[name=\"stacked_mode\"]").on("change", change);
+            d3.selectAll("input[name='stacked_mode" + _this.id + "']").on("change", change);
 
             var timeout = setTimeout(function () {
-                d3.select("input[value=\"stacked\"]").property("checked", true).each(change);
+                d3.select("input[name='stacked_mode" + _this.id + "'][value='stacked']").property("checked", true).each(change);
+                console.log("checked");
             }, _this.timeout);
 
 			var text = svg.selectAll(".tick").selectAll("text");
@@ -176,8 +177,10 @@ function Stacked(width, height) {
     };
 
     this.getFooter = function() {
-        return "<form><label><input type='radio' name='stacked_mode' value='multiples' checked> Multiples</label>" +
-            "<label><input type='radio' name='stacked_mode' value='stacked'> Stacked</label></form>";
+        return (
+			"<form><label><input type='radio' name='stacked_mode" + this.id + "' value='multiples' checked> Multiples</label>" +
+            "<label><input type='radio' name='stacked_mode" + this.id + "' value='stacked'> Stacked</label></form>"
+		);
     }
 
 }

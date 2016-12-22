@@ -12,8 +12,9 @@ angular.module('app')
 			 * Called after a widget is loaded
 			 */
 			element.ready(function() {
-				console.log('*Ready off');
-				//updateGraph();
+				if (attrs.name == 'New Widget') {
+					updateGraph();
+				}
 			});
 
 			/**
@@ -83,13 +84,14 @@ angular.module('app')
 		},
 		link: function (scope, element, attr) {
 
-			function appendFooter(type) {
+			function appendFooter(object) {
 				//TODO: workaround remove the html alone
-				if (type == 'Html') {
+				if (object.type == 'Html') {
 					return;
 				}
 
-				eval("var graph = new " + type + "();");//Todo, need two constructors
+				eval("var graph = new " + object.type + "();");
+				graph.setID(object.id?object.id:object.class);
 				htmlText = graph.getFooter();
 				var html_contents = "<div class=\"box-link\">" + $sce.trustAsHtml(htmlText) + "</div>";
 
@@ -101,11 +103,11 @@ angular.module('app')
 			function updateFooter(event, object) {
 				if (object.id == attr.class) {
 					angular.element(document.querySelector('.' + attr.class)).empty();
-					appendFooter(object.type);
+					appendFooter(object);
 				}
 			}
 
-			appendFooter(attr.type);
+			appendFooter(attr);
 
 			scope.$on('updateFooter', updateFooter);
 		}
@@ -165,7 +167,6 @@ angular.module('app')
 			$scope.dashboard.widgets = [];
 		};
 
-
 		$scope.addWidget = function(type) {
 			var hasher1 = new jsSHA('SHA-1', 'BYTES');
 			hasher1.update($scope.getRandom(1, 1000000).toString());
@@ -185,6 +186,7 @@ angular.module('app')
 				text: html_text,
 				type: type
 			});
+
 		};
 
 		$scope.$watch('selectedDashboardId', function(newVal, oldVal) {

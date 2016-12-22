@@ -183,3 +183,14 @@ Graphic.prototype.preData = function(error, data) {
 
 	return data;
 };
+
+/**
+ * Set the ID of the current element
+ *
+ * @param tag_id
+ */
+Graphic.prototype.setID = function(tag_id) {
+	if (tag_id) {
+		this.id = tag_id.replace('#', '');
+	}
+};
