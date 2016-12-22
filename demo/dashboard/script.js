@@ -1,10 +1,13 @@
 var editorConfig;
 var editorData;
-var settingsUp = false;
 //TODO move the Factory method for graphs into a class
 angular.module('app')
-
-.directive('drawGraph', function() {
+.factory('dashboardService', function() {
+	return {
+		settings_up : false
+	};
+})
+.directive('drawGraph', ['dashboardService', function(dashboardService) {
 	return {
 		link: function( scope, element, attrs ) {
 
@@ -30,7 +33,7 @@ angular.module('app')
 			 * Update the graph, by getting the div ID, then clearing the target Div and render inside it.
 			 */
 			function updateGraph(event) {
-				if (settingsUp == true) {
+				if (dashboardService.settings_up == true) {
 					return;
 				}
 				//if(event)console.log(event.name);
@@ -64,7 +67,7 @@ angular.module('app')
 
 		}
 	};
-})
+}])
 
 .directive('widgetHtml', function() {
 	return {
@@ -209,8 +212,8 @@ angular.module('app')
 	}
 ])
 
-.controller('CustomWidgetCtrl', ['$scope', '$modal', '$http', '$timeout',
-	function($scope, $modal, $http, $timeout) {
+.controller('CustomWidgetCtrl', ['$scope', '$modal', '$http', '$timeout', 'dashboardService',
+	function($scope, $modal, $http, $timeout, dashboardService) {
 		$scope.display = false;
 		$scope.displaySource = false;
 		$scope.belong_group = 0;
@@ -247,7 +250,7 @@ angular.module('app')
 		};
 
 		$scope.openSettings = function(widget) {
-			settingsUp = true;
+			dashboardService.settings_up = true;
 			$modal.open({
 				scope: $scope,
 				templateUrl: 'demo/dashboard/widget_settings.html',
@@ -324,8 +327,8 @@ angular.module('app')
 	}
 ])
 
-.controller('WidgetSettingsCtrl', ['$scope', '$timeout', '$rootScope', '$modalInstance', 'widget', '$http',
-	function($scope, $timeout, $rootScope, $modalInstance, widget, $http) {
+.controller('WidgetSettingsCtrl', ['$scope', '$timeout', '$rootScope', '$modalInstance', 'widget', '$http', 'dashboardService',
+	function($scope, $timeout, $rootScope, $modalInstance, widget, $http, dashboardService) {
 		$scope.widget = widget;
 
 		$scope.getSource = function() {
@@ -364,7 +367,7 @@ angular.module('app')
 			editorConfig = null;
 			editorData = null;
 			$timeout(function() {
-				settingsUp = false;
+				dashboardService.settings_up = false;
 			});
 		};
 
@@ -399,7 +402,7 @@ angular.module('app')
 				);
 			$modalInstance.close();
 			$timeout(function() {
-				settingsUp = false;
+				dashboardService.settings_up = false;
 			});
 		};
 
@@ -438,14 +441,14 @@ angular.module('app')
 				.then(function(response, status, headers, config)
 					{
 						$timeout(function() {
-							settingsUp = false;
+							dashboardService.settings_up = false;
 							window.alert(response.data.Result);
 						});
 					}
 					,function(response, status, headers, config)
 					{
 						$timeout(function() {
-							settingsUp = false;
+							dashboardService.settings_up = false;
 							window.alert(response.data);
 						});
 					}
