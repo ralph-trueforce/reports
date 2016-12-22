@@ -161,12 +161,12 @@ function Revenue(width, height) {
                 .text("Days");
 
             //On click, update with new data
-            d3.selectAll(".mo").on("click", function () {
+            d3.selectAll(".mo" + _this.id).on("click", function () {
 
-				var date = this.getAttribute("value");
-				var str = "data/" + date + ".json";
+                var date = this.getAttribute("value");
+                var str = "data/" + date + ".json";
 
-				d3.json(str, function (dataset) {
+                d3.json(str, function (dataset) {
 
 					stack(dataset);
 
@@ -256,7 +256,7 @@ function Revenue(width, height) {
 					svg.select(".xtext")
 						.text("Hours");
 
-					d3.select("widget-footer div.box-link div#revenue-text").html("Number of messages per hour on " + date + ".");
+					d3.select("widget-footer div.box-link div#revenue-text" + _this.id).html("Number of messages per hour on " + date + ".");
 
 				});
 			});
@@ -274,15 +274,15 @@ function Revenue(width, height) {
 
     this.getFooter = function() {
 
-        return "<div id='revenue-text' style='float: left; text-decoration: underline;'>Number of messages per day.</div>" +
+        return "<div id='revenue-text" + this.id + "' style='float: left; text-decoration: underline;'>Number of messages per day.</div>" +
 			"<div class='btn-group pull-right dropup'>" +
             "<button type='button' class='btn btn-primary dropdown-toggle' data-toggle='dropdown'>Messages per hour <span class='caret'></span></button>" +
 			"<ul class='dropdown-menu' role='menu'>" +
-            "<li><a class='mo' value='2014-02-19' >2014-02-19</a></li>" +
-			"<li><a class='mo' value='2014-02-20' >2014-02-20</a></li>" +
-            "<li><a class='mo' value='2014-02-21' >2014-02-21</a></li>" +
-			"<li><a class='mo' value='2014-02-22' >2014-02-22</a></li>" +
-            "<li><a class='mo' value='2014-02-23' >2014-02-23</a></li>" +
+            "<li><a class='mo" + this.id + "' value='2014-02-19' >2014-02-19</a></li>" +
+			"<li><a class='mo" + this.id + "' value='2014-02-20' >2014-02-20</a></li>" +
+            "<li><a class='mo" + this.id + "' value='2014-02-21' >2014-02-21</a></li>" +
+			"<li><a class='mo" + this.id + "' value='2014-02-22' >2014-02-22</a></li>" +
+            "<li><a class='mo" + this.id + "' value='2014-02-23' >2014-02-23</a></li>" +
 			"</ul>" +
 			"</div>";
     }
