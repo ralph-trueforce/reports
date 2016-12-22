@@ -82,7 +82,7 @@ function Sunburst(width, height) {
                 .style("fill-rule", _this.fill_role)
                 .each(stash);
 
-            d3.selectAll("input[name=\"sun_mode\"]")
+            d3.selectAll("input[name='sun_mode" + _this.id + "']")
 				.on("change", function change() {
 					var value = this.value === "count"
 						? function () {
@@ -115,7 +115,7 @@ function Sunburst(width, height) {
 				.on("mouseout",function(data) {
 					tooltip_div
 						.transition()
-						.duration(500)
+						.duration(400)
 						.style("opacity", 0);
 				});
         });
@@ -140,8 +140,10 @@ function Sunburst(width, height) {
     };
 
     this.getFooter = function() {
-        return "<form>Sort by <label><input type='radio' name='sun_mode' value='size'> Size</label>" +
-            "<label><input type='radio' name='sun_mode' value='count' checked> Count</label></form>";
+        return (
+        	"<form>Group by <label><input type='radio' name='sun_mode" + this.id + "' value='size'> Size</label>" +
+            "<label><input type='radio' name='sun_mode" + this.id + "' value='count' checked> Count</label></form>"
+		);
     }
 }
 
