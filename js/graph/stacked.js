@@ -130,7 +130,6 @@ function Stacked(width, height) {
 
             var timeout = setTimeout(function () {
                 d3.select("input[name='stacked_mode" + _this.id + "'][value='stacked']").property("checked", true).each(change);
-                console.log("checked");
             }, _this.timeout);
 
 			var text = svg.selectAll(".tick").selectAll("text");
