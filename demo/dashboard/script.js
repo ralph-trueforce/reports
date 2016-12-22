@@ -363,7 +363,9 @@ angular.module('app')
 			//todo: workaround, set as a attributes to apply delete.
 			editorConfig = null;
 			editorData = null;
-			settingsUp = false;
+			$timeout(function() {
+				settingsUp = false;
+			});
 		};
 
 		$scope.remove = function() {
@@ -396,7 +398,9 @@ angular.module('app')
 					}
 				);
 			$modalInstance.close();
-			settingsUp = false;
+			$timeout(function() {
+				settingsUp = false;
+			});
 		};
 
 		$scope.saveIntoDB = function(widget_form) {
