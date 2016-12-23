@@ -291,10 +291,11 @@ angular.module('app')
 		};
 
 		$scope.changeGraphTo = function(widget, to) {
-			//Will retrieve data from the data template
+			//Will retrieve data from the data TEMPLATE
 			localStorage.removeItem(widget.id + 'data');
-
+			localStorage.removeItem(widget.id + '.config');
 			angular.element(document.querySelector("#" + widget.id)).empty();
+
 			var width = WidgetCache.getWidth(widget);
 			var height = WidgetCache.getHeight(widget);
 			eval("var graph = new " + to + "(" + width + ", " + height + ");");
@@ -309,11 +310,14 @@ angular.module('app')
 		};
 
 		$scope.changeSource = function(widget, new_source) {
+			localStorage.removeItem(widget.id + 'data');
 			angular.element(document.querySelector("#" + widget.id)).empty();
+
 			var width = WidgetCache.getWidth(widget);
 			var height = WidgetCache.getHeight(widget);
 			//var graph = factory.graphics(widget);
 			eval("var graph = new " + widget.type + "(" + width + ", " + height + ");");
+			graph.setID(widget.id);
 			graph.setSource(new_source);
 			graph.draw("#" + widget.id);
 		};
@@ -336,16 +340,19 @@ angular.module('app')
 			return graphic.source;
 		};
 
-		$scope.getConfiguration = function() {
+		$scope.loadConfiguration = function() {
 			eval("var graphic = new " + widget.type + "();");
-            obj = JSON.parse(localStorage[graphic.config_filename]);
-			return JSON.stringify(obj, null, 4);
+            // //obj = JSON.parse(localStorage[widget.id + '.config']);
+            // obj = JSON.parse(localStorage[graphic.config_filename]);
+            // return JSON.stringify(obj, null, 4);
+            return graphic.getConfiguration(widget.id);
 		};
 
-		$scope.getData = function() {
+		$scope.loadData = function() {
 			eval("var graphic = new " + widget.type + "();");
-			obj = JSON.parse((localStorage[widget.id + 'data'])?localStorage[widget.id + 'data']:localStorage[graphic.source]);
-			return JSON.stringify(obj, null, 4);
+            // obj = JSON.parse((localStorage[widget.id + 'data'])?localStorage[widget.id + 'data']:localStorage[graphic.source]);
+            // return JSON.stringify(obj, null, 4);
+            return graphic.getData(widget.id);
 		};
 
 		$scope.form = {
@@ -357,8 +364,8 @@ angular.module('app')
 			row:   widget.row,
 			type:  widget.type,
 			source: $scope.getSource(),
-			config: $scope.getConfiguration(),
-			data:   $scope.getData()
+			config: $scope.loadConfiguration(),
+			data:   $scope.loadData()
 		};
 
 		$scope.dismiss = function() {
@@ -412,7 +419,8 @@ angular.module('app')
 			var widget_config = {
 				content: JSON.parse(configJson)
 			};
-			localStorage[widget.type.toLowerCase() + '.config'] = JSON.stringify(widget_config.content);
+			//localStorage[widget.type.toLowerCase() + '.config'] = JSON.stringify(widget_config.content);
+			localStorage[widget_form.id + '.config'] = JSON.stringify(widget_config.content);
 
 			var widget_data = {
 				content: JSON.parse(dataJson)
@@ -475,6 +483,7 @@ angular.module('app')
 				var width = WidgetCache.getWidth(widget);
 				var height = WidgetCache.getHeight(widget);
 				eval("var graph = new " + _Class + "(" + width + ", " + height + ");");
+				graph.setID(ID);
 				graph.setSource($scope.form.source);
 				graph.draw("#" + ID);
 
@@ -602,11 +611,12 @@ angular.module('app')
 			return $scope.tab === tabNum;
 		};
 
+		// Load selected TEMPLATE
 		$scope.updateSource = function() {
 			var name = $scope.form.type.toLowerCase();
 			$scope.form.source = 'data/' + name + '.json';
 
-			//NOTE: when the source changes it will replace with template data.
+			//NOTE: When the source changes it will replace with template data, then your current 'data' could be "LOST" if you saved.
 			//takes data from the template
 			obj = JSON.parse(localStorage[name + '.config']);
 			$scope.form.config = JSON.stringify(obj, null, 4);

@@ -14,7 +14,9 @@ function Graphic(width, height, arguments) {
     this.width = width;
     this.height = height;
 	this.name = arguments.callee.name.toLowerCase();
+	//data template
 	this.source = 'data/' + this.name + '.json';
+	//config template
 	this.config_filename = this.name + '.config';
 }
 
@@ -52,14 +54,11 @@ Graphic.prototype.configure_base = function(data, error) {
 	if (!data.source) {
 		data.source = this.source;
 	}
-
-	if (!(this.config_filename in localStorage)) {
-		localStorage[this.config_filename] = JSON.stringify(data);
-	}
 };
 
 /**
  * Virtual function configure
+ *
  * @param data
  * @param error
  */
@@ -73,21 +72,28 @@ Graphic.prototype.process = function(tag_id) {};
 
 /**
  * Draw, called by the children classes instances
+ *
  * @param tag_id
  */
 Graphic.prototype.draw = function(tag_id) {
 	var _this = this;
 	this.id = tag_id.replace('#', '');
 
-	if (localStorage[this.config_filename] === undefined) {
+	if (localStorage[this.id + '.config'] === undefined) {
+	//if (localStorage[this.config_filename] === undefined) {
 		//Asynchronous json reading
 		d3.json("config/" + this.config_filename + ".json", function (error, data) {
 			_this.configure(data, error);
 			_this.process(tag_id);
+			_this.saveConfig(data);
+			_this.saveConfigTemplate(data);
 		});
 	} else {
-		this.configure(JSON.parse(localStorage[this.config_filename]), null);
+		data = JSON.parse(localStorage[this.id + '.config']);
+		//data = JSON.parse(localStorage[this.config_filename]);
+		this.configure(data, null);
 		this.process(tag_id);
+		this.saveConfig(data);
 	}
 };
 
@@ -98,16 +104,18 @@ Graphic.prototype.drawing = function (error, data) {
 
 /**
  * Update the graphic reading again from config file.
+ *
  * @param tag_id
  */
 Graphic.prototype.update = function(tag_id, $http) {
 	//TODO: need to inject http to Graph parent class
+	var ID = tag_id.replace('#', '');
 	var request = {
 		method: "POST",
 		url: "http://localhost:3000/widget",
 		dataType: 'json',
 		data: {
-			param: tag_id.replace('#',''),
+			param: ID,
 			method: 'fetch_config'
 		},
 		headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
@@ -118,7 +126,8 @@ Graphic.prototype.update = function(tag_id, $http) {
 	$http(request).then(
 		function(response, status, headers, config)	{
 			try {
-				localStorage[_this.config_filename] = JSON.stringify(response.data);
+				localStorage[ID + '.config'] = JSON.stringify(response.data);
+				//localStorage[_this.config_filename] = JSON.stringify(response.data);
 			} catch(e) {
 				console.log(e);
 				return;
@@ -126,15 +135,14 @@ Graphic.prototype.update = function(tag_id, $http) {
 			_this.draw(tag_id);
 		}
 		,function(response, status, headers, config) {
-			if (typeof localStorage['CONFIG_DASHBOARD'] !== 'undefined') {
-				console.log('Error: could not retrieve config from server.');
-			}
+			_this.draw(tag_id);
 		}
 	);
 };
 
 /**
  * Returns the default 'html' content.
+ *
  * @returns {string}
  */
 Graphic.prototype.getFooter = function() {
@@ -143,12 +151,15 @@ Graphic.prototype.getFooter = function() {
 
 /**
  * Update the Data source {network or filepath}
- * @param path
+ *
+ * @param source_path
  */
-Graphic.prototype.setSource = function(path) {
-	data = JSON.parse(localStorage[this.config_filename]);
-	data.source = path;
-	localStorage[this.config_filename] = JSON.stringify(data);
+Graphic.prototype.setSource = function(source_path) {
+	data = JSON.parse(localStorage[this.id + '.config']);
+	//data = JSON.parse(localStorage[this.config_filename]);
+	data.source = source_path;
+	localStorage[this.id + '.config'] = JSON.stringify(data);
+	//localStorage[this.config_filename] = JSON.stringify(data);
 };
 
 /**
@@ -169,13 +180,15 @@ Graphic.prototype.fetchData = function() {
  *
  * @param error
  * @param data
+ *
  * @returns {*}
  */
 Graphic.prototype.preData = function(error, data) {
 	if (error) {
 		throw error;
 	}
-	localStorage[this.source] = JSON.stringify(data);
+	//localStorage[this.source] = JSON.stringify(data);
+	localStorage[this.id + 'data'] = JSON.stringify(data);
 
 	if (typeof localStorage[this.id + 'data'] !== 'undefined') {
 		data = JSON.parse(localStorage[this.id + 'data']);
@@ -193,4 +206,50 @@ Graphic.prototype.setID = function(tag_id) {
 	if (tag_id) {
 		this.id = tag_id.replace('#', '');
 	}
+};
+
+/**
+ * Save template into cache
+ * @param data
+ */
+Graphic.prototype.saveConfigTemplate = function(data) {
+	if (!(this.config_filename in localStorage)) {
+		localStorage[this.config_filename] = JSON.stringify(data);
+	}
+};
+
+/**
+ * Save into cache
+ * @param data
+ */
+Graphic.prototype.saveConfig = function(data) {
+	if (!((this.id + '.config') in localStorage)) {
+		localStorage[this.id + '.config'] = JSON.stringify(data);
+	}
+};
+
+/**
+ * Get template from cache
+ */
+Graphic.prototype.getTemplateConfiguration = function() {
+	obj = JSON.parse(localStorage[this.config_filename]);
+	return JSON.stringify(obj, null, 4);
+};
+
+/**
+ * Get from cache
+ * @param id
+ */
+Graphic.prototype.getConfiguration = function(id) {
+	obj = JSON.parse(localStorage[id + '.config']);
+	return JSON.stringify(obj, null, 4);
+};
+
+/**
+ * Get from cache
+ * @param id
+ */
+Graphic.prototype.getData = function(id) {
+	obj = JSON.parse((localStorage[id + 'data'])?localStorage[id + 'data']:localStorage[this.source]);
+	return JSON.stringify(obj, null, 4);
 };
