@@ -150,6 +150,50 @@ angular.module('app')
 				function(response, status, headers, config)	{
 					CONFIG_DASHBOARD[1].widgets = response.data;
 					$scope.loadDashboard = CONFIG_DASHBOARD;
+					return;
+					request = {
+						method: "POST",
+						url: "http://localhost:3000/dashboard",
+						dataType: 'json',
+						data: {
+							method: 'fetch_configurations'
+						},
+						headers: { 'Content-Type': 'application/x-www-form-urlencoded', 'Accept-Encoding': 'gzip' }
+					};
+
+					$http(request).then(
+						function(response, status, headers, config)	{
+                            //console.log(response.data);
+							response.data.forEach(function(item) {
+								localStorage[item.id + '.config'] = JSON.stringify(item.data);
+							});
+
+							request = {
+								method: "POST",
+								url: "http://localhost:3000/dashboard",
+								dataType: 'json',
+								data: {
+									method: 'fetch_sources'
+								},
+								headers: { 'Content-Type': 'application/x-www-form-urlencoded', 'Accept-Encoding': 'gzip' }
+							};
+
+							$http(request).then(
+								function(response, status, headers, config)	{
+									//console.log(response.data);
+									response.data.forEach(function(item) {
+										localStorage[item.id + 'data'] = JSON.stringify(item.data);
+									});
+								}
+								,function(response, status, headers, config) {
+									console.log("Source data request failed");
+								}
+							);
+						}
+						,function(response, status, headers, config) {
+							console.log("Configurations request failed");
+						}
+					);
 				}
 				,function(response, status, headers, config) {
 					if (typeof localStorage['CONFIG_DASHBOARD'] !== 'undefined') {
