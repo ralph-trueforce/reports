@@ -323,6 +323,8 @@ angular.module('app')
 			graph.setID(widget.id);
 			graph.setSource(new_source);
 			graph.draw("#" + widget.id);
+
+			$scope.displaySource = false;
 		};
 
 		$scope.modules = (new GraphHandler()).getClassesNames();
