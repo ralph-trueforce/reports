@@ -40,7 +40,7 @@ function Map(width, height) {
         var color = d3.scale.linear()
             .range(this.colors);
 
-        var legendText = ["500+", "400+", "300+", "100-299", "0-99"];
+        var legendText = ["500+", "400+", "300+", "100+", "0-99"];
 
 //Create SVG element and append map to the SVG
         var svg = d3.select(tag_id)
@@ -189,10 +189,10 @@ function Map(width, height) {
 //                 });
 
 // Modified Legend Code from Mike Bostock: http://bl.ocks.org/mbostock/3888852
-                var legend = d3.select(tag_id).append("svg")
+                var legend = svg.append("svg")
                 // .attr("class", "legend")
 
-                    .attr("width", 140)
+                    .attr("width", 250)
                     .attr("height", 200)
                     .style("left", (width - 80) + "px")
                     .style("top", midh + "px" )
@@ -211,8 +211,10 @@ function Map(width, height) {
                     .attr("height", 18)
                     .style("fill", color);
 
-                legend.append("text")
-                    .data(legendText)
+                var text = legend.append("text");
+
+
+                text.data(legendText)
                     .attr("x", 24)
                     .attr("y", 9)
                     .attr("dy", ".35em")
@@ -225,8 +227,10 @@ function Map(width, height) {
                 if (width == 235){
 
                     legend.attr("transform",(function (d, i) {
-                        return "translate(65," + i * 20 + ")";
+                        return "translate(200," + i * 20 + ")";
                     }));
+
+                    text.style("font-size","8px");
                 }
             });
         };
