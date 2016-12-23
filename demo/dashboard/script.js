@@ -2,7 +2,8 @@
 angular.module('app')
 .factory('dashboardService', function() {
 	return {
-		settings_up : false
+		settings_up: false,
+		remove_message: "Do you really want to delete this widget?"
 	};
 })
 .directive('drawGraph', ['dashboardService', function(dashboardService) {
@@ -218,33 +219,35 @@ angular.module('app')
 
 		$scope.remove = function(widget) {
 
-			var request = {
-				method: "POST",
-				url: "http://localhost:3000/widget",
-				dataType: 'json',
-				data: {
-					param: widget,
-					method: 'remove'
-				},
-				headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
-			};
+			var response = confirm(dashboardService.remove_message);
+			if (response == true) {
 
-			$http(request)
-				.then(function(response, status, headers, config)
-					{
-						$timeout(function() {
-							window.alert(response.data.Result);
-						});
-					}
-					,function(response, status, headers, config)
-					{
-						$timeout(function() {
-							window.alert(response.data);
-						});
-					}
-				);
+				var request = {
+					method: "POST",
+					url: "http://localhost:3000/widget",
+					dataType: 'json',
+					data: {
+						param: widget,
+						method: 'remove'
+					},
+					headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+				};
 
-			$scope.dashboard.widgets.splice($scope.dashboard.widgets.indexOf(widget), 1);
+				$http(request)
+					.then(function (response, status, headers, config) {
+							$timeout(function () {
+								window.alert(response.data.Result);
+							});
+						}
+						, function (response, status, headers, config) {
+							$timeout(function () {
+								window.alert(response.data);
+							});
+						}
+					);
+
+				$scope.dashboard.widgets.splice($scope.dashboard.widgets.indexOf(widget), 1);
+			}
 		};
 
 		$scope.openSettings = function(widget) {
@@ -379,37 +382,38 @@ angular.module('app')
 
 		$scope.remove = function() {
 
-			$scope.dashboard.widgets.splice($scope.dashboard.widgets.indexOf(widget), 1);
+			var response = confirm(dashboardService.remove_message);
+			if (response == true) {
+				$scope.dashboard.widgets.splice($scope.dashboard.widgets.indexOf(widget), 1);
 
-			var request = {
-				method: "POST",
-				url: "http://localhost:3000/widget",
-				dataType: 'json',
-				data: {
-					param: widget,
-					method: 'remove'
-				},
-				headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
-			};
+				var request = {
+					method: "POST",
+					url: "http://localhost:3000/widget",
+					dataType: 'json',
+					data: {
+						param: widget,
+						method: 'remove'
+					},
+					headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+				};
 
-			$http(request)
-				.then(function(response, status, headers, config)
-					{
-						$timeout(function() {
-							window.alert(response.data.Result);
-						});
-					}
-					,function(response, status, headers, config)
-					{
-						$timeout(function() {
-							window.alert(response.data);
-						});
-					}
-				);
-			$modalInstance.close();
-			$timeout(function() {
-				dashboardService.settings_up = false;
-			});
+				$http(request)
+					.then(function (response, status, headers, config) {
+							$timeout(function () {
+								window.alert(response.data.Result);
+							});
+						}
+						, function (response, status, headers, config) {
+							$timeout(function () {
+								window.alert(response.data);
+							});
+						}
+					);
+				$modalInstance.close();
+				$timeout(function () {
+					dashboardService.settings_up = false;
+				});
+			}
 		};
 
 		$scope.saveIntoDB = function(widget_form) {
