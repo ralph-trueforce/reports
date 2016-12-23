@@ -2,6 +2,7 @@ http  = require('http');
 fs    = require('fs');
 url   = require('url');
 mysql = require('mysql');
+zlib  = require('zlib');
 
 //TODO: optimize and put in classes
 
@@ -48,6 +49,63 @@ function getWidgets(con, response) {
 		}
 		json = JSON.stringify(widgets);
 		deliver(json, response);
+		return rows;
+	});
+	return null;
+}
+
+//TODO: repeated functions, needs to move into class
+function getWidgetsConfig(con, response) {
+	con.query('SELECT id, content FROM widget_config', function(err, rows) {
+		if (err) {
+			console.log(err);
+			json = JSON.stringify({
+				Result: err.code
+			});
+			deliver_error(json, response);
+			throw err;
+		}
+
+		console.log('Data retrieved from DB:\n');
+		console.log(rows);
+		var config = [];
+		for (var i = 0; i < rows.length; i++) {
+			_unit = '{"id":"' + rows[i].id + '", "data": ' + rows[i].content + '}';
+			console.log(_unit);
+			_object = JSON.parse(_unit);
+			config.push(_object);
+		}
+		json = JSON.stringify(config);
+		//deliver(json, response);
+		gzip_deliver(json, response);
+		return rows;
+	});
+	return null;
+}
+
+function getWidgetsData(con, response) {
+	con.query('SELECT id, content FROM widget_data', function(err, rows) {
+		if (err) {
+			console.log(err);
+			json = JSON.stringify({
+				Result: err.code
+			});
+			deliver_error(json, response);
+			throw err;
+		}
+
+		console.log('Data retrieved from DB:\n');
+		console.log(rows);
+		var data = [];
+		for (var i = 0; i < rows.length; i++) {
+			_unit = '{"id":"' + rows[i].id + '", "data": ' + rows[i].content + '}';
+			console.log(_unit);
+			_object = JSON.parse(_unit);
+			data.push(_object);
+		}
+		json = JSON.stringify(data);
+		//deliver(json, response);
+		gzip_deliver(json, response);
 		return rows;
 	});
 	return null;
@@ -326,6 +384,16 @@ function handler(message, response) {
 		conn = connect();
 		widgets = getWidgets(conn, response);
 		close(conn);
+	} else if (message.method == "fetch_configurations") {
+		console.log("Loading");
+		conn = connect();
+		widgets = getWidgetsConfig(conn, response);
+		close(conn);
+	} else if (message.method == "fetch_sources") {
+		console.log("Loading");
+		conn = connect();
+		widgets = getWidgetsData(conn, response);
+		close(conn);
 	} else if (message.method == "remove") {
 		console.log("Deleting");
 		conn = connect();
@@ -354,6 +422,13 @@ function client_response(json, response, code) {
 	response.writeHead(code, {'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'});
 	console.log(json);
 	response.end(json);
+}
+
+function gzip_deliver(json, response) {
+	response.writeHead(200, {'Content-Type': 'text/html', 'Content-Encoding': 'gzip', 'Access-Control-Allow-Origin': '*'});
+	zlib.gzip(json, function (_, result) {
+		response.end(result);
+	});
 }
 
 server = http.createServer( function(request, response) {
