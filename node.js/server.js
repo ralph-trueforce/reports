@@ -3,6 +3,7 @@ fs    = require('fs');
 url   = require('url');
 mysql = require('mysql');
 
+//TODO: optimize and put in classes
 
 function getCurrentTimestamp() {
 	return new Date().toISOString().slice(0, 19).replace('T', ' ');
