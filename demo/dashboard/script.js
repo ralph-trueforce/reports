@@ -1,4 +1,4 @@
-//TODO move the Factory method for graphs into a class
+//TODO move the Factory method (pattern design on /js) for graphs into a class
 angular.module('app')
 .factory('dashboardService', function() {
 	return {
