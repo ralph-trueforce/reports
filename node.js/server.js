@@ -356,11 +356,47 @@ function removeWidget(con, widget, response) {
 			deliver_error(json, response);
 			throw err;
 		}
-		console.log(widget.id + ': Deleted ' + result.affectedRows + ' rows');
+		console.log(widget.id + ': Deleted ' + result.affectedRows + ' rows.');
 		json = JSON.stringify({
 			Result: "removed"
 		});
 		deliver(json, response);
+	});
+}
+
+function removeWidgetConfig(con, widget, response) {
+	con.query("DELETE FROM widget_config WHERE id = ?", [widget.id], function (err, result) {
+		if (err) {
+			console.log(err);
+			json = JSON.stringify({
+				Result: err.code
+			});
+			deliver_error(json, response);
+			throw err;
+		}
+		console.log(widget.id + ': Deleted ' + result.affectedRows + ' rows from Config.');
+		// json = JSON.stringify({
+		// 	Result: "removed"
+		// });
+		// deliver(json, response);
+	});
+}
+
+function removeWidgetData(con, widget, response) {
+	con.query("DELETE FROM widget_data WHERE id = ?", [widget.id], function (err, result) {
+		if (err) {
+			console.log(err);
+			json = JSON.stringify({
+				Result: err.code
+			});
+			deliver_error(json, response);
+			throw err;
+		}
+		console.log(widget.id + ': Deleted ' + result.affectedRows + ' rows from Data.');
+		// json = JSON.stringify({
+		// 	Result: "removed"
+		// });
+		// deliver(json, response);
 	});
 }
 
@@ -398,6 +434,8 @@ function handler(message, response) {
 		console.log("Deleting");
 		conn = connect();
 		removeWidget(conn, message.param, response);
+		removeWidgetConfig(conn, message.param, response);
+		removeWidgetData(conn, message.param, response);
 		close(conn);
 	} else if (message.method == "fetch_config") {
 		console.log("fetch config alone");
