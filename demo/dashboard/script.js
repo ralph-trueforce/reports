@@ -35,12 +35,13 @@ angular.module('app')
 				if (dashboardService.settings_up == true) {
 					return;
 				}
-				//if(event)console.log(event.name);
+				//if(event)console.log(element[0].id + " - "+event.name);
 				//console.log(object.targetScope.gridsterItem);
 				//console.log(element[0]);
 				element.css('height', (element[0].parentElement.clientHeight - 100) + 'px');
 				var ID = element[0].id;
 				if (isNaN(ID) && !isAngularModelVar(ID)) {
+					//todo: clean the way to get enough info to create graph
 					var _Class = document.getElementById(ID);
 					if (_Class == null || !_Class) {
 						_Class = attrs.alt;
@@ -150,7 +151,7 @@ angular.module('app')
 				function(response, status, headers, config)	{
 					CONFIG_DASHBOARD[1].widgets = response.data;
 					$scope.loadDashboard = CONFIG_DASHBOARD;
-					return;
+					//return;
 					request = {
 						method: "POST",
 						url: "http://localhost:3000/dashboard",
